@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<database xmlns="spryker:schema-01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="zed" xsi:schemaLocation="spryker:schema-01 https://static.spryker.com/schema-01.xsd"
+          namespace="Pyz\Zed\CustomerProductPrice\Persistence" package="src.Pyz.Zed.CustomerProductPrice.Persistence">
+    <table name="pyz_customer_product">
+        <column name="id_customer_product" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="customer_number" required="true" type="VARCHAR" size="255" />
+        <column name="item_number" required="true" type="VARCHAR" size="255" />
+    </table>
+
+    <table name="pyz_customer_product_price">
+        <column name="id_customer_product_price" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="fk_customer_product" type="INTEGER" required="true"/>
+        <column name="quantity" type="INTEGER" defaultValue="0" required="true"/>
+        <column name="value" type="DECIMAL" size="20" scale="10" required="true" defaultValue="0"/>
+        <foreign-key name="pyz_customer_product_price-fk_customer_product" foreignTable="pyz_customer_product">
+            <reference local="fk_customer_product" foreign="id_customer_product"/>
+        </foreign-key>
+    </table>
+</database>
