@@ -12,7 +12,10 @@ use Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\RecordValidator;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\RecordValidatorInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\DatabaseWriter;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\DatabaseWriterInterface;
+use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\EventWriter;
+use Pyz\Zed\CustomerProductPrice\CustomerProductPriceDependencyProvider;
 use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager;
+use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Importer;
 
@@ -32,7 +35,7 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
             $this->createFileValidator(),
             $this->createFileReader(),
             $this->createDtoParser(),
-            $this->createDtoWriter()
+            $this->createImportEventWriter()
         );
     }
 
@@ -73,10 +76,30 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     /**
      * @return DatabaseWriterInterface
      */
-    protected function createDtoWriter(): DatabaseWriterInterface
+    public function createDtoWriter(): DatabaseWriterInterface
     {
         return new DatabaseWriter(
             $this->getEntityManager()
         );
+    }
+
+    /**
+     * @return EventWriter
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
+     */
+    protected function createImportEventWriter()
+    {
+        return new EventWriter(
+            $this->getEventFacade()
+        );
+    }
+
+    /**
+     * @return EventFacadeInterface
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
+     */
+    protected function getEventFacade(): EventFacadeInterface
+    {
+        return $this->getProvidedDependency(CustomerProductPriceDependencyProvider::FACADE_EVENT);
     }
 }

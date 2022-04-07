@@ -4,6 +4,7 @@
 namespace Pyz\Zed\CustomerProductPrice\Business\Importer\Writer;
 
 use Generated\Shared\Transfer\CustomerProductPriceCollectionTransfer;
+use Generated\Shared\Transfer\CustomerProductTransfer;
 use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager;
 
 /**
@@ -43,5 +44,15 @@ class DatabaseWriter implements DatabaseWriterInterface
         }
 
         return true;
+    }
+
+    /**
+     * @param CustomerProductTransfer $customerProductTransfer
+     *
+     * @throws \Propel\Runtime\Exception\PropelException
+     */
+    public function writeOne(CustomerProductTransfer $customerProductTransfer)
+    {
+        $this->entityManager->saveCustomerProductPrice($customerProductTransfer);
     }
 }

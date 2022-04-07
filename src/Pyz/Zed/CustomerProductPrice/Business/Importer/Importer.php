@@ -6,6 +6,7 @@ use Pyz\Zed\CustomerProductPrice\Business\Importer\Parser\JsonToDtoParserInterfa
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Reader\FileReaderInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\FileValidatorInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\DatabaseWriterInterface;
+use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\EventWriterInterface;
 
 /**
  * Class Importer
@@ -29,9 +30,9 @@ class Importer implements ImporterInterface
     protected $parser;
 
     /**
-     * @var DatabaseWriterInterface
+     * @var EventWriterInterface
      */
-    protected $writer;
+    protected $eventWriter;
 
     /**
      * Importer constructor.
@@ -45,12 +46,12 @@ class Importer implements ImporterInterface
         FileValidatorInterface $fileValidator,
         FileReaderInterface $fileReader,
         JsonToDtoParserInterface $parser,
-        DatabaseWriterInterface $writer
+        EventWriterInterface $eventWriter
     ) {
         $this->fileValidator = $fileValidator;
         $this->fileReader = $fileReader;
         $this->parser = $parser;
-        $this->writer = $writer;
+        $this->eventWriter = $eventWriter;
     }
 
 
@@ -73,8 +74,8 @@ class Importer implements ImporterInterface
         // 3. Parse json data to Data Transfer Object Collection
         $dataTransferObjects = $this->parser->parse($fileContent);
 
-        // 4. Write data into Database
-        $this->writer->writeCollection($dataTransferObjects);
+        // 4. Trigger event writer
+        $this->eventWriter->writeCollection($dataTransferObjects);
 
         return true;
     }
