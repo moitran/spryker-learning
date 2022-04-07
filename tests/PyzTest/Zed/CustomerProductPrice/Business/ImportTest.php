@@ -5,8 +5,8 @@ namespace PyzTest\Zed\CustomerProductPrice\Business;
 use Codeception\Test\Unit;
 use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPriceQuery;
 use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductQuery;
+use Pyz\Zed\CustomerProductPrice\Business\CustomerProductPriceFacade;
 use Pyz\Zed\CustomerProductPrice\Business\Importer;
-use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager;
 
 /**
  * Class ImportTest
@@ -18,10 +18,10 @@ class ImportTest extends Unit
     {
         // A1 - arrange
         $filePath = dirname(__DIR__) . '/_data/data-import.json';
-        $importer = new Importer(new CustomerProductPriceEntityManager());
+        $importerFacade = $this->getImporterFacade();
 
         // A2 - act
-        $success = $importer->import($filePath);
+        $success = $importerFacade->importFromJsonFile($filePath);
 
         // A3 - assert
         $this->assertTrue($success);
@@ -33,14 +33,15 @@ class ImportTest extends Unit
     {
         // A1 - arrange
         $filePath = dirname(__DIR__) . '/_data/data-import-invalid-format.json';
-        $importer = new Importer(new CustomerProductPriceEntityManager());
+        $importerFacade = $this->getImporterFacade();
 
         // A2 - act
         try {
-            $importer->import($filePath);
+            $importerFacade->importFromJsonFile($filePath);
         } catch (\Exception $e) {
             // A3 - assert
-            $this->assertEquals('Json file invalid', $e->getMessage());
+            $this->assertEquals('Json file is invalid', $e->getMessage());
+            $this->assertInstanceOf(Importer\Exception\InvalidJsonException::class, $e);
         }
     }
 
@@ -48,10 +49,10 @@ class ImportTest extends Unit
     {
         // A1 - arrange
         $filePath = dirname(__DIR__) . '/_data/data-import-not-found.json';
-        $importer = new Importer(new CustomerProductPriceEntityManager());
+        $importerFacade = $this->getImporterFacade();
 
         // A2 - act
-        $failed = $importer->import($filePath);
+        $failed = $importerFacade->importFromJsonFile($filePath);
 
         // A3 - assert
         $this->assertFalse($failed);
@@ -61,12 +62,20 @@ class ImportTest extends Unit
     {
         // A1 - arrange
         $filePath = '';
-        $importer = new Importer(new CustomerProductPriceEntityManager());
+        $importerFacade = $this->getImporterFacade();
 
         // A2 - act
-        $failed = $importer->import($filePath);
+        $failed = $importerFacade->importFromJsonFile($filePath);
 
         // A3 - assert
         $this->assertFalse($failed);
+    }
+
+    /**
+     * @return CustomerProductPriceFacade
+     */
+    protected function getImporterFacade()
+    {
+        return new CustomerProductPriceFacade();
     }
 }

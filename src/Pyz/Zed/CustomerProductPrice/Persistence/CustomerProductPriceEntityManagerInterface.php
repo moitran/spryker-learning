@@ -3,7 +3,6 @@
 namespace Pyz\Zed\CustomerProductPrice\Persistence;
 
 use Generated\Shared\Transfer\CustomerProductTransfer;
-use Generated\Shared\Transfer\CustomerProductPriceTransfer;
 
 /**
  * Interface CustomerProductPriceEntityManagerInterface
@@ -14,14 +13,7 @@ interface CustomerProductPriceEntityManagerInterface
     /**
      * @param CustomerProductTransfer $customerProductTransfer
      *
-     * @return CustomerProductTransfer
+     * @return mixed
      */
-    public function saveCustomerProduct(CustomerProductTransfer $customerProductTransfer) : CustomerProductTransfer;
-
-    /**
-     * @param CustomerProductPriceTransfer $customerProductPriceTransfer
-     *
-     * @return CustomerProductPriceTransfer
-     */
-    public function saveCustomerProductPrice(CustomerProductPriceTransfer $customerProductPriceTransfer) : CustomerProductPriceTransfer;
+    public function saveCustomerProductPrice(CustomerProductTransfer $customerProductTransfer);
 }
