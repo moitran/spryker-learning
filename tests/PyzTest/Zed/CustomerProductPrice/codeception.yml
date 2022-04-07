@@ -1,0 +1,28 @@
+namespace: PyzTest\Zed\CustomerProductPrice
+
+paths:
+    tests: .
+    data: _data
+    support: _support
+    log: _output
+
+coverage:
+    enabled: true
+    remote: false
+    whitelist: { include: ['../../../../src/*'] }
+
+bootstrap: _bootstrap.php
+
+suites:
+    Business:
+        path: Business
+        class_name: ImportTester
+        modules:
+            enabled:
+              - Asserts
+              - \PyzTest\Shared\Testify\Helper\Environment
+              - \SprykerTest\Shared\Config\Helper\ConfigInit
+              - \SprykerTest\Shared\Testify\Helper\LocatorHelper:
+                  projectNamespaces: ['Pyz']
+              - \SprykerTest\Shared\Propel\Helper\TransactionHelper
+
