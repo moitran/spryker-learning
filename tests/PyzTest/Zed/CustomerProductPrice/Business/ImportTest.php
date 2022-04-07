@@ -3,10 +3,10 @@
 namespace PyzTest\Zed\CustomerProductPrice\Business;
 
 use Codeception\Test\Unit;
+use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPriceQuery;
+use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductQuery;
 use Pyz\Zed\CustomerProductPrice\Business\Importer;
 use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager;
-use Pyz\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPriceQuery;
-use Pyz\Zed\CustomerProductPrice\Persistence\PyzCustomerProductQuery;
 
 /**
  * Class ImportTest

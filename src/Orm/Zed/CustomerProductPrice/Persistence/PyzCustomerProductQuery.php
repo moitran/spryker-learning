@@ -1,8 +1,8 @@
 <?php
 
-namespace Pyz\Zed\CustomerProductPrice\Persistence;
+namespace Orm\Zed\CustomerProductPrice\Persistence;
 
-use Pyz\Zed\CustomerProductPrice\Persistence\Base\PyzCustomerProductQuery as BasePyzCustomerProductQuery;
+use Orm\Zed\CustomerProductPrice\Persistence\Base\PyzCustomerProductQuery as BasePyzCustomerProductQuery;
 
 /**
  * Skeleton subclass for performing query and update operations on the 'pyz_customer_product' table.

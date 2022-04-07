@@ -2,8 +2,8 @@
 
 namespace Pyz\Zed\CustomerProductPrice\Persistence;
 
-use Generated\Shared\Transfer\PyzCustomerProductEntityTransfer;
-use Generated\Shared\Transfer\PyzCustomerProductPriceEntityTransfer;
+use Generated\Shared\Transfer\CustomerProductTransfer;
+use Generated\Shared\Transfer\CustomerProductPriceTransfer;
 
 /**
  * Interface CustomerProductPriceEntityManagerInterface
@@ -12,16 +12,16 @@ use Generated\Shared\Transfer\PyzCustomerProductPriceEntityTransfer;
 interface CustomerProductPriceEntityManagerInterface
 {
     /**
-     * @param PyzCustomerProductEntityTransfer $customerProductEntityTransfer
+     * @param CustomerProductTransfer $customerProductTransfer
      *
-     * @return PyzCustomerProductEntityTransfer
+     * @return CustomerProductTransfer
      */
-    public function saveCustomerProduct(PyzCustomerProductEntityTransfer $customerProductEntityTransfer) : PyzCustomerProductEntityTransfer;
+    public function saveCustomerProduct(CustomerProductTransfer $customerProductTransfer) : CustomerProductTransfer;
 
     /**
-     * @param PyzCustomerProductPriceEntityTransfer $customerProductPriceEntityTransfer
+     * @param CustomerProductPriceTransfer $customerProductPriceTransfer
      *
-     * @return PyzCustomerProductPriceEntityTransfer
+     * @return CustomerProductPriceTransfer
      */
-    public function saveCustomerProductPrice(PyzCustomerProductPriceEntityTransfer $customerProductPriceEntityTransfer) : PyzCustomerProductPriceEntityTransfer;
+    public function saveCustomerProductPrice(CustomerProductPriceTransfer $customerProductPriceTransfer) : CustomerProductPriceTransfer;
 }

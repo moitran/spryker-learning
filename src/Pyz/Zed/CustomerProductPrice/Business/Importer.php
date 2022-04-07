@@ -2,8 +2,8 @@
 
 namespace Pyz\Zed\CustomerProductPrice\Business;
 
-use Generated\Shared\Transfer\PyzCustomerProductEntityTransfer;
-use Generated\Shared\Transfer\PyzCustomerProductPriceEntityTransfer;
+use Generated\Shared\Transfer\CustomerProductTransfer;
+use Generated\Shared\Transfer\CustomerProductPriceTransfer;
 use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager;
 
 /**
@@ -46,12 +46,12 @@ class Importer implements ImporterInterface
             $prices = $item['prices'];
             unset($item['prices']);
             $customerProductEntityTransfer = $this->customerProductPriceEntityManager->saveCustomerProduct(
-                $this->getPyzCustomerProductEntityTransfer()->fromArray($item)
+                $this->getCustomerProductTransfer()->fromArray($item)
             );
             foreach ($prices as $price) {
                 $price['fk_customer_product'] = $customerProductEntityTransfer->getIdCustomerProduct();
                 $this->customerProductPriceEntityManager->saveCustomerProductPrice(
-                    $this->getPyzCustomerProductPriceEntityTransfer()->fromArray($price)
+                    $this->getCustomerProductPriceTransfer()->fromArray($price)
                 );
             }
         }
@@ -92,18 +92,18 @@ class Importer implements ImporterInterface
     }
 
     /**
-     * @return PyzCustomerProductEntityTransfer
+     * @return CustomerProductTransfer
      */
-    protected function getPyzCustomerProductEntityTransfer()
+    protected function getCustomerProductTransfer()
     {
-        return new PyzCustomerProductEntityTransfer();
+        return new CustomerProductTransfer();
     }
 
     /**
-     * @return PyzCustomerProductPriceEntityTransfer
+     * @return CustomerProductPriceTransfer
      */
-    protected function getPyzCustomerProductPriceEntityTransfer()
+    protected function getCustomerProductPriceTransfer()
     {
-        return new PyzCustomerProductPriceEntityTransfer();
+        return new CustomerProductPriceTransfer();
     }
 }

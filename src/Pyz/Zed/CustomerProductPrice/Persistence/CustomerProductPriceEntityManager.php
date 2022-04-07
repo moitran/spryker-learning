@@ -2,8 +2,10 @@
 
 namespace Pyz\Zed\CustomerProductPrice\Persistence;
 
-use Generated\Shared\Transfer\PyzCustomerProductEntityTransfer;
-use Generated\Shared\Transfer\PyzCustomerProductPriceEntityTransfer;
+use Generated\Shared\Transfer\CustomerProductTransfer;
+use Generated\Shared\Transfer\CustomerProductPriceTransfer;
+use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProduct;
+use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPrice;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
 /**
@@ -13,35 +15,35 @@ use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 class CustomerProductPriceEntityManager extends AbstractEntityManager implements CustomerProductPriceEntityManagerInterface
 {
     /**
-     * @param PyzCustomerProductEntityTransfer $customerProductEntityTransfer
+     * @param CustomerProductTransfer $customerProductTransfer
      *
-     * @return PyzCustomerProductEntityTransfer
+     * @return CustomerProductTransfer
      * @throws \Propel\Runtime\Exception\PropelException
      */
-    public function saveCustomerProduct(PyzCustomerProductEntityTransfer $customerProductEntityTransfer) : PyzCustomerProductEntityTransfer
+    public function saveCustomerProduct(CustomerProductTransfer $customerProductTransfer) : CustomerProductTransfer
     {
         $customerProductEntity = $this->getPyzCustomerProduct();
-        $customerProductEntity->fromArray($customerProductEntityTransfer->modifiedToArray());
+        $customerProductEntity->fromArray($customerProductTransfer->modifiedToArray());
         $customerProductEntity->save();
-        $customerProductEntityTransfer->fromArray($customerProductEntity->toArray(), true);
+        $customerProductTransfer->fromArray($customerProductEntity->toArray(), true);
 
-        return $customerProductEntityTransfer;
+        return $customerProductTransfer;
     }
 
     /**
-     * @param PyzCustomerProductPriceEntityTransfer $customerProductPriceEntityTransfer
+     * @param CustomerProductPriceTransfer $customerProductPriceTransfer
      *
-     * @return PyzCustomerProductPriceEntityTransfer
+     * @return CustomerProductPriceTransfer
      * @throws \Propel\Runtime\Exception\PropelException
      */
-    public function saveCustomerProductPrice(PyzCustomerProductPriceEntityTransfer $customerProductPriceEntityTransfer) : PyzCustomerProductPriceEntityTransfer
+    public function saveCustomerProductPrice(CustomerProductPriceTransfer $customerProductPriceTransfer) : CustomerProductPriceTransfer
     {
         $customerProductPriceEntity = $this->getPyzCustomerProductPrice();
-        $customerProductPriceEntity->fromArray($customerProductPriceEntityTransfer->modifiedToArray());
+        $customerProductPriceEntity->fromArray($customerProductPriceTransfer->modifiedToArray());
         $customerProductPriceEntity->save();
-        $customerProductPriceEntityTransfer->fromArray($customerProductPriceEntity->toArray(), true);
+        $customerProductPriceTransfer->fromArray($customerProductPriceEntity->toArray(), true);
 
-        return $customerProductPriceEntityTransfer;
+        return $customerProductPriceTransfer;
     }
 
     /**

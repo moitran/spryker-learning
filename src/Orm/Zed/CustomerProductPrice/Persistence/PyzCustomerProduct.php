@@ -1,8 +1,8 @@
 <?php
 
-namespace Pyz\Zed\CustomerProductPrice\Persistence;
+namespace Orm\Zed\CustomerProductPrice\Persistence;
 
-use Pyz\Zed\CustomerProductPrice\Persistence\Base\PyzCustomerProduct as BasePyzCustomerProduct;
+use Orm\Zed\CustomerProductPrice\Persistence\Base\PyzCustomerProduct as BasePyzCustomerProduct;
 
 /**
  * Skeleton subclass for representing a row from the 'pyz_customer_product' table.
