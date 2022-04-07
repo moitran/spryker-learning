@@ -1,0 +1,40 @@
+[
+    {
+        "customer_number": "testing-27",
+        "item_number": "420_30"
+    },
+    {
+        "customer_number": "testing-27",
+        "item_number": "420_31",
+        "prices": [
+            {
+                "quantity": 1,
+                "value": 99.99
+            }
+        ]
+    },
+    {
+        "customer_number": "testing-29",
+        "item_number": "420_31",
+        "prices": [
+            {
+                "quantity": 1,
+                "value": 99.99
+            }
+        ]
+    },
+    {
+        "customer_number": "testing-28",
+        "item_number": "420_30",
+        "prices": [
+            {
+                "quantity": 1,
+                "value": 59.99
+            },
+            {
+                "quantity": 50,
+                "value": 49.99
+            }
+        ]
+    }
+]
