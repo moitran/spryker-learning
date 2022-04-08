@@ -37,7 +37,7 @@ class DatabaseWriter implements DatabaseWriterInterface
     {
         try {
             foreach ($collectionTransfer->getCustomerProducts() as $customerProduct) {
-                $this->entityManager->saveCustomerProductPrice($customerProduct);
+                $this->writeOne($customerProduct);
             }
         } catch (\Throwable $exception) {
             return false;

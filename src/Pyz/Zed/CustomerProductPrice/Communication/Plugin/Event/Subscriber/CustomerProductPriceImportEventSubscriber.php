@@ -33,7 +33,7 @@ class CustomerProductPriceImportEventSubscriber extends AbstractPlugin implement
      */
     protected function addCustomerProductPriceImportEventListener(EventCollectionInterface $eventCollection
     ): EventCollectionInterface {
-        $eventCollection->addListener(
+        $eventCollection->addListenerQueued(
             CustomerProductPriceEvents::CUSTOMER_PRODUCT_PRICE_IMPORT,
             new CustomerProductPriceImportEventListener()
         );

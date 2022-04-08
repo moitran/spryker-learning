@@ -14,6 +14,8 @@ use Pyz\Zed\CustomerProductPrice\Business\Importer;
  */
 class ImportTest extends Unit
 {
+    protected $tester;
+
     public function testImportSuccess()
     {
         // A1 - arrange
@@ -24,6 +26,8 @@ class ImportTest extends Unit
         $success = $importerFacade->importFromJsonFile($filePath);
 
         // A3 - assert
+        $this->tester->assertQueueMessageCount('event', 4);
+        $this->tester->assertMessagesConsumedFromEventQueue('event');
         $this->assertTrue($success);
         $this->assertEquals(4, PyzCustomerProductQuery::create()->count());
         $this->assertEquals(7, PyzCustomerProductPriceQuery::create()->count());
