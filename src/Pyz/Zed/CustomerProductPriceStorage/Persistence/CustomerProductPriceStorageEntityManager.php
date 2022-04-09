@@ -2,7 +2,8 @@
 
 namespace Pyz\Zed\CustomerProductPriceStorage\Persistence;
 
-use Generated\Shared\Transfer\CustomerProductPriceStorageTransfer ;
+use Generated\Shared\Transfer\CustomerProductPriceStorageTransfer;
+use Orm\Zed\CustomerProductPriceStorage\Persistence\PyzCustomerProductPriceStorageQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
 /**
@@ -15,9 +16,16 @@ class CustomerProductPriceStorageEntityManager extends AbstractEntityManager imp
      * @param CustomerProductPriceStorageTransfer $customerProductPriceStorageTransfer
      *
      * @return mixed|void
+     * @throws \Propel\Runtime\Exception\PropelException
+     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
      */
-    public function saveCustomerProductPriceStorage(CustomerProductPriceStorageTransfer $customerProductPriceStorageTransfer)
-    {
-        // TO DO
+    public function saveCustomerProductPriceStorage(
+        CustomerProductPriceStorageTransfer $customerProductPriceStorageTransfer
+    ) {
+        $customerProductPriceStorageEntity = PyzCustomerProductPriceStorageQuery::create()
+            ->filterByReferenceCustomerProduct($customerProductPriceStorageTransfer->getReference())
+            ->findOneOrCreate();
+        $customerProductPriceStorageEntity->setData($customerProductPriceStorageTransfer->getData()->toArray());
+        $customerProductPriceStorageEntity->save();
     }
 }

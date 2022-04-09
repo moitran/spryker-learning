@@ -6,11 +6,12 @@
     namespace="Orm\Zed\CustomerProductPriceStorage\Persistence"
     package="src.Orm.Zed.CustomerProductPriceStorage.Persistence"
 >
-    <table name="pyz_customer_product_price_storage">
-        <column name="id_customer_product_price_storage" type="INTEGER" required="true" primaryKey="true"
+    <table name="pyz_customer_product_price_storage" idMethod="native" allowPkInsert="true" identifierQuoting="true">
+        <column name="id_customer_product_price_storage"
+                type="INTEGER" required="true"
+                primaryKey="true"
                 autoIncrement="true"/>
         <column name="reference_customer_product" required="true" type="VARCHAR"/>
-
         <behavior name="synchronization">
             <parameter name="resource" value="customer_product_price"/>
             <parameter name="key_suffix_column" value="reference_customer_product"/>
@@ -18,14 +19,6 @@
         </behavior>
 
         <behavior name="timestampable"/>
+        <id-method-parameter value="pyz_customer_product_price_storage_pk_seq"/>
     </table>
 </database>
-
-
-
-
-
-
-
-
-

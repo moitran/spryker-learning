@@ -8,7 +8,7 @@
 >
     <table name="pyz_customer_product_price">
         <behavior name="event">
-            <parameter name="pyz_customer_product_price_all" column="*" />
+            <parameter name="pyz_customer_product_price_all" column="*"/>
         </behavior>
     </table>
 </database>

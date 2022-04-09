@@ -2,7 +2,6 @@
 
 namespace Pyz\Zed\CustomerProductPriceStorage\Communication\Plugin\Event\Subscriber;
 
-use Pyz\Zed\CustomerProductPrice\Communication\Plugin\Event\Listener\CustomerProductPriceImportEventListener;
 use Pyz\Zed\CustomerProductPrice\Dependency\CustomerProductPriceEvents;
 use Pyz\Zed\CustomerProductPriceStorage\Communication\Plugin\Event\Listener\CustomerProductPriceStorageEventListener;
 use Spryker\Zed\Event\Dependency\EventCollectionInterface;
@@ -36,6 +35,10 @@ class CustomerProductPriceStorageEventSubscriber extends AbstractPlugin implemen
     ): EventCollectionInterface {
         $eventCollection->addListenerQueued(
             CustomerProductPriceEvents::ENTITY_PYZ_CUSTOMER_PRODUCT_PRICE_CREATE,
+            new CustomerProductPriceStorageEventListener(),
+        );
+        $eventCollection->addListenerQueued(
+            CustomerProductPriceEvents::ENTITY_PYZ_CUSTOMER_PRODUCT_PRICE_UPDATE,
             new CustomerProductPriceStorageEventListener(),
         );
 

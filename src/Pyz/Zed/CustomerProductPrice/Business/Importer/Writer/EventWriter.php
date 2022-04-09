@@ -49,7 +49,10 @@ class EventWriter implements WriterInterface
      */
     public function writeOne(CustomerProductTransfer $customerProductTransfer): bool
     {
-        $this->eventFacade->trigger(CustomerProductPriceEvents::CUSTOMER_PRODUCT_PRICE_IMPORT, $customerProductTransfer);
+        $this->eventFacade->trigger(
+            CustomerProductPriceEvents::CUSTOMER_PRODUCT_PRICE_IMPORT,
+            $customerProductTransfer
+        );
 
         return true;
     }

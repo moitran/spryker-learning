@@ -15,5 +15,7 @@ interface CustomerProductPriceStorageEntityManagerInterface
      *
      * @return mixed
      */
-    public function saveCustomerProductPriceStorage(CustomerProductPriceStorageTransfer $customerProductPriceStorageTransfer);
+    public function saveCustomerProductPriceStorage(
+        CustomerProductPriceStorageTransfer $customerProductPriceStorageTransfer
+    );
 }

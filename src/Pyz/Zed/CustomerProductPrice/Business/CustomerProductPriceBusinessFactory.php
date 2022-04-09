@@ -28,6 +28,7 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
 {
     /**
      * @return Importer
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     public function createImporter()
     {

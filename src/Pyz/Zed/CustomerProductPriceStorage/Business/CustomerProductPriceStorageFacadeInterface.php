@@ -2,7 +2,7 @@
 
 namespace Pyz\Zed\CustomerProductPriceStorage\Business;
 
-use Spryker\Shared\Kernel\Transfer\TransferInterface;
+use Generated\Shared\Transfer\EventEntityTransfer;
 
 /**
  * Class CustomerProductPriceStorageBusinessFactory
@@ -11,7 +11,7 @@ use Spryker\Shared\Kernel\Transfer\TransferInterface;
 interface CustomerProductPriceStorageFacadeInterface
 {
     /**
-     * @param TransferInterface $transfer
+     * @param EventEntityTransfer $transfer
      */
-    public function publish(TransferInterface $transfer): void;
+    public function publish(EventEntityTransfer $transfer): void;
 }

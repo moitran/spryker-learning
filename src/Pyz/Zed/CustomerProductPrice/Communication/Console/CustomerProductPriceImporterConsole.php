@@ -23,7 +23,7 @@ class CustomerProductPriceImporterConsole extends Console
                 'filePath',
                 InputArgument::OPTIONAL,
                 'Json file path which you want to import data',
-                'tests/PyzTest/Zed/CustomerProductPrice/_data/data-import.json',
+                'data/import/local/common/customer_product_prices.json',
             );
     }
 

@@ -2,7 +2,7 @@
 
 namespace Pyz\Zed\CustomerProductPriceStorage\Business;
 
-use Spryker\Shared\Kernel\Transfer\TransferInterface;
+use Generated\Shared\Transfer\EventEntityTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
@@ -13,10 +13,10 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 class CustomerProductPriceStorageFacade extends AbstractFacade implements CustomerProductPriceStorageFacadeInterface
 {
     /**
-     * @param TransferInterface $transfer
+     * @param EventEntityTransfer $transfer
      */
-    public function publish(TransferInterface $transfer): void
+    public function publish(EventEntityTransfer $transfer): void
     {
-        $this->getFactory()->createStorageWriter()->publish($transfer);
+        $this->getFactory()->createStoragePublisher()->publish($transfer);
     }
 }

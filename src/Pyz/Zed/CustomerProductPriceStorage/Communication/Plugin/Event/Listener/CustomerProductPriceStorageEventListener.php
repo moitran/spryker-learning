@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\CustomerProductPriceStorage\Communication\Plugin\Event\Listener;
 
+use Generated\Shared\Transfer\EventEntityTransfer;
 use Pyz\Zed\CustomerProductPrice\Dependency\CustomerProductPriceEvents;
 use Pyz\Zed\CustomerProductPriceStorage\Business\CustomerProductPriceStorageFacadeInterface;
 use Spryker\Shared\Kernel\Transfer\TransferInterface;
@@ -21,13 +22,11 @@ class CustomerProductPriceStorageEventListener extends AbstractPlugin implements
      */
     public function handle(TransferInterface $transfer, $eventName)
     {
-//        if ($eventName === CustomerProductPriceEvents::ENTITY_PYZ_CUSTOMER_PRODUCT_PRICE_CREATE) {
-        try {
-            dump($eventName);
+        if ($eventName === CustomerProductPriceEvents::ENTITY_PYZ_CUSTOMER_PRODUCT_PRICE_CREATE
+            || $eventName === CustomerProductPriceEvents::ENTITY_PYZ_CUSTOMER_PRODUCT_PRICE_UPDATE
+        ) {
+            /** @var EventEntityTransfer $transfer */
             $this->getFacade()->publish($transfer);
-        } catch (\Throwable $e) {
-            dd($e);
         }
-//        }
     }
 }
