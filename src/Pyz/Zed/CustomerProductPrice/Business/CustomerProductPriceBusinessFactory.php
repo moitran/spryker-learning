@@ -11,7 +11,7 @@ use Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\FileValidatorInterf
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\RecordValidator;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\RecordValidatorInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\DatabaseWriter;
-use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\DatabaseWriterInterface;
+use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\WriterInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\EventWriter;
 use Pyz\Zed\CustomerProductPrice\CustomerProductPriceDependencyProvider;
 use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager;
@@ -74,9 +74,9 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return DatabaseWriterInterface
+     * @return WriterInterface
      */
-    public function createDtoWriter(): DatabaseWriterInterface
+    public function createDtoWriter(): WriterInterface
     {
         return new DatabaseWriter(
             $this->getEntityManager()
@@ -87,7 +87,7 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
      * @return EventWriter
      * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
-    protected function createImportEventWriter()
+    protected function createImportEventWriter(): WriterInterface
     {
         return new EventWriter(
             $this->getEventFacade()

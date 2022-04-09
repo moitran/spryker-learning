@@ -5,8 +5,7 @@ namespace Pyz\Zed\CustomerProductPrice\Business\Importer;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Parser\JsonToDtoParserInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Reader\FileReaderInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\FileValidatorInterface;
-use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\DatabaseWriterInterface;
-use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\EventWriterInterface;
+use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\WriterInterface;
 
 /**
  * Class Importer
@@ -30,7 +29,7 @@ class Importer implements ImporterInterface
     protected $parser;
 
     /**
-     * @var EventWriterInterface
+     * @var WriterInterface
      */
     protected $eventWriter;
 
@@ -40,13 +39,13 @@ class Importer implements ImporterInterface
      * @param FileValidatorInterface $fileValidator
      * @param FileReaderInterface $fileReader
      * @param JsonToDtoParserInterface $parser
-     * @param DatabaseWriterInterface $writer
+     * @param WriterInterface $eventWriter
      */
     public function __construct(
         FileValidatorInterface $fileValidator,
         FileReaderInterface $fileReader,
         JsonToDtoParserInterface $parser,
-        EventWriterInterface $eventWriter
+        WriterInterface $eventWriter
     ) {
         $this->fileValidator = $fileValidator;
         $this->fileReader = $fileReader;

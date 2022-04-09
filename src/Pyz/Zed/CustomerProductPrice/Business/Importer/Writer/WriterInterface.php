@@ -6,10 +6,10 @@ use Generated\Shared\Transfer\CustomerProductPriceCollectionTransfer;
 use Generated\Shared\Transfer\CustomerProductTransfer;
 
 /**
- * Interface DatabaseWriterInterface
+ * Interface WriterInterface
  * @package Pyz\Zed\CustomerProductPrice\Business\Importer\Writer
  */
-interface DatabaseWriterInterface
+interface WriterInterface
 {
     /**
      * @param CustomerProductPriceCollectionTransfer $collectionTransfer

@@ -11,7 +11,7 @@ use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager;
  * Class DatabaseWriter
  * @package Pyz\Zed\CustomerProductPrice\Business\Importer\Writer
  */
-class DatabaseWriter implements DatabaseWriterInterface
+class DatabaseWriter implements WriterInterface
 {
     /**
      * @var CustomerProductPriceEntityManager
@@ -31,7 +31,7 @@ class DatabaseWriter implements DatabaseWriterInterface
     /**
      * @param CustomerProductPriceCollectionTransfer $collectionTransfer
      *
-     * @return mixed|void
+     * @return bool|mixed
      */
     public function writeCollection(CustomerProductPriceCollectionTransfer $collectionTransfer)
     {
@@ -49,7 +49,9 @@ class DatabaseWriter implements DatabaseWriterInterface
     /**
      * @param CustomerProductTransfer $customerProductTransfer
      *
+     * @return mixed|void
      * @throws \Propel\Runtime\Exception\PropelException
+     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
      */
     public function writeOne(CustomerProductTransfer $customerProductTransfer)
     {
