@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<database
+    xmlns="spryker:schema-01"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    name="zed" xsi:schemaLocation="spryker:schema-01 https://static.spryker.com/schema-01.xsd"
+    namespace="Orm\Zed\CustomerProductPriceStorage\Persistence"
+    package="src.Orm.Zed.CustomerProductPriceStorage.Persistence"
+>
+    <table name="pyz_customer_product_price_storage">
+        <column name="id_customer_product_price_storage" type="INTEGER" required="true" primaryKey="true"
+                autoIncrement="true"/>
+        <column name="reference_customer_product" required="true" type="VARCHAR"/>
+
+        <behavior name="synchronization">
+            <parameter name="resource" value="customer_product_price"/>
+            <parameter name="key_suffix_column" value="reference_customer_product"/>
+            <parameter name="queue_group" value="sync.storage.customer_product_price"/>
+        </behavior>
+
+        <behavior name="timestampable"/>
+    </table>
+</database>
+
+
+
+
+
+
+
+
+
