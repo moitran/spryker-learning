@@ -12,7 +12,7 @@
         <column name="id_customer_product_price" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="fk_customer_product" type="INTEGER" required="true"/>
         <column name="quantity" type="INTEGER" defaultValue="0" required="true"/>
-        <column name="value" type="DECIMAL" size="20" scale="10" required="true" defaultValue="0"/>
+        <column name="price" type="DECIMAL" size="20" scale="10" required="true" defaultValue="0"/>
         <foreign-key name="pyz_customer_product_price-fk_customer_product" foreignTable="pyz_customer_product">
             <reference local="fk_customer_product" foreign="id_customer_product"/>
         </foreign-key>
