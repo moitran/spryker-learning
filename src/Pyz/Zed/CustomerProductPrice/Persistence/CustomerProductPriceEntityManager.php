@@ -27,8 +27,6 @@ class CustomerProductPriceEntityManager extends AbstractEntityManager implements
             ->filterByCustomerNumber($customerProductTransfer->getCustomerNumber())
             ->filterByProductNumber($customerProductTransfer->getProductNumber())
             ->findOneOrCreate();
-        $customerProductEntity->setProductNumber($customerProductTransfer->getProductNumber());
-        $customerProductEntity->setCustomerNumber($customerProductTransfer->getCustomerNumber());
 
         /** @var CustomerProductPriceTransfer $customerProductPriceTransfer */
         $modifiedOrNewPrice = false;
