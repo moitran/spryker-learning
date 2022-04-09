@@ -26,6 +26,8 @@ class CustomerProductPriceStorageEntityManager extends AbstractEntityManager imp
             ->filterByReferenceCustomerProduct($customerProductPriceStorageTransfer->getReference())
             ->findOneOrCreate();
         $customerProductPriceStorageEntity->setData($customerProductPriceStorageTransfer->getData()->toArray());
-        $customerProductPriceStorageEntity->save();
+        if ($customerProductPriceStorageEntity->isNew() || $customerProductPriceStorageEntity->isModified()) {
+            $customerProductPriceStorageEntity->save();
+        }
     }
 }
