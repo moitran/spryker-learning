@@ -8,7 +8,7 @@
         <column name="product_number" required="true" type="VARCHAR" size="255"/>
     </table>
 
-    <table name="pyz_customer_product_price">
+    <table name="pyz_customer_product_price" reloadOnUpdate="true">
         <column name="id_customer_product_price" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="fk_customer_product" type="INTEGER" required="true"/>
         <column name="quantity" type="INTEGER" defaultValue="0" required="true"/>
