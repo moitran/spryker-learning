@@ -31,7 +31,7 @@ class Importer implements ImporterInterface
     /**
      * @var WriterInterface
      */
-    protected $eventWriter;
+    protected $writer;
 
     /**
      * Importer constructor.
@@ -39,18 +39,18 @@ class Importer implements ImporterInterface
      * @param FileValidatorInterface $fileValidator
      * @param FileReaderInterface $fileReader
      * @param JsonToDtoParserInterface $parser
-     * @param WriterInterface $eventWriter
+     * @param WriterInterface $writer
      */
     public function __construct(
         FileValidatorInterface $fileValidator,
         FileReaderInterface $fileReader,
         JsonToDtoParserInterface $parser,
-        WriterInterface $eventWriter
+        WriterInterface $writer
     ) {
         $this->fileValidator = $fileValidator;
         $this->fileReader = $fileReader;
         $this->parser = $parser;
-        $this->eventWriter = $eventWriter;
+        $this->writer = $writer;
     }
 
 
@@ -74,7 +74,7 @@ class Importer implements ImporterInterface
         $dataTransferObjects = $this->parser->parse($fileContent);
 
         // 4. Trigger event writer
-        $this->eventWriter->writeCollection($dataTransferObjects);
+        $this->writer->writeCollection($dataTransferObjects);
 
         return true;
     }
