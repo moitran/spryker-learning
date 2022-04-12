@@ -35,14 +35,11 @@ class ImportTest extends Unit
         $filePath = dirname(__DIR__) . '/_data/data-import-invalid-format.json';
         $importerFacade = $this->getImporterFacade();
 
+        // A3 - assert
+        $this->expectException(Importer\Exception\InvalidJsonException::class);
+
         // A2 - act
-        try {
-            $importerFacade->importFromJsonFile($filePath);
-        } catch (\Exception $e) {
-            // A3 - assert
-            $this->assertEquals('Json file is invalid', $e->getMessage());
-            $this->assertInstanceOf(Importer\Exception\InvalidJsonException::class, $e);
-        }
+        $importerFacade->importFromJsonFile($filePath);
     }
 
     public function testImportFileIsUnread()
