@@ -4,6 +4,7 @@
 namespace Pyz\Zed\CustomerProductPrice\Persistence;
 
 use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPriceQuery;
+use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductQuery;
 
 /**
  * Class CustomerProductPriceQueryContainerInterface
@@ -11,5 +12,13 @@ use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPriceQuery;
  */
 interface CustomerProductPriceQueryContainerInterface
 {
+    /**
+     * @return PyzCustomerProductPriceQuery
+     */
     public function getCustomerProductPriceQuery(): PyzCustomerProductPriceQuery;
+
+    /**
+     * @return PyzCustomerProductQuery
+     */
+    public function getCustomerProductQuery(): PyzCustomerProductQuery;
 }

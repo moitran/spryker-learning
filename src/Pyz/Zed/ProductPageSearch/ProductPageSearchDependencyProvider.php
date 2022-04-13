@@ -7,6 +7,10 @@
 
 namespace Pyz\Zed\ProductPageSearch;
 
+use Pyz\Shared\CustomerProductPriceSearch\CustomerProductPriceSearchConfig;
+use Pyz\Zed\CustomerProductPriceSearch\Communication\Plugin\ProductPageSearch\Expander\CustomerProductPriceSearchDataExpanderPlugin;
+use Pyz\Zed\CustomerProductPriceSearch\Communication\Plugin\ProductPageSearch\Loader\CustomerProductPriceSearchDataLoaderPlugin;
+use Pyz\Zed\CustomerProductPriceSearch\Communication\Plugin\ProductPageSearch\MapExpander\CustomerProductPriceSearchMapExpanderPlugin;
 use Spryker\Shared\ProductLabelSearch\ProductLabelSearchConfig;
 use Spryker\Shared\ProductListSearch\ProductListSearchConfig;
 use Spryker\Shared\ProductPageSearch\ProductPageSearchConfig;
@@ -51,6 +55,7 @@ class ProductPageSearchDependencyProvider extends SprykerProductPageSearchDepend
         $dataExpanderPlugins[ProductPageSearchConfig::PLUGIN_PRODUCT_CATEGORY_PAGE_DATA] = new ProductCategoryPageDataExpanderPlugin();
         $dataExpanderPlugins[ProductPageSearchConfig::PLUGIN_PRODUCT_PRICE_PAGE_DATA] = new PricePageDataLoaderExpanderPlugin();
         $dataExpanderPlugins[ProductPageSearchConfig::PLUGIN_PRODUCT_IMAGE_PAGE_DATA] = new ProductImagePageDataLoaderExpanderPlugin();
+        $dataExpanderPlugins[CustomerProductPriceSearchConfig::CUSTOMER_PRODUCT_PRICE_SEARCH_DATA] = new CustomerProductPriceSearchDataExpanderPlugin();
 
         return $dataExpanderPlugins;
     }
@@ -67,6 +72,7 @@ class ProductPageSearchDependencyProvider extends SprykerProductPageSearchDepend
             new ProductLabelDataLoaderPlugin(),
             new ProductReviewPageDataLoaderPlugin(),
             new ProductListDataLoaderPlugin(),
+            new CustomerProductPriceSearchDataLoaderPlugin(),
         ];
     }
 
@@ -104,6 +110,7 @@ class ProductPageSearchDependencyProvider extends SprykerProductPageSearchDepend
             new ProductLabelMapExpanderPlugin(),
             new ProductReviewMapExpanderPlugin(),
             new ProductListMapExpanderPlugin(),
+            new CustomerProductPriceSearchMapExpanderPlugin(),
         ];
     }
 
