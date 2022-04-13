@@ -2,7 +2,7 @@
 
 namespace Pyz\Zed\CustomerProductPriceStorage\Persistence;
 
-use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPrice;
+use Generated\Shared\Transfer\CustomerProductTransfer;
 
 /**
  * Interface CustomerProductPriceStorageRepositoryInterface
@@ -13,7 +13,7 @@ interface CustomerProductPriceStorageRepositoryInterface
     /**
      * @param int $id
      *
-     * @return PyzCustomerProductPrice
+     * @return CustomerProductTransfer
      */
-    public function getCustomerProductPriceById(int $id): PyzCustomerProductPrice;
+    public function getCustomerProductPriceById(int $id): CustomerProductTransfer;
 }

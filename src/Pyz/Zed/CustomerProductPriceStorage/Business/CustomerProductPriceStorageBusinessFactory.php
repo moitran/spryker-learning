@@ -15,6 +15,7 @@ use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
  * Class CustomerProductPriceStorageBusinessFactory
  * @package Pyz\Zed\CustomerProductPriceStorage\Business
  * @method CustomerProductPriceStorageEntityManager getEntityManager()
+ * @method CustomerProductPriceStorageRepositoryInterface getRepository()
  */
 class CustomerProductPriceStorageBusinessFactory extends AbstractBusinessFactory
 {
@@ -35,7 +36,7 @@ class CustomerProductPriceStorageBusinessFactory extends AbstractBusinessFactory
      */
     public function createCustomerProductPriceStorageRepository(): CustomerProductPriceStorageRepositoryInterface
     {
-        return new CustomerProductPriceStorageRepository();
+        return $this->getRepository();
     }
 
     /**

@@ -2,15 +2,14 @@
 
 namespace Pyz\Zed\CustomerProductPrice\Persistence;
 
-use Generated\Shared\Transfer\CustomerProductPriceTransfer;
 use Generated\Shared\Transfer\CustomerProductTransfer;
-use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPriceQuery;
-use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductQuery;
+use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPrice;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
 /**
  * Class CustomerProductPriceEntityManager
  * @package Pyz\Zed\CustomerProductPrice\Persistence
+ * @method CustomerProductPricePersistenceFactory getFactory()
  */
 class CustomerProductPriceEntityManager extends AbstractEntityManager implements CustomerProductPriceEntityManagerInterface
 {
@@ -23,28 +22,19 @@ class CustomerProductPriceEntityManager extends AbstractEntityManager implements
      */
     public function saveCustomerProductPrice(CustomerProductTransfer $customerProductTransfer)
     {
-        $customerProductEntity = PyzCustomerProductQuery::create()
+        $customerProductEntity = $this->getFactory()->createCustomerProductQuery()
             ->filterByCustomerNumber($customerProductTransfer->getCustomerNumber())
             ->filterByProductNumber($customerProductTransfer->getProductNumber())
             ->findOneOrCreate();
 
-        /** @var CustomerProductPriceTransfer $customerProductPriceTransfer */
-        $modifiedOrNewPrice = false;
+        $customerProductEntity->getPyzCustomerProductPrices()->delete();
+
         foreach ($customerProductTransfer->getCustomerProductPrices() as $customerProductPriceTransfer) {
-            $customerProductPriceEntity = PyzCustomerProductPriceQuery::create()
-                ->filterByPyzCustomerProduct($customerProductEntity)
-                ->filterByQuantity($customerProductPriceTransfer->getQuantity())
-                ->findOneOrCreate();
-            // add new customer_product_price || update price for existed customer_product_price
-            if ($customerProductPriceEntity->isNew() || $customerProductPriceEntity->getPrice() != $customerProductPriceTransfer->getPrice()) {
-                $modifiedOrNewPrice = true;
-            }
-            $customerProductPriceEntity->setPrice($customerProductPriceTransfer->getPrice());
+            $customerProductPriceEntity = new PyzCustomerProductPrice();
+            $customerProductPriceEntity->fromArray($customerProductPriceTransfer->modifiedToArray());
             $customerProductEntity->addPyzCustomerProductPrice($customerProductPriceEntity);
         };
 
-        if ($customerProductEntity->isModified() || $customerProductEntity->isNew() || $modifiedOrNewPrice) {
-            $customerProductEntity->save();
-        }
+        $customerProductEntity->save();
     }
 }

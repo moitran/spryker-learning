@@ -3,6 +3,7 @@
 namespace Pyz\Zed\CustomerProductPrice\Persistence;
 
 use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPriceQuery;
+use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractQueryContainer;
 
 /**
@@ -18,5 +19,13 @@ class CustomerProductPriceQueryContainer extends AbstractQueryContainer implemen
     public function getCustomerProductPriceQuery(): PyzCustomerProductPriceQuery
     {
         return $this->getFactory()->createCustomerProductPriceQuery();
+    }
+
+    /**
+     * @return PyzCustomerProductQuery
+     */
+    public function getCustomerProductQuery(): PyzCustomerProductQuery
+    {
+        return $this->getFactory()->createCustomerProductQuery();
     }
 }

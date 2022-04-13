@@ -22,11 +22,7 @@ class CustomerProductPriceStorageEventListener extends AbstractPlugin implements
      */
     public function handle(TransferInterface $transfer, $eventName)
     {
-        if ($eventName === CustomerProductPriceEvents::ENTITY_PYZ_CUSTOMER_PRODUCT_PRICE_CREATE
-            || $eventName === CustomerProductPriceEvents::ENTITY_PYZ_CUSTOMER_PRODUCT_PRICE_UPDATE
-        ) {
-            /** @var EventEntityTransfer $transfer */
-            $this->getFacade()->publish($transfer);
-        }
+        /** @var EventEntityTransfer $transfer */
+        $this->getFacade()->publish($transfer);
     }
 }

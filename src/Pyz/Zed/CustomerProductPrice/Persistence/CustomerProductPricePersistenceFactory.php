@@ -3,6 +3,7 @@
 namespace Pyz\Zed\CustomerProductPrice\Persistence;
 
 use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPriceQuery;
+use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 
 /**
@@ -17,5 +18,13 @@ class CustomerProductPricePersistenceFactory extends AbstractPersistenceFactory
     public function createCustomerProductPriceQuery(): PyzCustomerProductPriceQuery
     {
         return PyzCustomerProductPriceQuery::create();
+    }
+
+    /**
+     * @return PyzCustomerProductQuery
+     */
+    public function createCustomerProductQuery(): PyzCustomerProductQuery
+    {
+        return PyzCustomerProductQuery::create();
     }
 }

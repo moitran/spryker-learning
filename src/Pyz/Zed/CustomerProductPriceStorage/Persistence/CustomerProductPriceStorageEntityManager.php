@@ -3,12 +3,12 @@
 namespace Pyz\Zed\CustomerProductPriceStorage\Persistence;
 
 use Generated\Shared\Transfer\CustomerProductPriceStorageTransfer;
-use Orm\Zed\CustomerProductPriceStorage\Persistence\PyzCustomerProductPriceStorageQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
 /**
  * Class CustomerProductPriceEntityManager
  * @package Pyz\Zed\CustomerProductPriceStorage\Persistence
+ * @method CustomerProductPriceStoragePersistenceFactory getFactory()
  */
 class CustomerProductPriceStorageEntityManager extends AbstractEntityManager implements CustomerProductPriceStorageEntityManagerInterface
 {
@@ -22,7 +22,7 @@ class CustomerProductPriceStorageEntityManager extends AbstractEntityManager imp
     public function saveCustomerProductPriceStorage(
         CustomerProductPriceStorageTransfer $customerProductPriceStorageTransfer
     ) {
-        $customerProductPriceStorageEntity = PyzCustomerProductPriceStorageQuery::create()
+        $customerProductPriceStorageEntity = $this->getFactory()->createCustomerProductPriceStorageQuery()
             ->filterByReferenceCustomerProduct($customerProductPriceStorageTransfer->getReference())
             ->findOneOrCreate();
         $customerProductPriceStorageEntity->setData($customerProductPriceStorageTransfer->getData()->toArray());

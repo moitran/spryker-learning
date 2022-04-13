@@ -2,6 +2,8 @@
 
 namespace Pyz\Zed\CustomerProductPriceStorage\Business\Publisher;
 
+use Generated\Shared\Transfer\CustomerProductPriceStoreTransfer;
+use Generated\Shared\Transfer\CustomerProductPriceTransfer;
 use Generated\Shared\Transfer\EventEntityTransfer;
 use Pyz\Zed\CustomerProductPriceStorage\Business\Parser\CustomerProductEntityToDtoParserInterface;
 use Pyz\Zed\CustomerProductPriceStorage\Persistence\CustomerProductPriceStorageEntityManager;
@@ -53,15 +55,15 @@ class StoragePublisher implements StoragePublisherInterface
      */
     public function publish(EventEntityTransfer $eventEntityTransfer)
     {
-        $customerProductPrice = $this->customerProductPriceStorageRepository
+        $customerProductTransfer = $this->customerProductPriceStorageRepository
             ->getCustomerProductPriceById($eventEntityTransfer->getId());
 
-        if (!$customerProductPrice) {
+        if (empty($customerProductTransfer->getProductNumber())) {
             return;
         }
 
-        $this->entityManager->saveCustomerProductPriceStorage(
-            $this->parser->parse($customerProductPrice->getPyzCustomerProduct())
-        );
+        $customerProductPriceStorageTransfer = $this->parser->parse($customerProductTransfer);
+
+        $this->entityManager->saveCustomerProductPriceStorage($customerProductPriceStorageTransfer);
     }
 }

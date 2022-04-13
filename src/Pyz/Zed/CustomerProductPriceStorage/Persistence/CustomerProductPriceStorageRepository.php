@@ -2,7 +2,9 @@
 
 namespace Pyz\Zed\CustomerProductPriceStorage\Persistence;
 
-use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPrice;
+use Generated\Shared\Transfer\CustomerProductPriceStoreTransfer;
+use Generated\Shared\Transfer\CustomerProductPriceTransfer;
+use Generated\Shared\Transfer\CustomerProductTransfer;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
@@ -15,13 +17,26 @@ class CustomerProductPriceStorageRepository extends AbstractRepository implement
     /**
      * @param int $id
      *
-     * @return PyzCustomerProductPrice
+     * @return CustomerProductTransfer
+     * @throws \Propel\Runtime\Exception\PropelException
      * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
      */
-    public function getCustomerProductPriceById(int $id): PyzCustomerProductPrice
+    public function getCustomerProductPriceById(int $id): CustomerProductTransfer
     {
         $customerProductQuery = $this->getFactory()->getCustomerProductPriceQueryContainer()->getCustomerProductPriceQuery();
+        $customerProductPrice = $customerProductQuery->filterByIdCustomerProductPrice($id)->findOne();
 
-        return $customerProductQuery->filterByIdCustomerProductPrice($id)->findOne();
+        $customerProductTransfer = new CustomerProductTransfer();
+        if (!$customerProductPrice) {
+            return $customerProductTransfer;
+        }
+        $customerProductTransfer->fromArray($customerProductPrice->getPyzCustomerProduct()->toArray(), true);
+        foreach ($customerProductPrice->getPyzCustomerProduct()->getPyzCustomerProductPrices() as $price) {
+            $customerProductPriceTransfer = new CustomerProductPriceTransfer();
+            $customerProductPriceTransfer->fromArray($price->toArray(), true);
+            $customerProductTransfer->addCustomerProductPrice($customerProductPriceTransfer);
+        }
+
+        return $customerProductTransfer;
     }
 }

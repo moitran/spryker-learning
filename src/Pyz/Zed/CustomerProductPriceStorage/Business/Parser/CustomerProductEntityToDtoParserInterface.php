@@ -3,7 +3,7 @@
 namespace Pyz\Zed\CustomerProductPriceStorage\Business\Parser;
 
 use Generated\Shared\Transfer\CustomerProductPriceStorageTransfer;
-use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProduct;
+use Generated\Shared\Transfer\CustomerProductTransfer;
 
 /**
  * Interface CustomerProductEntityToDtoParserInterface
@@ -11,5 +11,10 @@ use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProduct;
  */
 interface CustomerProductEntityToDtoParserInterface
 {
-    public function parse(PyzCustomerProduct $customerProduct): CustomerProductPriceStorageTransfer;
+    /**
+     * @param CustomerProductTransfer $customerProductTransfer
+     *
+     * @return CustomerProductPriceStorageTransfer
+     */
+    public function parse(CustomerProductTransfer $customerProductTransfer): CustomerProductPriceStorageTransfer;
 }
