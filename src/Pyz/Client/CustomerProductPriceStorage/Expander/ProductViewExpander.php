@@ -88,16 +88,16 @@ class ProductViewExpander implements ProductViewExpanderInterface
             }
         }
 
-        return (float)$priceLow;
+        return (int) $priceLow;
     }
 
     /**
-     * @param float $newPrice
+     * @param int $newPrice
      * @param ProductViewTransfer $productViewTransfer
      *
      * @return ProductViewTransfer
      */
-    protected function updatePrice(float $newPrice, ProductViewTransfer $productViewTransfer): ProductViewTransfer
+    protected function updatePrice(int $newPrice, ProductViewTransfer $productViewTransfer): ProductViewTransfer
     {
         $productViewTransfer->setPrice($newPrice);
         $productViewTransfer->getCurrentProductPrice()->setPrice($newPrice);

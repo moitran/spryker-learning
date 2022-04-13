@@ -7,6 +7,7 @@ use Generated\Shared\Transfer\CustomerProductPriceTransfer;
 use Generated\Shared\Transfer\CustomerProductTransfer;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Exception\InvalidJsonException;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\RecordValidatorInterface;
+use Spryker\Zed\Money\Business\MoneyFacadeInterface;
 
 /**
  * Class JsonToDtoParser
@@ -23,13 +24,20 @@ class JsonToDtoParser implements JsonToDtoParserInterface
     protected $recordValidator;
 
     /**
-     * ParseJsonToDto constructor.
+     * @var MoneyFacadeInterface
+     */
+    protected $moneyFacade;
+
+    /**
+     * JsonToDtoParser constructor.
      *
      * @param RecordValidatorInterface $recordValidator
+     * @param MoneyFacadeInterface $moneyFacade
      */
-    public function __construct(RecordValidatorInterface $recordValidator)
+    public function __construct(RecordValidatorInterface $recordValidator, MoneyFacadeInterface $moneyFacade)
     {
         $this->recordValidator = $recordValidator;
+        $this->moneyFacade = $moneyFacade;
     }
 
     /**
@@ -62,7 +70,7 @@ class JsonToDtoParser implements JsonToDtoParserInterface
                 $customerProductPriceTransfer->fromArray(
                     [
                         'quantity' => $price['quantity'],
-                        'price' => $price['value'],
+                        'price' => $this->moneyFacade->convertDecimalToInteger($price['value']),
                     ]
                 );
 

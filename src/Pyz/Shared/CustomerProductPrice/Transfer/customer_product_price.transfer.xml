@@ -16,6 +16,6 @@
 
     <transfer name="CustomerProductPrice">
         <property name="quantity" type="int"/>
-        <property name="price" type="float"/>
+        <property name="price" type="int"/>
     </transfer>
 </transfers>

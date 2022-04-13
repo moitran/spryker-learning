@@ -18,6 +18,7 @@ use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager;
 use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Importer;
+use Spryker\Zed\Money\Business\MoneyFacadeInterface;
 
 /**
  * Class CustomerProductPriceBusinessFactory
@@ -62,7 +63,8 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     protected function createDtoParser(): JsonToDtoParserInterface
     {
         return new JsonToDtoParser(
-            $this->createRecordValidator()
+            $this->createRecordValidator(),
+            $this->getMoneyFacade()
         );
     }
 
@@ -102,5 +104,14 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     protected function getEventFacade(): EventFacadeInterface
     {
         return $this->getProvidedDependency(CustomerProductPriceDependencyProvider::FACADE_EVENT);
+    }
+
+    /**
+     * @return MoneyFacadeInterface
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
+     */
+    protected function getMoneyFacade(): MoneyFacadeInterface
+    {
+        return $this->getProvidedDependency(CustomerProductPriceDependencyProvider::FACADE_MONEY);
     }
 }

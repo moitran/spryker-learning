@@ -12,6 +12,7 @@ use Spryker\Zed\Kernel\Container;
 class CustomerProductPriceDependencyProvider extends AbstractBundleDependencyProvider
 {
     public const FACADE_EVENT = 'event facade';
+    public const FACADE_MONEY = 'money facade';
 
     /**
      * @param Container $container
@@ -23,6 +24,7 @@ class CustomerProductPriceDependencyProvider extends AbstractBundleDependencyPro
     {
         $container = parent::provideBusinessLayerDependencies($container);
         $this->addEventFacade($container);
+        $this->addMoneyFacade($container);
 
         return $container;
     }
@@ -35,5 +37,15 @@ class CustomerProductPriceDependencyProvider extends AbstractBundleDependencyPro
     protected function addEventFacade(Container $container)
     {
         $container->set(self::FACADE_EVENT, $container->getLocator()->event()->facade());
+    }
+
+    /**
+     * @param Container $container
+     *
+     * @throws \Spryker\Service\Container\Exception\FrozenServiceException
+     */
+    protected function addMoneyFacade(Container $container)
+    {
+        $container->set(self::FACADE_MONEY, $container->getLocator()->money()->facade());
     }
 }
