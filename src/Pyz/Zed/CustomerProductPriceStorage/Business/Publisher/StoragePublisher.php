@@ -2,10 +2,8 @@
 
 namespace Pyz\Zed\CustomerProductPriceStorage\Business\Publisher;
 
-use Generated\Shared\Transfer\CustomerProductPriceStoreTransfer;
-use Generated\Shared\Transfer\CustomerProductPriceTransfer;
 use Generated\Shared\Transfer\EventEntityTransfer;
-use Pyz\Zed\CustomerProductPriceStorage\Business\Parser\CustomerProductEntityToDtoParserInterface;
+use Pyz\Zed\CustomerProductPriceStorage\Business\Converter\ConverterInterface;
 use Pyz\Zed\CustomerProductPriceStorage\Persistence\CustomerProductPriceStorageEntityManager;
 use Pyz\Zed\CustomerProductPriceStorage\Persistence\CustomerProductPriceStorageRepositoryInterface;
 
@@ -26,25 +24,25 @@ class StoragePublisher implements StoragePublisherInterface
     protected $entityManager;
 
     /**
-     * @var CustomerProductEntityToDtoParserInterface
+     * @var ConverterInterface
      */
-    protected $parser;
+    protected $converter;
 
     /**
      * StoragePublisher constructor.
      *
      * @param CustomerProductPriceStorageRepositoryInterface $customerProductPriceStorageRepository
      * @param CustomerProductPriceStorageEntityManager $entityManager
-     * @param CustomerProductEntityToDtoParserInterface $parser
+     * @param ConverterInterface $converter
      */
     public function __construct(
         CustomerProductPriceStorageRepositoryInterface $customerProductPriceStorageRepository,
         CustomerProductPriceStorageEntityManager $entityManager,
-        CustomerProductEntityToDtoParserInterface $parser
+        ConverterInterface $converter
     ) {
         $this->customerProductPriceStorageRepository = $customerProductPriceStorageRepository;
         $this->entityManager = $entityManager;
-        $this->parser = $parser;
+        $this->converter = $converter;
     }
 
     /**
@@ -62,7 +60,7 @@ class StoragePublisher implements StoragePublisherInterface
             return;
         }
 
-        $customerProductPriceStorageTransfer = $this->parser->parse($customerProductTransfer);
+        $customerProductPriceStorageTransfer = $this->converter->convert($customerProductTransfer);
 
         $this->entityManager->saveCustomerProductPriceStorage($customerProductPriceStorageTransfer);
     }

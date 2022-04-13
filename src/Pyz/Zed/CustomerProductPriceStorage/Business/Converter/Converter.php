@@ -1,24 +1,23 @@
 <?php
 
-namespace Pyz\Zed\CustomerProductPriceStorage\Business\Parser;
+namespace Pyz\Zed\CustomerProductPriceStorage\Business\Converter;
 
 use Generated\Shared\Transfer\CustomerProductPriceStorageTransfer;
 use Generated\Shared\Transfer\CustomerProductPriceStoreTransfer;
-use Generated\Shared\Transfer\CustomerProductPriceTransfer;
 use Generated\Shared\Transfer\CustomerProductTransfer;
 
 /**
- * Class CustomerProductEntityToDtoParser
- * @package Pyz\Zed\CustomerProductPriceStorage\Business\Parser
+ * Class Converter : convert CustomerProductTransfer to CustomerProductPriceStorageTransfer
+ * @package Pyz\Zed\CustomerProductPriceStorage\Business\Converter
  */
-class CustomerProductEntityToDtoParser implements CustomerProductEntityToDtoParserInterface
+class Converter implements ConverterInterface
 {
     /**
      * @param CustomerProductTransfer $customerProductTransfer
      *
      * @return CustomerProductPriceStorageTransfer
      */
-    public function parse(CustomerProductTransfer $customerProductTransfer): CustomerProductPriceStorageTransfer
+    public function convert(CustomerProductTransfer $customerProductTransfer): CustomerProductPriceStorageTransfer
     {
         $customerProductPriceStoreTransfer = new CustomerProductPriceStoreTransfer();
         $customerProductPriceStoreTransfer->setCustomerProductPrices($customerProductTransfer->getCustomerProductPrices());

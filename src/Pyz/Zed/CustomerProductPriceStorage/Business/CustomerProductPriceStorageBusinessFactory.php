@@ -2,12 +2,11 @@
 
 namespace Pyz\Zed\CustomerProductPriceStorage\Business;
 
-use Pyz\Zed\CustomerProductPriceStorage\Business\Parser\CustomerProductEntityToDtoParser;
-use Pyz\Zed\CustomerProductPriceStorage\Business\Parser\CustomerProductEntityToDtoParserInterface;
+use Pyz\Zed\CustomerProductPriceStorage\Business\Converter\ConverterInterface;
+use Pyz\Zed\CustomerProductPriceStorage\Business\Converter\Converter;
 use Pyz\Zed\CustomerProductPriceStorage\Business\Publisher\StoragePublisher;
 use Pyz\Zed\CustomerProductPriceStorage\Business\Publisher\StoragePublisherInterface;
 use Pyz\Zed\CustomerProductPriceStorage\Persistence\CustomerProductPriceStorageEntityManager;
-use Pyz\Zed\CustomerProductPriceStorage\Persistence\CustomerProductPriceStorageRepository;
 use Pyz\Zed\CustomerProductPriceStorage\Persistence\CustomerProductPriceStorageRepositoryInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 
@@ -27,7 +26,7 @@ class CustomerProductPriceStorageBusinessFactory extends AbstractBusinessFactory
         return new StoragePublisher(
             $this->createCustomerProductPriceStorageRepository(),
             $this->getEntityManager(),
-            $this->createCustomerProductEntityToDtoParser()
+            $this->createConverter()
         );
     }
 
@@ -40,10 +39,10 @@ class CustomerProductPriceStorageBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return CustomerProductEntityToDtoParserInterface
+     * @return ConverterInterface
      */
-    protected function createCustomerProductEntityToDtoParser(): CustomerProductEntityToDtoParserInterface
+    protected function createConverter(): ConverterInterface
     {
-        return new CustomerProductEntityToDtoParser();
+        return new Converter();
     }
 }
