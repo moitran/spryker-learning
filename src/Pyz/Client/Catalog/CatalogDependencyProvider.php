@@ -7,6 +7,7 @@
 
 namespace Pyz\Client\Catalog;
 
+use Pyz\Client\CustomerProductPriceSearch\Plugin\CustomerPricesSearchResultFormatterPlugin;
 use Spryker\Client\Catalog\CatalogDependencyProvider as SprykerCatalogDependencyProvider;
 use Spryker\Client\Catalog\Plugin\ConfigTransferBuilder\AscendingNameSortConfigTransferBuilderPlugin;
 use Spryker\Client\Catalog\Plugin\ConfigTransferBuilder\CategoryFacetConfigTransferBuilderPlugin;
@@ -118,6 +119,9 @@ class CatalogDependencyProvider extends SprykerCatalogDependencyProvider
             ),
             new SpellingSuggestionResultFormatterPlugin(),
             new CategoryTreeFilterPageSearchResultFormatterPlugin(),
+            new CustomerPricesSearchResultFormatterPlugin(
+                new RawCatalogSearchResultFormatterPlugin()
+            ),
         ];
     }
 
