@@ -26,8 +26,6 @@ class CustomerProductPriceFacade extends AbstractFacade implements CustomerProdu
 
     /**
      * @param CustomerProductTransfer $customerProductTransfer
-     *
-     * @return mixed|void
      */
     public function saveCustomerProductPrice(CustomerProductTransfer $customerProductTransfer)
     {

@@ -20,8 +20,6 @@ interface WriterInterface
 
     /**
      * @param CustomerProductTransfer $customerProductTransfer
-     *
-     * @return mixed
      */
     public function writeOne(CustomerProductTransfer $customerProductTransfer);
 }

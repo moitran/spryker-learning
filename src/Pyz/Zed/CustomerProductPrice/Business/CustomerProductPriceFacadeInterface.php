@@ -20,8 +20,6 @@ interface CustomerProductPriceFacadeInterface
 
     /**
      * @param CustomerProductTransfer $customerProductTransfer
-     *
-     * @return mixed
      */
     public function saveCustomerProductPrice(CustomerProductTransfer $customerProductTransfer);
 

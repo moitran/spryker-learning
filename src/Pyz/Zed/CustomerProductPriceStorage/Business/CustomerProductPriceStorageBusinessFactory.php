@@ -24,18 +24,10 @@ class CustomerProductPriceStorageBusinessFactory extends AbstractBusinessFactory
     public function createStoragePublisher(): StoragePublisherInterface
     {
         return new StoragePublisher(
-            $this->createCustomerProductPriceStorageRepository(),
+            $this->getRepository(),
             $this->getEntityManager(),
             $this->createConverter()
         );
-    }
-
-    /**
-     * @return CustomerProductPriceStorageRepositoryInterface
-     */
-    public function createCustomerProductPriceStorageRepository(): CustomerProductPriceStorageRepositoryInterface
-    {
-        return $this->getRepository();
     }
 
     /**

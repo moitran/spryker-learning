@@ -49,7 +49,6 @@ class DatabaseWriter implements WriterInterface
     /**
      * @param CustomerProductTransfer $customerProductTransfer
      *
-     * @return mixed|void
      * @throws \Propel\Runtime\Exception\PropelException
      * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
      */
