@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\CustomerProductPrice\Business;
 
+use Generated\Shared\Transfer\CalculableObjectTransfer;
 use Generated\Shared\Transfer\CustomerProductTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
@@ -31,5 +32,13 @@ class CustomerProductPriceFacade extends AbstractFacade implements CustomerProdu
     public function saveCustomerProductPrice(CustomerProductTransfer $customerProductTransfer)
     {
         $this->getFactory()->createDtoWriter()->writeOne($customerProductTransfer);
+    }
+
+    /**
+     * @param CalculableObjectTransfer $calculableObjectTransfer
+     */
+    public function recalculate(CalculableObjectTransfer $calculableObjectTransfer)
+    {
+        $this->getFactory()->createCustomerPriceCalculator()->recalculate($calculableObjectTransfer);
     }
 }

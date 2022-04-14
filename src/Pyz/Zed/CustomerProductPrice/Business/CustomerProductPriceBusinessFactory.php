@@ -2,6 +2,8 @@
 
 namespace Pyz\Zed\CustomerProductPrice\Business;
 
+use Pyz\Zed\CustomerProductPrice\Business\Calculator\CustomerProductPriceCalculator;
+use Pyz\Zed\CustomerProductPrice\Business\Calculator\CustomerProductPriceCalculatorInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Parser\JsonToDtoParser;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Parser\JsonToDtoParserInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Reader\FileReader;
@@ -15,6 +17,7 @@ use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\WriterInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\EventWriter;
 use Pyz\Zed\CustomerProductPrice\CustomerProductPriceDependencyProvider;
 use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager;
+use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceRepositoryInterface;
 use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Importer;
@@ -24,6 +27,7 @@ use Spryker\Zed\Money\Business\MoneyFacadeInterface;
  * Class CustomerProductPriceBusinessFactory
  * @package Pyz\Zed\CustomerProductPrice\Business
  * @method CustomerProductPriceEntityManager getEntityManager()
+ * @method CustomerProductPriceRepositoryInterface getRepository()
  */
 class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
 {
@@ -38,6 +42,16 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
             $this->createFileReader(),
             $this->createDtoParser(),
             $this->createImportEventWriter()
+        );
+    }
+
+    /**
+     * @return CustomerProductPriceCalculator
+     */
+    public function createCustomerPriceCalculator(): CustomerProductPriceCalculatorInterface
+    {
+        return new CustomerProductPriceCalculator(
+            $this->getRepository()
         );
     }
 

@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\CustomerProductPrice\Business;
 
+use Generated\Shared\Transfer\CalculableObjectTransfer;
 use Generated\Shared\Transfer\CustomerProductTransfer;
 
 /**
@@ -23,4 +24,9 @@ interface CustomerProductPriceFacadeInterface
      * @return mixed
      */
     public function saveCustomerProductPrice(CustomerProductTransfer $customerProductTransfer);
+
+    /**
+     * @param CalculableObjectTransfer $calculableObjectTransfer
+     */
+    public function recalculate(CalculableObjectTransfer $calculableObjectTransfer);
 }

@@ -7,6 +7,7 @@
 
 namespace Pyz\Zed\Calculation;
 
+use Pyz\Zed\CustomerProductPrice\Communication\Plugin\Calculator\CustomerProductPriceCalculatorPlugin;
 use Spryker\Zed\Calculation\CalculationDependencyProvider as SprykerCalculationDependencyProvider;
 use Spryker\Zed\Calculation\Communication\Plugin\Calculator\CanceledTotalCalculationPlugin;
 use Spryker\Zed\Calculation\Communication\Plugin\Calculator\DiscountAmountAggregatorForGenericAmountPlugin;
@@ -195,6 +196,7 @@ class CalculationDependencyProvider extends SprykerCalculationDependencyProvider
             new FilterObsoleteShipmentExpensesCalculatorPlugin(),
 
             new PriceCalculatorPlugin(),
+            new CustomerProductPriceCalculatorPlugin(),
             new ItemProductOptionPriceAggregatorPlugin(),
             new ItemSubtotalAggregatorPlugin(),
 
