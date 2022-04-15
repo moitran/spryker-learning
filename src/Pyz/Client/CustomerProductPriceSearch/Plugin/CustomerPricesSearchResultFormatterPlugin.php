@@ -15,16 +15,18 @@ use Spryker\Client\SearchElasticsearch\Plugin\ResultFormatter\AbstractElasticsea
 class CustomerPricesSearchResultFormatterPlugin extends AbstractElasticsearchResultFormatterPlugin
 {
     /**
-     * @var \Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface
+     * @var ResultFormatterPluginInterface
      */
-    protected $rawCatalogSearchResultFormatterPlugin;
+    protected $currencyAwareCatalogSearchResultFormatterPlugin;
 
     /**
-     * @param \Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface $rawCatalogSearchResultFormatterPlugin
+     * CustomerPricesSearchResultFormatterPlugin constructor.
+     *
+     * @param ResultFormatterPluginInterface $currencyAwareCatalogSearchResultFormatterPlugin
      */
-    public function __construct(ResultFormatterPluginInterface $rawCatalogSearchResultFormatterPlugin)
+    public function __construct(ResultFormatterPluginInterface $currencyAwareCatalogSearchResultFormatterPlugin)
     {
-        $this->rawCatalogSearchResultFormatterPlugin = $rawCatalogSearchResultFormatterPlugin;
+        $this->currencyAwareCatalogSearchResultFormatterPlugin = $currencyAwareCatalogSearchResultFormatterPlugin;
     }
 
     /**
@@ -32,12 +34,20 @@ class CustomerPricesSearchResultFormatterPlugin extends AbstractElasticsearchRes
      */
     public function getName(): string
     {
-        return $this->rawCatalogSearchResultFormatterPlugin->getName();
+        return $this->currencyAwareCatalogSearchResultFormatterPlugin->getName();
     }
 
+    /**
+     * @param ResultSet $searchResult
+     * @param array $requestParameters
+     *
+     * @return mixed
+     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     */
     protected function formatSearchResult(ResultSet $searchResult, array $requestParameters)
     {
-        $result = $this->rawCatalogSearchResultFormatterPlugin->formatResult($searchResult, $requestParameters);
+        $result = $this->currencyAwareCatalogSearchResultFormatterPlugin
+            ->formatResult($searchResult, $requestParameters);
         foreach ($result as &$product) {
             if (!empty($product['customer_prices'])) {
                 $sku = $product['add_to_cart_sku'];

@@ -117,11 +117,13 @@ class CatalogDependencyProvider extends SprykerCatalogDependencyProvider
             new CurrencyAwareCatalogSearchResultFormatterPlugin(
                 new RawCatalogSearchResultFormatterPlugin()
             ),
+            new CustomerPricesSearchResultFormatterPlugin(
+                new CurrencyAwareCatalogSearchResultFormatterPlugin(
+                    new RawCatalogSearchResultFormatterPlugin()
+                )
+            ),
             new SpellingSuggestionResultFormatterPlugin(),
             new CategoryTreeFilterPageSearchResultFormatterPlugin(),
-            new CustomerPricesSearchResultFormatterPlugin(
-                new RawCatalogSearchResultFormatterPlugin()
-            ),
         ];
     }
 
