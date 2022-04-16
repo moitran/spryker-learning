@@ -7,6 +7,7 @@
 
 namespace Pyz\Client\UrlStorage;
 
+use Pyz\Client\PathBlacklist\Plugin\UrlStoragePathBlacklistPlugin;
 use Spryker\Client\CategoryStorage\Plugin\UrlStorageCategoryNodeMapperPlugin;
 use Spryker\Client\CmsStorage\Plugin\UrlStorageCmsPageMapperPlugin;
 use Spryker\Client\ProductSetStorage\Plugin\UrlStorageProductSetMapperPlugin;
@@ -22,6 +23,7 @@ class UrlStorageDependencyProvider extends SprykerUrlDependencyProvider
     protected function getUrlStorageResourceMapperPlugins()
     {
         return [
+            new UrlStoragePathBlacklistPlugin(),
             new UrlStorageCmsPageMapperPlugin(),
             new UrlStorageCategoryNodeMapperPlugin(),
             new UrlStorageProductAbstractMapperPlugin(),

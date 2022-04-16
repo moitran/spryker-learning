@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<database xmlns="spryker:schema-01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="zed"
+          xsi:schemaLocation="spryker:schema-01 https://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\PathBlacklist\Persistence" package="src.Orm.Zed.PathBlacklist.Persistence">
+
+    <table name="pyz_path_blacklist">
+        <column name="id_path_blacklist" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="path" type="VARCHAR" size="255"/>
+    </table>
+</database>
