@@ -10,5 +10,15 @@ use Generated\Shared\Transfer\SiteMapCollectionTransfer;
  */
 interface UrlReaderInterface
 {
-    public function getAllUrlStorage() : SiteMapCollectionTransfer;
+    /**
+     * @param int $pageNumber
+     *
+     * @return SiteMapCollectionTransfer
+     */
+    public function getPageData(int $pageNumber) : SiteMapCollectionTransfer;
+
+    /**
+     * @return int
+     */
+    public function getTotalPage() : int;
 }

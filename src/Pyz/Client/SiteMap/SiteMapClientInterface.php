@@ -11,7 +11,14 @@ use Generated\Shared\Transfer\SiteMapCollectionTransfer;
 interface SiteMapClientInterface
 {
     /**
+     * @param int $pageNumber
+     *
      * @return SiteMapCollectionTransfer
      */
-    public function getSiteMapData() : SiteMapCollectionTransfer;
+    public function getPageData(int $pageNumber) : SiteMapCollectionTransfer;
+
+    /**
+     * @return int
+     */
+    public function getTotalPage() : int;
 }

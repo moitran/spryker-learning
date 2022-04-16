@@ -13,6 +13,8 @@ use Spryker\Client\Storage\StorageClientInterface;
  */
 class UrlReader implements UrlReaderInterface
 {
+    public const MAX_ITEMS_PER_PAGE = 100;
+
     /**
      * @var StorageClientInterface
      */
@@ -29,22 +31,19 @@ class UrlReader implements UrlReaderInterface
     }
 
     /**
+     * @param int $pageNumber
+     *
      * @return SiteMapCollectionTransfer
      */
-    public function getAllUrlStorage(): SiteMapCollectionTransfer
+    public function getPageData(int $pageNumber): SiteMapCollectionTransfer
     {
-        // 1. get all cache key belong to 'url:'
-        $urlCachedKeys = $this->storageClient->getKeys('url:*');
-        // 2. format cache key - remove 'kv:' prefix
-        $urlCachedKeys = array_map(function ($cachedKey) {
-            return substr($cachedKey, 3);
-        }, $urlCachedKeys);
-        // 3. sort cached key asc
-        sort($urlCachedKeys);
-        // 4. get cache data for all urls
+        $urlCachedKeys = $this->getUrlCachedKeys();
+        $urlCachedKeys = $this->formatAndSort($urlCachedKeys);
+        $urlCachedKeys = $this->pagination($urlCachedKeys, $pageNumber);
+
         $urls = $this->storageClient->getMulti($urlCachedKeys);
 
-        // 5. transfer to DTO
+        // Transfer to DTO
         $collection = new SiteMapCollectionTransfer();
         foreach ($urls as $url) {
             $urlData = json_decode($url, true);
@@ -55,5 +54,53 @@ class UrlReader implements UrlReaderInterface
         }
 
         return $collection;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalPage() : int
+    {
+        $urlCachedKeys = $this->getUrlCachedKeys();
+        return count(array_chunk($urlCachedKeys, static::MAX_ITEMS_PER_PAGE));
+    }
+
+    /**
+     * @return array
+     */
+    protected function getUrlCachedKeys()
+    {
+        // Get all cache key belong to 'url:'
+        return $this->storageClient->getKeys('url:*');
+    }
+
+    /**
+     * @param array $urlCachedKeys
+     *
+     * @return array
+     */
+    protected function formatAndSort(array $urlCachedKeys) : array
+    {
+        // Format cache key - remove 'kv:' prefix
+        $urlCachedKeys = array_map(function ($cachedKey) {
+            return substr($cachedKey, 3);
+        }, $urlCachedKeys);
+        // Sort cached key asc
+        sort($urlCachedKeys);
+
+        return $urlCachedKeys;
+    }
+
+    /**
+     * @param array $list
+     * @param int $pageNumber
+     *
+     * @return array
+     */
+    protected function pagination(array $list, int $pageNumber) : array
+    {
+        $chunk = array_chunk($list, static::MAX_ITEMS_PER_PAGE);
+
+        return isset($chunk[$pageNumber - 1]) ? $chunk[$pageNumber - 1] : [];
     }
 }

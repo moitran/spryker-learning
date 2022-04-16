@@ -2,12 +2,8 @@
 
 namespace Pyz\Yves\SiteMap\Controller;
 
-use Generated\Client\Ide\Url;
-use GuzzleHttp\Psr7\Uri;
 use Pyz\Client\SiteMap\SiteMapClientInterface;
 use Spryker\Yves\Kernel\Controller\AbstractController;
-use SprykerTest\Shared\Url\Helper\UrlHelper;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -18,21 +14,37 @@ use Symfony\Component\HttpFoundation\Response;
 class IndexController extends AbstractController
 {
     /**
-     * @param Request $request
-     *
      * @return Response
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        $uri = $request->getUri();
-        $domainWithProtocol = sprintf('%s://%s', parse_url($uri, PHP_URL_SCHEME), parse_url($uri, PHP_URL_HOST));
-        $siteMapCollectionTransfer = $this->getClient()->getSiteMapData();
+        $totalPage = $this->getClient()->getTotalPage();
         $response = new Response(
             $this->renderView(
                 '@SiteMap/views/index/index.twig',
                 [
+                    'totalPage' => $totalPage,
+                ]
+            )->getContent()
+        );
+        $response->headers->set('Content-Type', 'text/xml');
+
+        return $response;
+    }
+
+    /**
+     * @param int $pageNumber
+     *
+     * @return Response
+     */
+    public function detailAction(int $pageNumber)
+    {
+        $siteMapCollectionTransfer = $this->getClient()->getPageData($pageNumber);
+        $response = new Response(
+            $this->renderView(
+                '@SiteMap/views/index/detail.twig',
+                [
                     'urls' => $siteMapCollectionTransfer->getSiteMaps(),
-                    'domainWithProtocol' => $domainWithProtocol,
                 ]
             )->getContent()
         );
