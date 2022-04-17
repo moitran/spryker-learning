@@ -1,0 +1,21 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Edit Path Blacklist' | trans %}
+
+{% block head_title %}
+    {{ widget_title | trans }}
+{% endblock %}
+{% block section_title %}
+    {{ widget_title | trans }}
+{% endblock %}
+
+{% block action %}
+    {{ backActionButton('/path-blacklist-gui/list', 'List Path Blacklist' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {{ form_start(pathBlacklistForm) }}
+    {{ form_end(pathBlacklistForm) }}
+
+{% endblock %}

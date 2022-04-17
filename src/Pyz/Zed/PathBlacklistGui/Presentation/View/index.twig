@@ -1,0 +1,42 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'View Path Blacklist' %}
+
+{% block head_title %}
+    {{ widget_title | trans }}
+{% endblock %}
+{% block section_title %}
+    {{ widget_title | trans }}
+{% endblock %}
+
+{% block action %}
+    {{ backActionButton('/path-blacklist-gui/list', 'List Path Blacklist' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Path Blacklist' } %}
+
+        {% block widget_content %}
+
+            <div class="row">
+                <table class="table">
+                    <thead></thead>
+                    <tbody>
+                    <tr>
+                        <th>{{ 'ID' | trans }}</th>
+                        <td>{{ pathBlacklist.idPathBlacklist }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ 'Path' | trans }}</th>
+                        <td>{{ pathBlacklist.path }}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                </table>
+            </div>
+
+        {% endblock %}
+    {% endembed %}
+
+{% endblock %}
