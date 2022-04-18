@@ -22,12 +22,12 @@ class PathBlacklistPathUniqueConstraintValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, PathBlacklistPathUniqueConstraint::class);
         }
 
-        $pathBlacklistTransfer = $constraint->getPathBlacklistFacade()->findPathBlacklistByPath($value);
-        if ($pathBlacklistTransfer->getIdPathBlacklist() === null) {
+        $pathBlacklistCollection = $constraint->getPathBlacklistFacade()->findPathBlacklistByPath($value);
+        if (empty($pathBlacklistTransfer)) {
             return;
         }
 
-        if ($pathBlacklistTransfer->getIdPathBlacklist() === (int)$this->context->getRoot()->getViewData()->getIdPathBlacklist()) {
+        if (count($pathBlacklistCollection) == 1 && $pathBlacklistCollection[0]->getIdPathBlacklist() === (int)$this->context->getRoot()->getViewData()->getIdPathBlacklist()) {
             return;
         }
 

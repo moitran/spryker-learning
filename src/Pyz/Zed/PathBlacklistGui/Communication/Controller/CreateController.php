@@ -4,7 +4,6 @@ namespace Pyz\Zed\PathBlacklistGui\Communication\Controller;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Pyz\Zed\PathBlacklistGui\Communication\PathBlacklistGuiCommunicationFactory;
-use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,11 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
  * @package Pyz\Zed\PathBlacklistGui\Communication\Controller
  * @method PathBlacklistGuiCommunicationFactory getFactory()
  */
-class CreateController extends AbstractController
+class CreateController extends PathBlacklistGuiAbstractController
 {
-    protected const MESSAGE_SUCCESS = 'Path Blacklist has been successfully saved';
-    protected const MESSAGE_ERROR = 'Error';
-
     /**
      * @param Request $request
      *
@@ -59,6 +55,6 @@ class CreateController extends AbstractController
         }
 
         // show success message
-        $this->addSuccessMessage(static::MESSAGE_SUCCESS);
+        $this->addSuccessMessage(static::MESSAGE_CREATED_SUCCESS);
     }
 }

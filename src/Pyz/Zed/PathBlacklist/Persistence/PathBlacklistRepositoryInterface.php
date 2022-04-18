@@ -20,9 +20,9 @@ interface PathBlacklistRepositoryInterface
     /**
      * @param string $path
      *
-     * @return PathBlacklistTransfer
+     * @return \ArrayObject
      */
-    public function findPathBlacklistByPath(string $path): PathBlacklistTransfer;
+    public function findPathBlacklistByPath(string $path): \ArrayObject;
 
     /**
      * @param string $path

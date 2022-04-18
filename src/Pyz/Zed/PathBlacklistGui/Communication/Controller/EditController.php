@@ -3,7 +3,6 @@
 namespace Pyz\Zed\PathBlacklistGui\Communication\Controller;
 
 use Pyz\Zed\PathBlacklistGui\Communication\PathBlacklistGuiCommunicationFactory;
-use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,14 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
  * @package Pyz\Zed\PathBlacklistGui\Communication\Controller
  * @method PathBlacklistGuiCommunicationFactory getFactory()
  */
-class EditController extends AbstractController
+class EditController extends PathBlacklistGuiAbstractController
 {
-    public const PARAM_ID_PATH_BLACKLIST = 'id-path-blacklist';
-
-    protected const MESSAGE_SUCCESS = 'Path Blacklist has been successfully updated';
-    protected const MESSAGE_PATH_BLACKLIST_NOT_FOUND = 'Path Blacklist not found';
-    protected const MESSAGE_ERROR = 'Error';
-
     /**
      * @param Request $request
      *
@@ -28,22 +21,7 @@ class EditController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $idPathBlacklist = $request->get(static::PARAM_ID_PATH_BLACKLIST);
-
-        if (empty($idPathBlacklist)) {
-            return $this->redirectResponse(RoutingConstants::LIST_URL);
-        }
-
-        $idPathBlacklist = $this->castId($idPathBlacklist);
-        $pathBlacklistTransfer = $this->getFactory()
-            ->getPathBlacklistFacade()
-            ->findPathBlacklistById($idPathBlacklist);
-
-        if ($pathBlacklistTransfer->getIdPathBlacklist() === null) {
-            $this->addErrorMessage(static::MESSAGE_PATH_BLACKLIST_NOT_FOUND);
-
-            return $this->redirectResponse(RoutingConstants::LIST_URL);
-        }
+        $pathBlacklistTransfer = $this->findPathBlacklistById($request);
 
         $pathBlacklistForm = $this->getFactory()
             ->getPathBlacklistForm($pathBlacklistTransfer)
@@ -78,6 +56,6 @@ class EditController extends AbstractController
         }
 
         // show success message
-        $this->addSuccessMessage(static::MESSAGE_SUCCESS);
+        $this->addSuccessMessage(static::MESSAGE_UPDATED_SUCCESS);
     }
 }

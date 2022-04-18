@@ -12,7 +12,7 @@ class PathBlacklistPathUniqueConstraint extends Constraint
     /**
      * @var string
      */
-    public $message = 'This name is already in use.';
+    public $message = 'This path is already in use OR included in existed paths';
 
     /**
      * @var PathBlacklistFacadeInterface

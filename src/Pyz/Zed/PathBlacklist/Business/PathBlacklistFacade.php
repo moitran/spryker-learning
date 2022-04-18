@@ -29,9 +29,9 @@ class PathBlacklistFacade extends AbstractFacade implements PathBlacklistFacadeI
     /**
      * @param string $path
      *
-     * @return PathBlacklistTransfer
+     * @return \ArrayObject
      */
-    public function findPathBlacklistByPath(string $path): PathBlacklistTransfer
+    public function findPathBlacklistByPath(string $path): \ArrayObject
     {
         return $this->getRepository()->findPathBlacklistByPath($path);
     }

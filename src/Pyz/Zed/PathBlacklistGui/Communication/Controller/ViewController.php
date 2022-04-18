@@ -3,7 +3,6 @@
 namespace Pyz\Zed\PathBlacklistGui\Communication\Controller;
 
 use Pyz\Zed\PathBlacklistGui\Communication\PathBlacklistGuiCommunicationFactory;
-use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -11,38 +10,19 @@ use Symfony\Component\HttpFoundation\Request;
  * @package Pyz\Zed\PathBlacklistGui\Communication\Controller
  * @method PathBlacklistGuiCommunicationFactory getFactory()
  */
-class ViewController extends AbstractController
+class ViewController extends PathBlacklistGuiAbstractController
 {
-    public const PARAM_ID_PATH_BLACKLIST = 'id-path-blacklist';
-
-    protected const MESSAGE_PATH_BLACKLIST_NOT_FOUND = 'Path Blacklist not found';
-
     /**
      * @param Request $request
      *
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return array
      */
     public function indexAction(Request $request)
     {
-        $idPathBlacklist = $request->get(static::PARAM_ID_PATH_BLACKLIST);
-
-        if (empty($idPathBlacklist)) {
-            return $this->redirectResponse(RoutingConstants::LIST_URL);
-        }
-
-        $idPathBlacklist = $this->castId($idPathBlacklist);
-        $pathBlacklistTransfer = $this->getFactory()
-            ->getPathBlacklistFacade()
-            ->findPathBlacklistById($idPathBlacklist);
-
-        if ($pathBlacklistTransfer->getIdPathBlacklist() === null) {
-            $this->addErrorMessage(static::MESSAGE_PATH_BLACKLIST_NOT_FOUND);
-            return $this->redirectResponse(RoutingConstants::LIST_URL);
-        }
+        $pathBlacklistTransfer = $this->findPathBlacklistById($request);
 
         return $this->viewResponse([
             'pathBlacklist' => $pathBlacklistTransfer,
-            'idPathBlacklist' => $idPathBlacklist,
         ]);
     }
 }
