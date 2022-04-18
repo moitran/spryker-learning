@@ -20,12 +20,4 @@ class PathBlacklistPersistenceFactory extends AbstractPersistenceFactory
     {
         return PyzPathBlacklistQuery::create();
     }
-
-    /**
-     * @return UrlQueryContainerInterface
-     */
-    public function getUrlQueryContainer(): UrlQueryContainerInterface
-    {
-        return $this->getProvidedDependency(PathBlacklistDependencyProvider::QUERY_CONTAINER_URL);
-    }
 }

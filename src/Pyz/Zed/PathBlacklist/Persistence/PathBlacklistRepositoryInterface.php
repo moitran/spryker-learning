@@ -23,10 +23,4 @@ interface PathBlacklistRepositoryInterface
      * @return \ArrayObject
      */
     public function findPathBlacklistByPath(string $path): \ArrayObject;
-
-    /**
-     * @param string $path
-     * @param bool $blacklistValue
-     */
-    public function updateUrlBlacklistByPath(string $path, bool $blacklistValue): void;
 }

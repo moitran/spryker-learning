@@ -1,14 +1,10 @@
 <?php
 
-namespace Pyz\Zed\PathBlacklist\Business\EventHandler;
+namespace Pyz\Zed\Url\Business\BlacklistEventHandler;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
 
-/**
- * Interface SetUrlBlacklistHandlerInterface
- * @package Pyz\Zed\PathBlacklist\Business\EventHandler
- */
-interface SetUrlBlacklistHandlerInterface
+interface BlacklistHandlerInterface
 {
     /**
      * @param string $eventName

@@ -10,6 +10,8 @@
 {% endblock %}
 
 {% block action %}
+    {{ editActionButton(url('/path-blacklist-gui/edit', {'id-path-blacklist': pathBlacklist.idPathBlacklist}), 'Edit' | trans) }}
+    {{ removeActionButton(url('/path-blacklist-gui/delete', {'id-path-blacklist': pathBlacklist.idPathBlacklist}), 'Delete' | trans) }}
     {{ backActionButton('/path-blacklist-gui/list', 'List Path Blacklist' | trans) }}
 {% endblock %}
 
@@ -35,6 +37,7 @@
                     <tfoot>
                 </table>
             </div>
+            <button id="get-blacklist-urls-btn" class="btn btn-sm btn-outline safe-submit">Get affected URLs</button>
 
         {% endblock %}
     {% endembed %}

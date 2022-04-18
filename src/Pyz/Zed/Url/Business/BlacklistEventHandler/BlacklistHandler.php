@@ -1,30 +1,28 @@
 <?php
 
-namespace Pyz\Zed\PathBlacklist\Business\EventHandler;
+namespace Pyz\Zed\Url\Business\BlacklistEventHandler;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Pyz\Zed\PathBlacklist\Communication\Plugin\Event\PathBlacklistEvents;
-use Pyz\Zed\PathBlacklist\Persistence\PathBlacklistRepositoryInterface;
+use Pyz\Zed\Url\Persistence\UrlEntityManagerInterface;
 
 /**
  * Class SetUrlBlacklistHandler
- * @package Pyz\Zed\PathBlacklist\Business\EventHandler
+ * @package Pyz\Zed\Url\Business\EventHandler
  */
-class SetUrlBlacklistHandler implements SetUrlBlacklistHandlerInterface
+class BlacklistHandler implements BlacklistHandlerInterface
 {
     /**
-     * @var PathBlacklistRepositoryInterface
+     * @var UrlEntityManagerInterface
      */
-    protected $repository;
+    protected $entityManager;
 
     /**
-     * SetUrlBlacklistHandler constructor.
-     *
-     * @param PathBlacklistRepositoryInterface $repository
+     * @param UrlEntityManagerInterface $entityManager
      */
-    public function __construct(PathBlacklistRepositoryInterface $repository)
+    public function __construct(UrlEntityManagerInterface $entityManager)
     {
-        $this->repository = $repository;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -35,19 +33,19 @@ class SetUrlBlacklistHandler implements SetUrlBlacklistHandlerInterface
     {
         // CREATE new path black list -> update blacklist value to TRUE
         if ($eventName === PathBlacklistEvents::ENTITY_PYZ_PATH_BLACKLIST_CREATE) {
-            $this->repository->updateUrlBlacklistByPath($pathBlacklistTransfer->getPath(), true);
+            $this->entityManager->updateUrlBlacklistByPath($pathBlacklistTransfer->getPath(), true);
         } elseif ($eventName === PathBlacklistEvents::ENTITY_PYZ_PATH_BLACKLIST_DELETE) {
             // DELETE path black list -> update blacklist value to FALSE
-            $this->repository->updateUrlBlacklistByPath($pathBlacklistTransfer->getPath(), false);
+            $this->entityManager->updateUrlBlacklistByPath($pathBlacklistTransfer->getPath(), false);
         } else {
             // EDIT path black list
             //      -> update blacklist value to FALSE for OLD path
             //      -> update blacklist value to TRUE for NEW path
-            $this->repository->updateUrlBlacklistByPath(
+            $this->entityManager->updateUrlBlacklistByPath(
                 $pathBlacklistTransfer->getBeforeUpdateTransfer()->getPath(),
                 false
             );
-            $this->repository->updateUrlBlacklistByPath($pathBlacklistTransfer->getPath(), true);
+            $this->entityManager->updateUrlBlacklistByPath($pathBlacklistTransfer->getPath(), true);
         }
     }
 }

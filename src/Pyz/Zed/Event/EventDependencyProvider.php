@@ -9,8 +9,8 @@ namespace Pyz\Zed\Event;
 
 use Pyz\Zed\CustomerProductPrice\Communication\Plugin\Event\Subscriber\CustomerProductPriceImportEventSubscriber;
 use Pyz\Zed\CustomerProductPriceStorage\Communication\Plugin\Event\Subscriber\CustomerProductPriceStorageEventSubscriber;
-use Pyz\Zed\PathBlacklist\Communication\Plugin\Event\Subscriber\PathBlacklistEventSubscriber;
 use Pyz\Zed\ProductStorage\Communication\Plugin\Event\Subscriber\ProductStorageEventSubscriber;
+use Pyz\Zed\Url\Communication\Plugin\Event\Subscriber\UrlPathBlacklistEventSubscriber;
 use Spryker\Zed\AvailabilityNotification\Communication\Plugin\Event\Subscriber\AvailabilityNotificationSubscriber;
 use Spryker\Zed\AvailabilityStorage\Communication\Plugin\Event\Subscriber\AvailabilityStorageEventSubscriber;
 use Spryker\Zed\CategoryImageStorage\Communication\Plugin\Event\Subscriber\CategoryImageStorageEventSubscriber;
@@ -120,7 +120,7 @@ class EventDependencyProvider extends SprykerEventDependencyProvider
         // CustomerProductPrice P&S Subscriber
         $eventSubscriberCollection->add(new CustomerProductPriceStorageEventSubscriber());
         // Path Blacklist
-        $eventSubscriberCollection->add(new PathBlacklistEventSubscriber());
+        $eventSubscriberCollection->add(new UrlPathBlacklistEventSubscriber());
 
         return $eventSubscriberCollection;
     }

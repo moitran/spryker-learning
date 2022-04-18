@@ -46,16 +46,6 @@ class PathBlacklistBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return SetUrlBlacklistHandlerInterface
-     */
-    public function createSetUrlBlacklistHandler(): SetUrlBlacklistHandlerInterface
-    {
-        return new SetUrlBlacklistHandler(
-            $this->getRepository()
-        );
-    }
-
-    /**
      * @return EventFacadeInterface
      * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */

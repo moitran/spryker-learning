@@ -31,10 +31,10 @@ class ListController extends AbstractController
      */
     public function tableAction(): JsonResponse
     {
-        $storeTable = $this->getFactory()->createPathBlacklistTable();
+        $blacklistTable = $this->getFactory()->createPathBlacklistTable();
 
         return $this->jsonResponse(
-            $storeTable->fetchData()
+            $blacklistTable->fetchData()
         );
     }
 }

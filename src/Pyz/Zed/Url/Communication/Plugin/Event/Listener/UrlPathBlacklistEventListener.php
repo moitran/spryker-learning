@@ -1,17 +1,17 @@
 <?php
 
-namespace Pyz\Zed\PathBlacklist\Communication\Plugin\Event\Listener;
+namespace Pyz\Zed\Url\Communication\Plugin\Event\Listener;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
+use Pyz\Zed\Url\Business\UrlFacadeInterface;
 use Spryker\Shared\Kernel\Transfer\TransferInterface;
 use Spryker\Zed\Event\Dependency\Plugin\EventHandlerInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
- * Class PathBlacklistEventListener
- * @package Pyz\Zed\PathBlacklist\Communication\Plugin\Event\Listener
+ * @method UrlFacadeInterface getFacade()
  */
-class PathBlacklistEventListener extends AbstractPlugin implements EventHandlerInterface
+class UrlPathBlacklistEventListener extends AbstractPlugin implements EventHandlerInterface
 {
     /**
      * @param TransferInterface $transfer

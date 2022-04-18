@@ -65,13 +65,4 @@ class PathBlacklistFacade extends AbstractFacade implements PathBlacklistFacadeI
     {
         return $this->getFactory()->createPathBlacklistWriter()->deletePathBlacklistById($pathBlacklistTransfer);
     }
-
-    /**
-     * @param string $eventName
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
-     */
-    public function setBlacklistByPath(string $eventName, PathBlacklistTransfer $pathBlacklistTransfer): void
-    {
-        $this->getFactory()->createSetUrlBlacklistHandler()->setBlacklistByPath($eventName, $pathBlacklistTransfer);
-    }
 }

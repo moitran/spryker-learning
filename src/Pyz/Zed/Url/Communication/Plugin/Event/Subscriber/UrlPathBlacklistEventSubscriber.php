@@ -1,18 +1,14 @@
 <?php
 
-namespace Pyz\Zed\PathBlacklist\Communication\Plugin\Event\Subscriber;
+namespace Pyz\Zed\Url\Communication\Plugin\Event\Subscriber;
 
-use Pyz\Zed\PathBlacklist\Communication\Plugin\Event\Listener\PathBlacklistEventListener;
+use Pyz\Zed\Url\Communication\Plugin\Event\Listener\UrlPathBlacklistEventListener;
 use Pyz\Zed\PathBlacklist\Communication\Plugin\Event\PathBlacklistEvents;
 use Spryker\Zed\Event\Dependency\EventCollectionInterface;
 use Spryker\Zed\Event\Dependency\Plugin\EventSubscriberInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
-/**
- * Class PathBlacklistEventSubscriber
- * @package Pyz\Zed\PathBlacklist\Communication\Plugin\Event\Subscriber
- */
-class PathBlacklistEventSubscriber extends AbstractPlugin implements EventSubscriberInterface
+class UrlPathBlacklistEventSubscriber extends AbstractPlugin implements EventSubscriberInterface
 {
     /**
      * @param EventCollectionInterface $eventCollection
@@ -33,17 +29,17 @@ class PathBlacklistEventSubscriber extends AbstractPlugin implements EventSubscr
     {
         $eventCollection->addListenerQueued(
             PathBlacklistEvents::ENTITY_PYZ_PATH_BLACKLIST_CREATE,
-            new PathBlacklistEventListener()
+            new UrlPathBlacklistEventListener()
         );
 
         $eventCollection->addListenerQueued(
             PathBlacklistEvents::ENTITY_PYZ_PATH_BLACKLIST_UPDATE,
-            new PathBlacklistEventListener()
+            new UrlPathBlacklistEventListener()
         );
 
         $eventCollection->addListenerQueued(
             PathBlacklistEvents::ENTITY_PYZ_PATH_BLACKLIST_DELETE,
-            new PathBlacklistEventListener()
+            new UrlPathBlacklistEventListener()
         );
     }
 }
