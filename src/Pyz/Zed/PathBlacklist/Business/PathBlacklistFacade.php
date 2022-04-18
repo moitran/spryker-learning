@@ -57,13 +57,13 @@ class PathBlacklistFacade extends AbstractFacade implements PathBlacklistFacadeI
     }
 
     /**
-     * @param $idPathBlacklist
+     * @param PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return bool
      */
-    public function deletePathBlacklistById($idPathBlacklist): bool
+    public function deletePathBlacklistById(PathBlacklistTransfer $pathBlacklistTransfer): bool
     {
-        return $this->getFactory()->createPathBlacklistWriter()->deletePathBlacklistById($idPathBlacklist);
+        return $this->getFactory()->createPathBlacklistWriter()->deletePathBlacklistById($pathBlacklistTransfer);
     }
 
     /**

@@ -3,7 +3,6 @@
 namespace Pyz\Zed\PathBlacklist\Persistence;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
-use Orm\Zed\Url\Persistence\Map\SpyUrlTableMap;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**

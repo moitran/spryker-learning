@@ -38,13 +38,16 @@ class SetUrlBlacklistHandler implements SetUrlBlacklistHandlerInterface
             $this->repository->updateUrlBlacklistByPath($pathBlacklistTransfer->getPath(), true);
         } elseif ($eventName === PathBlacklistEvents::ENTITY_PYZ_PATH_BLACKLIST_DELETE) {
             // DELETE path black list -> update blacklist value to FALSE
-            $this->repository->updateUrlBlacklistByPath($pathBlacklistTransfer->getOriginTransfer()->getPath(), false);
+            $this->repository->updateUrlBlacklistByPath($pathBlacklistTransfer->getPath(), false);
         } else {
             // EDIT path black list
             //      -> update blacklist value to FALSE for OLD path
             //      -> update blacklist value to TRUE for NEW path
+            $this->repository->updateUrlBlacklistByPath(
+                $pathBlacklistTransfer->getBeforeUpdateTransfer()->getPath(),
+                false
+            );
             $this->repository->updateUrlBlacklistByPath($pathBlacklistTransfer->getPath(), true);
-            $this->repository->updateUrlBlacklistByPath($pathBlacklistTransfer->getOriginTransfer()->getPath(), false);
         }
     }
 }

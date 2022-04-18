@@ -6,6 +6,6 @@
     <transfer name="PathBlacklist">
         <property name="idPathBlacklist" type="int"/>
         <property name="path" type="string"/>
-        <property name="originTransfer" type="PathBlacklist"/>
+        <property name="beforeUpdateTransfer" type="PathBlacklist"/>
     </transfer>
 </transfers>

@@ -40,11 +40,11 @@ interface PathBlacklistFacadeInterface
     public function updatePathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): bool;
 
     /**
-     * @param $idPathBlacklist
+     * @param PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return bool
      */
-    public function deletePathBlacklistById($idPathBlacklist) : bool;
+    public function deletePathBlacklistById(PathBlacklistTransfer $pathBlacklistTransfer) : bool;
 
     /**
      * @param string $eventName

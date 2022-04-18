@@ -2,7 +2,6 @@
 
 namespace Pyz\Zed\PathBlacklistGui\Communication\Controller;
 
-use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Pyz\Zed\PathBlacklistGui\Communication\PathBlacklistGuiCommunicationFactory;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
@@ -46,13 +45,12 @@ class EditController extends AbstractController
             return $this->redirectResponse(RoutingConstants::LIST_URL);
         }
 
-        $originTransfer = clone $pathBlacklistTransfer;
         $pathBlacklistForm = $this->getFactory()
             ->getPathBlacklistForm($pathBlacklistTransfer)
             ->handleRequest($request);
 
         if ($pathBlacklistForm->isSubmitted() && $pathBlacklistForm->isValid()) {
-            $this->handlePathBlacklistForm($pathBlacklistForm, $originTransfer);
+            $this->handlePathBlacklistForm($pathBlacklistForm);
 
             return $this->redirectResponse(RoutingConstants::LIST_URL);
         }
@@ -64,19 +62,15 @@ class EditController extends AbstractController
 
     /**
      * @param FormInterface $pathBlacklistForm
-     * @param PathBlacklistTransfer $originTransfer
+     *
+     * @return void
      */
-    protected function handlePathBlacklistForm(FormInterface $pathBlacklistForm, PathBlacklistTransfer $originTransfer): void
+    protected function handlePathBlacklistForm(FormInterface $pathBlacklistForm): void
     {
-        /**
-         * @var PathBlacklistTransfer $updatedTransfer
-         */
-        $updatedTransfer = $pathBlacklistForm->getData();
-        $updatedTransfer->setOriginTransfer($originTransfer);
         // update new path in pyz_path_blacklist table
         $result = $this->getFactory()
             ->getPathBlacklistFacade()
-            ->updatePathBlacklist($updatedTransfer);
+            ->updatePathBlacklist($pathBlacklistForm->getData());
 
         // update error
         if (!$result) {

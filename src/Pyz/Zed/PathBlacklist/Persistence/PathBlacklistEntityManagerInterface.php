@@ -13,21 +13,21 @@ interface PathBlacklistEntityManagerInterface
     /**
      * @param PathBlacklistTransfer $pathBlacklistTransfer
      *
-     * @return PathBlacklistTransfer
+     * @return void
      */
-    public function createPathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): PathBlacklistTransfer;
+    public function createPathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): void;
 
     /**
      * @param PathBlacklistTransfer $pathBlacklistTransfer
      *
-     * @return PathBlacklistTransfer
+     * @return void
      */
-    public function updatePathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): PathBlacklistTransfer;
+    public function updatePathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): void;
 
     /**
-     * @param $idPathBlacklist
+     * @param PathBlacklistTransfer $pathBlacklistTransfer
      *
-     * @return PathBlacklistTransfer
+     * @return void
      */
-    public function deletePathBlacklistById($idPathBlacklist) : PathBlacklistTransfer;
+    public function deletePathBlacklistById(PathBlacklistTransfer $pathBlacklistTransfer): void;
 }

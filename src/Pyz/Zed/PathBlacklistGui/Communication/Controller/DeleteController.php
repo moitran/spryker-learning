@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\PathBlacklistGui\Communication\Controller;
 
+use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Pyz\Zed\PathBlacklistGui\Communication\PathBlacklistGuiCommunicationFactory;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -16,6 +17,7 @@ class DeleteController extends AbstractController
 {
     public const PARAM_ID_PATH_BLACKLIST = 'id-path-blacklist';
     protected const MESSAGE_SUCCESS = 'Path Blacklist has been successfully deleted';
+    protected const MESSAGE_PATH_BLACKLIST_NOT_FOUND = 'Path Blacklist not found';
     protected const MESSAGE_ERROR = 'Error';
 
     /**
@@ -31,19 +33,32 @@ class DeleteController extends AbstractController
         }
 
         $idPathBlacklist = $this->castId($idPathBlacklist);
-        $this->handleDeleteAction($idPathBlacklist);
+
+        $pathBlacklistTransfer = $this->getFactory()
+            ->getPathBlacklistFacade()
+            ->findPathBlacklistById($idPathBlacklist);
+
+        if ($pathBlacklistTransfer->getIdPathBlacklist() === null) {
+            $this->addErrorMessage(static::MESSAGE_PATH_BLACKLIST_NOT_FOUND);
+
+            return $this->redirectResponse(RoutingConstants::LIST_URL);
+        }
+
+        $this->handleDeleteAction($pathBlacklistTransfer);
 
         return $this->redirectResponse(RoutingConstants::LIST_URL);
     }
 
     /**
-     * @param int $idPathBlacklist
+     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     *
+     * @return void
      */
-    protected function handleDeleteAction(int $idPathBlacklist): void
+    protected function handleDeleteAction(PathBlacklistTransfer $pathBlacklistTransfer): void
     {
         $result = $this->getFactory()
             ->getPathBlacklistFacade()
-            ->deletePathBlacklistById($idPathBlacklist);
+            ->deletePathBlacklistById($pathBlacklistTransfer);
 
         if (!$result) {
             $this->addErrorMessage(static::MESSAGE_ERROR);

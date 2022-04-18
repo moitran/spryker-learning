@@ -53,10 +53,7 @@ class PathBlacklistWriter implements PathBlacklistWriterInterface
      */
     public function createPathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): bool
     {
-        $pathBlacklistTransfer = $this->entityManager->createPathBlacklist($pathBlacklistTransfer);
-        if (empty($pathBlacklistTransfer->getIdPathBlacklist())) {
-            return false;
-        }
+        $this->entityManager->createPathBlacklist($pathBlacklistTransfer);
         $this->eventWriter->write(PathBlacklistEvents::ENTITY_PYZ_PATH_BLACKLIST_CREATE, $pathBlacklistTransfer);
 
         return true;
@@ -69,10 +66,9 @@ class PathBlacklistWriter implements PathBlacklistWriterInterface
      */
     public function updatePathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): bool
     {
-        $updatedTransfer = $this->entityManager->updatePathBlacklist($pathBlacklistTransfer);
-        if (empty($updatedTransfer->getIdPathBlacklist())) {
-            return false;
-        }
+        $beforeUpdateTransfer = $this->repository->findPathBlacklistById($pathBlacklistTransfer->getIdPathBlacklist());
+        $this->entityManager->updatePathBlacklist($pathBlacklistTransfer);
+        $pathBlacklistTransfer->setBeforeUpdateTransfer($beforeUpdateTransfer);
         $this->eventWriter->write(PathBlacklistEvents::ENTITY_PYZ_PATH_BLACKLIST_UPDATE, $pathBlacklistTransfer);
 
         return true;
@@ -80,16 +76,13 @@ class PathBlacklistWriter implements PathBlacklistWriterInterface
 
 
     /**
-     * @param $idPathBlacklist
+     * @param PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return bool
      */
-    public function deletePathBlacklistById($idPathBlacklist): bool
+    public function deletePathBlacklistById(PathBlacklistTransfer $pathBlacklistTransfer): bool
     {
-        $pathBlacklistTransfer = $this->entityManager->deletePathBlacklistById($idPathBlacklist);
-        if (empty($pathBlacklistTransfer->getIdPathBlacklist())) {
-            return false;
-        }
+        $this->entityManager->deletePathBlacklistById($pathBlacklistTransfer);
         $this->eventWriter->write(PathBlacklistEvents::ENTITY_PYZ_PATH_BLACKLIST_DELETE, $pathBlacklistTransfer);
 
         return true;
