@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Pyz\Client\SiteMap\Reader;
 
 use Generated\Shared\Transfer\SiteMapCollectionTransfer;
@@ -13,7 +12,11 @@ use Spryker\Client\Storage\StorageClientInterface;
  */
 class UrlReader implements UrlReaderInterface
 {
-    public const MAX_ITEMS_PER_PAGE = 100;
+    protected const MAX_ITEMS_PER_PAGE = 100;
+
+    protected const URL_STORAGE_URL_COL = 'url';
+    protected const URL_STORAGE_TIMESTAMP_COL = '_timestamp';
+    protected const URL_STORAGE_BLACKLIST_COL = 'blacklist';
 
     /**
      * @var StorageClientInterface
@@ -37,19 +40,14 @@ class UrlReader implements UrlReaderInterface
      */
     public function getPageData(int $pageNumber): SiteMapCollectionTransfer
     {
-        $urlCachedKeys = $this->getUrlCachedKeys();
-        $urlCachedKeys = $this->formatAndSort($urlCachedKeys);
-        $urlCachedKeys = $this->pagination($urlCachedKeys, $pageNumber);
-
-        $urls = $this->storageClient->getMulti($urlCachedKeys);
+        $urls = $this->getAllCachedUrls();
+        $urls = $this->pagination($urls, $pageNumber);
 
         // Transfer to DTO
         $collection = new SiteMapCollectionTransfer();
         foreach ($urls as $url) {
-            $urlData = json_decode($url, true);
             $sitemapTransfer = new SiteMapTransfer();
-            $sitemapTransfer->setUrl($urlData['url']);
-            $sitemapTransfer->setLastModified(date("Y-m-d", $urlData['_timestamp']));
+            $sitemapTransfer->fromArray($url);
             $collection->addSiteMap($sitemapTransfer);
         }
 
@@ -59,10 +57,35 @@ class UrlReader implements UrlReaderInterface
     /**
      * @return int
      */
-    public function getTotalPage() : int
+    public function getTotalPage(): int
+    {
+        $urls = $this->getAllCachedUrls();
+
+        return count(array_chunk($urls, static::MAX_ITEMS_PER_PAGE));
+    }
+
+    /**
+     * @return array
+     */
+    protected function getAllCachedUrls()
     {
         $urlCachedKeys = $this->getUrlCachedKeys();
-        return count(array_chunk($urlCachedKeys, static::MAX_ITEMS_PER_PAGE));
+        $urlCachedKeysFormatted = $this->formatAndSort($urlCachedKeys);
+        $urls = $this->storageClient->getMulti($urlCachedKeysFormatted);
+        $result = [];
+        foreach ($urls as $url) {
+            $urlData = json_decode($url, true);
+            // filter out black list URL in sitemap
+            if (!empty($urlData[static::URL_STORAGE_BLACKLIST_COL])) {
+                continue;
+            }
+            $result[] = [
+                'url' => $urlData[static::URL_STORAGE_URL_COL],
+                'lastModified' => date("Y-m-d", $urlData[static::URL_STORAGE_TIMESTAMP_COL]),
+            ];
+        }
+
+        return $result;
     }
 
     /**
@@ -79,7 +102,7 @@ class UrlReader implements UrlReaderInterface
      *
      * @return array
      */
-    protected function formatAndSort(array $urlCachedKeys) : array
+    protected function formatAndSort(array $urlCachedKeys): array
     {
         // Format cache key - remove 'kv:' prefix
         $urlCachedKeys = array_map(function ($cachedKey) {
@@ -97,10 +120,10 @@ class UrlReader implements UrlReaderInterface
      *
      * @return array
      */
-    protected function pagination(array $list, int $pageNumber) : array
+    protected function pagination(array $list, int $pageNumber): array
     {
         $chunk = array_chunk($list, static::MAX_ITEMS_PER_PAGE);
 
-        return isset($chunk[$pageNumber - 1]) ? $chunk[$pageNumber - 1] : [];
+        return $chunk[$pageNumber - 1] ?? [];
     }
 }

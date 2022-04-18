@@ -19,13 +19,11 @@ class IndexController extends AbstractController
     public function indexAction()
     {
         $totalPage = $this->getClient()->getTotalPage();
-        $response = new Response(
-            $this->renderView(
-                '@SiteMap/views/index/index.twig',
-                [
-                    'totalPage' => $totalPage,
-                ]
-            )->getContent()
+        $response = $this->renderView(
+            '@SiteMap/views/index/index.twig',
+            [
+                'totalPage' => $totalPage,
+            ]
         );
         $response->headers->set('Content-Type', 'text/xml');
 
@@ -40,13 +38,11 @@ class IndexController extends AbstractController
     public function detailAction(int $pageNumber)
     {
         $siteMapCollectionTransfer = $this->getClient()->getPageData($pageNumber);
-        $response = new Response(
-            $this->renderView(
-                '@SiteMap/views/index/detail.twig',
-                [
-                    'urls' => $siteMapCollectionTransfer->getSiteMaps(),
-                ]
-            )->getContent()
+        $response = $this->renderView(
+            '@SiteMap/views/index/detail.twig',
+            [
+                'urls' => $siteMapCollectionTransfer->getSiteMaps(),
+            ]
         );
         $response->headers->set('Content-Type', 'text/xml');
 
