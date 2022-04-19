@@ -23,7 +23,7 @@ class PathBlacklistPathUniqueConstraintValidator extends ConstraintValidator
         }
 
         $pathBlacklistCollectionTransfer = $constraint->getPathBlacklistFacade()->findPathBlacklistByPath($value);
-        if (empty($pathBlacklistCollectionTransfer->getPathBlacklists())) {
+        if (!count($pathBlacklistCollectionTransfer->getPathBlacklists())) {
             return;
         }
 
