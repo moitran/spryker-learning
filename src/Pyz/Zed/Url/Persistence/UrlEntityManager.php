@@ -2,7 +2,6 @@
 
 namespace Pyz\Zed\Url\Persistence;
 
-use Orm\Zed\Url\Persistence\Map\SpyUrlTableMap;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 use Spryker\Zed\Url\Persistence\UrlPersistenceFactory;
 
@@ -11,6 +10,8 @@ use Spryker\Zed\Url\Persistence\UrlPersistenceFactory;
  */
 class UrlEntityManager extends AbstractEntityManager implements UrlEntityManagerInterface
 {
+    public const COL_BLACKLIST = 'Blacklist';
+
     /**
      * @param string $path
      * @param bool $blacklistValue
@@ -18,14 +19,10 @@ class UrlEntityManager extends AbstractEntityManager implements UrlEntityManager
      * @return void
      * @throws \Propel\Runtime\Exception\PropelException
      */
-    public function updateUrlBlacklistByPath(string $path, bool $blacklistValue) : void
+    public function updateUrlBlacklistByPath(string $path, bool $blacklistValue): void
     {
-        $urls = $this->getFactory()->createUrlQuery()
+        $this->getFactory()->createUrlQuery()
             ->filterByUrl_Like(sprintf('%%%s%%', $path))
-            ->find();
-        foreach ($urls as $url) {
-            $url->setBlacklist($blacklistValue);
-            $url->save();
-        }
+            ->update([static::COL_BLACKLIST => $blacklistValue]);
     }
 }
