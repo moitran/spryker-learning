@@ -3,6 +3,7 @@
 namespace Pyz\Zed\PathBlacklist\Business;
 
 use Generated\Shared\Transfer\EventEntityTransfer;
+use Generated\Shared\Transfer\PathBlacklistCollectionTransfer;
 use Generated\Shared\Transfer\PathBlacklistTransfer;
 
 /**
@@ -16,21 +17,21 @@ interface PathBlacklistFacadeInterface
      *
      * @return PathBlacklistTransfer
      */
-    public function findPathBlacklistById(int $idPathBlacklist) : PathBlacklistTransfer;
+    public function findPathBlacklistById(int $idPathBlacklist): PathBlacklistTransfer;
 
     /**
      * @param string $path
      *
-     * @return \ArrayObject
+     * @return PathBlacklistCollectionTransfer
      */
-    public function findPathBlacklistByPath(string $path): \ArrayObject;
+    public function findPathBlacklistByPath(string $path): PathBlacklistCollectionTransfer;
 
     /**
      * @param PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return bool
      */
-    public function createPathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer) : bool;
+    public function createPathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): bool;
 
     /**
      * @param PathBlacklistTransfer $pathBlacklistTransfer
@@ -44,5 +45,5 @@ interface PathBlacklistFacadeInterface
      *
      * @return bool
      */
-    public function deletePathBlacklistById(PathBlacklistTransfer $pathBlacklistTransfer) : bool;
+    public function deletePathBlacklistById(PathBlacklistTransfer $pathBlacklistTransfer): bool;
 }

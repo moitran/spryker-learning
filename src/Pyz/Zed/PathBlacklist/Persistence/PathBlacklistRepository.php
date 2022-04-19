@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\PathBlacklist\Persistence;
 
+use Generated\Shared\Transfer\PathBlacklistCollectionTransfer;
 use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
@@ -35,23 +36,19 @@ class PathBlacklistRepository extends AbstractRepository implements PathBlacklis
     /**
      * @param string $path
      *
-     * @return \ArrayObject
+     * @return PathBlacklistCollectionTransfer
      * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
      */
-    public function findPathBlacklistByPath(string $path): \ArrayObject
+    public function findPathBlacklistByPath(string $path): PathBlacklistCollectionTransfer
     {
         $pathBlackListEntities = $this->getFactory()
             ->createPathBlacklistQuery()
             ->filterByPath_Like(sprintf('%%%s%%', $path))
             ->find();
 
-        if ($pathBlackListEntities === null) {
-            return new \ArrayObject();
-        }
-
-        $collection = new \ArrayObject();
+        $collection = new PathBlacklistCollectionTransfer();
         foreach ($pathBlackListEntities as $blackListEntity) {
-            $collection->append((new PathBlacklistTransfer())->fromArray($blackListEntity->toArray()));
+            $collection->addPathBlacklist((new PathBlacklistTransfer())->fromArray($blackListEntity->toArray()));
         }
 
         return $collection;

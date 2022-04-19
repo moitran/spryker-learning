@@ -13,7 +13,7 @@ use Spryker\Client\UrlStorage\Dependency\Plugin\UrlStorageResourceMapperPluginIn
  * @package Pyz\Client\PathBlacklist\Plugin
  * @method PathBlacklistClientInterface getClient()
  */
-class UrlStoragePathBlacklistPlugin  extends AbstractPlugin implements UrlStorageResourceMapperPluginInterface
+class UrlStoragePathBlacklistPlugin extends AbstractPlugin implements UrlStorageResourceMapperPluginInterface
 {
     /**
      * @param UrlStorageTransfer $urlStorageTransfer

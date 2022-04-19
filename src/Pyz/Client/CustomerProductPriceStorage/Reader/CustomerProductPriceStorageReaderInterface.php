@@ -15,5 +15,5 @@ interface CustomerProductPriceStorageReaderInterface
      *
      * @return CustomerProductPriceStoreTransfer
      */
-    public function getPricesByReferenceKey(string $referenceKey) : CustomerProductPriceStoreTransfer;
+    public function getPricesByReferenceKey(string $referenceKey): CustomerProductPriceStoreTransfer;
 }

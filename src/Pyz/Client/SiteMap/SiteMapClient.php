@@ -13,6 +13,11 @@ use Spryker\Client\Kernel\AbstractClient;
 class SiteMapClient extends AbstractClient implements SiteMapClientInterface
 {
     /**
+     * Specification:
+     * - Get sitemap data by pageNUmber
+     *
+     * @api
+     *
      * @param int $pageNumber
      *
      * @return SiteMapCollectionTransfer
@@ -24,10 +29,13 @@ class SiteMapClient extends AbstractClient implements SiteMapClientInterface
     }
 
     /**
+     * Specification:
+     * - Get sitemap total page
+     * @api
      * @return int
      * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
-    public function getTotalPage() : int
+    public function getTotalPage(): int
     {
         return $this->getFactory()->createUrlReader()->getTotalPage();
     }

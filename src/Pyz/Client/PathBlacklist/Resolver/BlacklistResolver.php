@@ -30,7 +30,7 @@ class BlacklistResolver implements BlacklistResolverInterface
     /**
      * @param UrlStorageTransfer $urlStorageTransfer
      */
-    public function blacklistChecking(UrlStorageTransfer $urlStorageTransfer) : void
+    public function blacklistChecking(UrlStorageTransfer $urlStorageTransfer): void
     {
         $urlStorageTransfer = $this->urlStorageClient->findUrlStorageTransferByUrl($urlStorageTransfer->getUrl());
         if ($urlStorageTransfer->getBlacklist()) {

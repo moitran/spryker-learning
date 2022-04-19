@@ -13,6 +13,11 @@ use Spryker\Client\Kernel\AbstractClient;
 class CustomerProductPriceStorageClient extends AbstractClient implements CustomerProductPriceStorageClientInterface
 {
     /**
+     * Specification:
+     * - Expand product view transfer apply customer_product_prices
+     *
+     * @api
+     *
      * @param ProductViewTransfer $productViewTransfer
      *
      * @return ProductViewTransfer

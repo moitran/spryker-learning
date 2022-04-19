@@ -15,7 +15,7 @@ class CustomerProductPriceSearchFactory extends AbstractFactory
      * @return CustomerClientInterface
      * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
-    public function getCustomerClient() : CustomerClientInterface
+    public function getCustomerClient(): CustomerClientInterface
     {
         return $this->getProvidedDependency(CustomerProductPriceSearchDependencyProvider::CLIENT_CUSTOMER);
     }

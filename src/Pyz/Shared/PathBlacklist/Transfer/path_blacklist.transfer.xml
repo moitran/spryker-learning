@@ -8,4 +8,8 @@
         <property name="path" type="string"/>
         <property name="beforeUpdateTransfer" type="PathBlacklist"/>
     </transfer>
+
+    <transfer name="PathBlacklistCollection">
+        <property name="pathBlacklists" type="PathBlacklist[]" singular="pathBlacklist"/>
+    </transfer>
 </transfers>

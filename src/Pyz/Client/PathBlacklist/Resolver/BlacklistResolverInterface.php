@@ -13,5 +13,5 @@ interface BlacklistResolverInterface
     /**
      * @param UrlStorageTransfer $urlStorageTransfer
      */
-    public function blacklistChecking(UrlStorageTransfer $urlStorageTransfer) : void;
+    public function blacklistChecking(UrlStorageTransfer $urlStorageTransfer): void;
 }

@@ -94,7 +94,7 @@ class PathBlacklistTable extends AbstractTable
         return [
             static::COL_ID_PATH_BLACK_LIST => $pathBlacklistEntity->getIdPathBlacklist(),
             static::COL_PATH => $pathBlacklistEntity->getPath(),
-            static::ACTIONS => $this->buildLinks($pathBlacklistEntity)
+            static::ACTIONS => $this->buildLinks($pathBlacklistEntity),
         ];
     }
 
@@ -103,7 +103,7 @@ class PathBlacklistTable extends AbstractTable
      *
      * @return string
      */
-    protected function buildLinks(PyzPathBlacklist $pathBlacklistEntity) : string
+    protected function buildLinks(PyzPathBlacklist $pathBlacklistEntity): string
     {
         $buttons = [];
         $buttons[] = $this->generateViewButton(

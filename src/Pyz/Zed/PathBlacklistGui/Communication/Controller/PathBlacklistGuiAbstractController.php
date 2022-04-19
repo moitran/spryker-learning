@@ -35,6 +35,7 @@ abstract class PathBlacklistGuiAbstractController extends AbstractController
 
         if ($pathBlacklistTransfer->getIdPathBlacklist() === null) {
             $this->addErrorMessage(static::MESSAGE_PATH_BLACKLIST_NOT_FOUND);
+
             return $this->redirectResponse(RoutingConstants::LIST_URL);
         }
 

@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\PathBlacklist\Business;
 
+use Generated\Shared\Transfer\PathBlacklistCollectionTransfer;
 use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Pyz\Zed\PathBlacklist\Persistence\PathBlacklistEntityManagerInterface;
 use Pyz\Zed\PathBlacklist\Persistence\PathBlacklistRepositoryInterface;
@@ -29,9 +30,9 @@ class PathBlacklistFacade extends AbstractFacade implements PathBlacklistFacadeI
     /**
      * @param string $path
      *
-     * @return \ArrayObject
+     * @return PathBlacklistCollectionTransfer
      */
-    public function findPathBlacklistByPath(string $path): \ArrayObject
+    public function findPathBlacklistByPath(string $path): PathBlacklistCollectionTransfer
     {
         return $this->getRepository()->findPathBlacklistByPath($path);
     }

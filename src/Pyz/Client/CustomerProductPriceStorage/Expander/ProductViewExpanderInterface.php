@@ -15,5 +15,5 @@ interface ProductViewExpanderInterface
      *
      * @return ProductViewTransfer
      */
-    public function expandProductViewTransfer(ProductViewTransfer $productViewTransfer) : ProductViewTransfer;
+    public function expandProductViewTransfer(ProductViewTransfer $productViewTransfer): ProductViewTransfer;
 }

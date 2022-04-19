@@ -88,7 +88,7 @@ class ProductViewExpander implements ProductViewExpanderInterface
             }
         }
 
-        return (int) $priceLow;
+        return (int)$priceLow;
     }
 
     /**

@@ -15,10 +15,10 @@ interface UrlReaderInterface
      *
      * @return SiteMapCollectionTransfer
      */
-    public function getPageData(int $pageNumber) : SiteMapCollectionTransfer;
+    public function getPageData(int $pageNumber): SiteMapCollectionTransfer;
 
     /**
      * @return int
      */
-    public function getTotalPage() : int;
+    public function getTotalPage(): int;
 }

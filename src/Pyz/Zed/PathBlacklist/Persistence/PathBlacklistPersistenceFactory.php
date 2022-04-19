@@ -16,7 +16,7 @@ class PathBlacklistPersistenceFactory extends AbstractPersistenceFactory
     /**
      * @return PyzPathBlacklistQuery
      */
-    public function createPathBlacklistQuery() : PyzPathBlacklistQuery
+    public function createPathBlacklistQuery(): PyzPathBlacklistQuery
     {
         return PyzPathBlacklistQuery::create();
     }

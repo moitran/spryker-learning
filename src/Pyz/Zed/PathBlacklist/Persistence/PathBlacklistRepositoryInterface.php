@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\PathBlacklist\Persistence;
 
+use Generated\Shared\Transfer\PathBlacklistCollectionTransfer;
 use Generated\Shared\Transfer\PathBlacklistTransfer;
 
 /**
@@ -20,7 +21,7 @@ interface PathBlacklistRepositoryInterface
     /**
      * @param string $path
      *
-     * @return \ArrayObject
+     * @return PathBlacklistCollectionTransfer
      */
-    public function findPathBlacklistByPath(string $path): \ArrayObject;
+    public function findPathBlacklistByPath(string $path): PathBlacklistCollectionTransfer;
 }

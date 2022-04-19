@@ -11,6 +11,11 @@ use Generated\Shared\Transfer\ProductViewTransfer;
 interface CustomerProductPriceStorageClientInterface
 {
     /**
+     * Specification:
+     * - Expand product view transfer apply customer_product_prices
+     *
+     * @api
+     *
      * @param ProductViewTransfer $productViewTransfer
      *
      * @return ProductViewTransfer
