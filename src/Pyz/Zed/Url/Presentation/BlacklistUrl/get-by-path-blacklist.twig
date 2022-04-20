@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-sm-12">
+        {{ form_start(affectedUrlsByPathForm) }}
+        {{ form_end(affectedUrlsByPathForm) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        {% if affectedUrlsByPathForm.vars.submitted %}
+            {% block widget_content %}
+
+                <table class="footable table table-striped toggle-arrow-tiny">
+                    <thead>
+                    <tr class="text-left">
+                        <th>{{ "ID" | trans }}</th>
+                        <th>{{ "URL" | trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        {% if urls is not empty %}
+                            {% for url in urls %}
+                                <tr>
+                                    <td>{{ url.idUrl }}</td>
+                                    <td>{{ url.url }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="2" style='text-align:center;'>No affected URLs</td>
+                            </tr>
+                        {% endif %}
+
+                    </tbody>
+
+                </table>
+
+            {% endblock %}
+        {% endif %}
+
+    </div>
+</div>

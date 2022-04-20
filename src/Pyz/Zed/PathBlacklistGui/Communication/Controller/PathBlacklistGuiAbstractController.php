@@ -14,6 +14,11 @@ abstract class PathBlacklistGuiAbstractController extends AbstractController
     protected const MESSAGE_DELETED_SUCCESS = 'Path Blacklist has been successfully deleted';
     protected const MESSAGE_PATH_BLACKLIST_NOT_FOUND = 'Path Blacklist not found';
     protected const MESSAGE_ERROR = 'Error';
+    /**
+     * @uses \Spryker\Zed\Http\Communication\Plugin\Application\HttpApplicationPlugin::SERVICE_SUB_REQUEST
+     */
+    protected const SERVICE_SUB_REQUEST = 'sub_request';
+    protected const ROUTE_URL_PATH_BLACKLIST_AFFECTED_URLS = '/url/blacklist-url/get-by-path-blacklist';
 
     /**
      * @param Request $request
@@ -40,5 +45,25 @@ abstract class PathBlacklistGuiAbstractController extends AbstractController
         }
 
         return $pathBlacklistTransfer;
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return false|string
+     */
+    protected function getAffectedUrlBlock(Request $request)
+    {
+        return $this->getSubRequestHandler()
+            ->handleSubRequest($request, static::ROUTE_URL_PATH_BLACKLIST_AFFECTED_URLS)
+            ->getContent();
+    }
+
+    /**
+     * @return \Spryker\Zed\Application\Business\Model\Request\SubRequestHandlerInterface
+     */
+    protected function getSubRequestHandler()
+    {
+        return $this->getApplication()->get(static::SERVICE_SUB_REQUEST);
     }
 }

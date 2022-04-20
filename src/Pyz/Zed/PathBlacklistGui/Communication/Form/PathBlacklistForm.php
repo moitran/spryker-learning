@@ -23,7 +23,7 @@ class PathBlacklistForm extends AbstractType
     protected const BLOCK_PREFIX = 'path_blacklist';
     protected const FIELD_ID_PATH_BLACK_LIST = 'idPathBlacklist';
     protected const FIELD_PATH = 'path';
-    protected const FIELD_NAME_MAX_LENGTH = 256;
+    protected const FIELD_PATH_MAX_LENGTH = 256;
 
     /**
      * @return string
@@ -81,7 +81,7 @@ class PathBlacklistForm extends AbstractType
             'label' => 'Path',
             'constraints' => [
                 new NotBlank(['normalizer' => 'trim']),
-                new Length(['max' => static::FIELD_NAME_MAX_LENGTH]),
+                new Length(['max' => static::FIELD_PATH_MAX_LENGTH]),
                 $this->getFactory()->createPathUniqueConstraint(),
             ],
         ]);
