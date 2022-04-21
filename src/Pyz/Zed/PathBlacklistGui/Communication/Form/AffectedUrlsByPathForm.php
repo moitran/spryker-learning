@@ -1,6 +1,6 @@
 <?php
 
-namespace Pyz\Zed\Url\Communication\Form;
+namespace Pyz\Zed\PathBlacklistGui\Communication\Form;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Spryker\Zed\Kernel\Communication\Form\AbstractType;

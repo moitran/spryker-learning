@@ -3,13 +3,12 @@
 namespace Pyz\Zed\PathBlacklist\Persistence;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
-use Pyz\Client\PathBlacklist\PathBlacklistFactory;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
 /**
  * Class PathBlacklistEntityManager
  * @package Pyz\Zed\PathBlacklist\Persistence
- * @method PathBlacklistFactory getFactory()
+ * @method \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistPersistenceFactory getFactory()
  */
 class PathBlacklistEntityManager extends AbstractEntityManager implements PathBlacklistEntityManagerInterface
 {
@@ -22,8 +21,8 @@ class PathBlacklistEntityManager extends AbstractEntityManager implements PathBl
      */
     public function createPathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): void
     {
-        $pathBlacklistEntity = $this->getFactory()->createPathBlacklistQuery()
-            ->filterByPath($pathBlacklistTransfer->getPath())
+        $pathBlacklistEntity = $this->getFactory()
+            ->findByPath($pathBlacklistTransfer)
             ->findOneOrCreate();
 
         if ($pathBlacklistEntity->isModified() || $pathBlacklistEntity->isNew()) {
@@ -40,8 +39,8 @@ class PathBlacklistEntityManager extends AbstractEntityManager implements PathBl
      */
     public function updatePathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): void
     {
-        $pathBlacklistEntity = $this->getFactory()->createPathBlacklistQuery()
-            ->filterByIdPathBlacklist($pathBlacklistTransfer->getIdPathBlacklist())
+        $pathBlacklistEntity = $this->getFactory()
+            ->findByIdPathBlacklist($pathBlacklistTransfer)
             ->findOne();
 
         $pathBlacklistEntity->setPath($pathBlacklistTransfer->getPath());
@@ -59,8 +58,8 @@ class PathBlacklistEntityManager extends AbstractEntityManager implements PathBl
      */
     public function deletePathBlacklistById(PathBlacklistTransfer $pathBlacklistTransfer): void
     {
-        $pathBlacklistEntity = $this->getFactory()->createPathBlacklistQuery()
-            ->filterByIdPathBlacklist($pathBlacklistTransfer->getIdPathBlacklist())
+        $pathBlacklistEntity = $this->getFactory()
+            ->findByIdPathBlacklist($pathBlacklistTransfer)
             ->findOne();
         if ($pathBlacklistEntity->getIdPathBlacklist()) {
             $pathBlacklistEntity->delete();

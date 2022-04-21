@@ -2,10 +2,12 @@
 
 namespace Pyz\Zed\PathBlacklistGui\Communication\Controller;
 
-use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @method \Pyz\Zed\PathBlacklistGui\Communication\PathBlacklistGuiCommunicationFactory getFactory()
+ */
 abstract class PathBlacklistGuiAbstractController extends AbstractController
 {
     protected const PARAM_ID_PATH_BLACKLIST = 'id-path-blacklist';
@@ -18,12 +20,13 @@ abstract class PathBlacklistGuiAbstractController extends AbstractController
      * @uses \Spryker\Zed\Http\Communication\Plugin\Application\HttpApplicationPlugin::SERVICE_SUB_REQUEST
      */
     protected const SERVICE_SUB_REQUEST = 'sub_request';
-    protected const ROUTE_URL_PATH_BLACKLIST_AFFECTED_URLS = '/url/blacklist-url/get-by-path-blacklist';
+    protected const ROUTE_URL_PATH_BLACKLIST_AFFECTED_URLS = '/path-blacklist-gui/affected-urls/get-by-path-blacklist';
 
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return PathBlacklistTransfer|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Generated\Shared\Transfer\PathBlacklistTransfer|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     protected function findPathBlacklistById(Request $request)
     {

@@ -4,16 +4,13 @@ namespace Pyz\Zed\PathBlacklist\Business;
 
 use Generated\Shared\Transfer\PathBlacklistCollectionTransfer;
 use Generated\Shared\Transfer\PathBlacklistTransfer;
-use Pyz\Zed\PathBlacklist\Persistence\PathBlacklistEntityManagerInterface;
-use Pyz\Zed\PathBlacklist\Persistence\PathBlacklistRepositoryInterface;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
  * Class PathBlacklistFacade
  * @package Pyz\Zed\PathBlacklist\Business
- * @method PathBlacklistRepositoryInterface getRepository()
- * @method PathBlacklistEntityManagerInterface getEntityManager()
- * @method PathBlacklistBusinessFactory getFactory()
+ * @method \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistRepositoryInterface getRepository()
+ * @method \Pyz\Zed\PathBlacklist\Business\PathBlacklistBusinessFactory getFactory()
  */
 class PathBlacklistFacade extends AbstractFacade implements PathBlacklistFacadeInterface
 {

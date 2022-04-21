@@ -11,7 +11,7 @@ use Spryker\Zed\Kernel\Container;
  */
 class PathBlacklistDependencyProvider extends AbstractBundleDependencyProvider
 {
-    public const FACADE_EVENT = 'event facade';
+    public const FACADE_URL = 'url facade';
 
     /**
      * @param Container $container
@@ -21,7 +21,7 @@ class PathBlacklistDependencyProvider extends AbstractBundleDependencyProvider
      */
     public function provideBusinessLayerDependencies(Container $container)
     {
-        $this->addEventFacade($container);
+        $this->addUrlFacade($container);
 
         return $container;
     }
@@ -31,8 +31,8 @@ class PathBlacklistDependencyProvider extends AbstractBundleDependencyProvider
      *
      * @throws \Spryker\Service\Container\Exception\FrozenServiceException
      */
-    protected function addEventFacade(Container $container)
+    protected function addUrlFacade(Container $container)
     {
-        $container->set(self::FACADE_EVENT, $container->getLocator()->event()->facade());
+        $container->set(self::FACADE_URL, $container->getLocator()->url()->facade());
     }
 }

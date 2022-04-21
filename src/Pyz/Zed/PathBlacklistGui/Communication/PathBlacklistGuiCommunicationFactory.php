@@ -5,10 +5,12 @@ namespace Pyz\Zed\PathBlacklistGui\Communication;
 use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklistQuery;
 use Pyz\Zed\PathBlacklist\Business\PathBlacklistFacadeInterface;
+use Pyz\Zed\PathBlacklistGui\Communication\Form\AffectedUrlsByPathForm;
 use Pyz\Zed\PathBlacklistGui\Communication\Form\Constraint\PathBlacklistPathUniqueConstraint;
 use Pyz\Zed\PathBlacklistGui\Communication\Form\PathBlacklistForm;
 use Pyz\Zed\PathBlacklistGui\Communication\Table\PathBlacklistTable;
 use Pyz\Zed\PathBlacklistGui\PathBlacklistGuiDependencyProvider;
+use Pyz\Zed\Url\Business\UrlFacadeInterface;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use Symfony\Component\Form\FormInterface;
 
@@ -36,11 +38,21 @@ class PathBlacklistGuiCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @return PathBlacklistFacadeInterface
+     * @return \Pyz\Zed\PathBlacklist\Business\PathBlacklistFacadeInterface
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     public function getPathBlacklistFacade(): PathBlacklistFacadeInterface
     {
         return $this->getProvidedDependency(PathBlacklistGuiDependencyProvider::FACADE_PATH_BLACKLIST);
+    }
+
+    /**
+     * @return \Pyz\Zed\Url\Business\UrlFacadeInterface
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
+     */
+    public function getUrlFacade(): UrlFacadeInterface
+    {
+        return $this->getProvidedDependency(PathBlacklistGuiDependencyProvider::FACADE_URL);
     }
 
     /**
@@ -51,6 +63,16 @@ class PathBlacklistGuiCommunicationFactory extends AbstractCommunicationFactory
     public function getPathBlacklistForm(?PathBlacklistTransfer $pathBlacklistTransfer = null): FormInterface
     {
         return $this->getFormFactory()->create(PathBlacklistForm::class, $pathBlacklistTransfer);
+    }
+
+    /**
+     * @param PathBlacklistTransfer|null $pathBlacklistTransfer
+     *
+     * @return FormInterface
+     */
+    public function getAffectedUrlsByPathForm(?PathBlacklistTransfer $pathBlacklistTransfer = null): FormInterface
+    {
+        return $this->getFormFactory()->create(AffectedUrlsByPathForm::class, $pathBlacklistTransfer);
     }
 
     /**

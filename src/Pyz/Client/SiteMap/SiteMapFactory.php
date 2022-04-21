@@ -28,7 +28,7 @@ class SiteMapFactory extends AbstractFactory
      * @return StorageClientInterface
      * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
-    public function getStorageClient(): StorageClientInterface
+    protected function getStorageClient(): StorageClientInterface
     {
         return $this->getProvidedDependency(SiteMapDependencyProvider::CLIENT_STORAGE);
     }

@@ -119,8 +119,6 @@ class EventDependencyProvider extends SprykerEventDependencyProvider
         $eventSubscriberCollection->add(new CustomerProductPriceImportEventSubscriber());
         // CustomerProductPrice P&S Subscriber
         $eventSubscriberCollection->add(new CustomerProductPriceStorageEventSubscriber());
-        // Path Blacklist
-        $eventSubscriberCollection->add(new UrlPathBlacklistEventSubscriber());
 
         return $eventSubscriberCollection;
     }

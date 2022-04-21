@@ -2,16 +2,17 @@
 
 namespace Pyz\Zed\Url\Business;
 
-use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Spryker\Zed\Url\Business\UrlFacadeInterface as SprykerUrlFacadeInterface;
 
 interface UrlFacadeInterface extends SprykerUrlFacadeInterface
 {
     /**
-     * @param string $eventName
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     * @param string $path
+     * @param bool $blacklistValue
+     *
+     * @return void
      */
-    public function setBlacklistByPath(string $eventName, PathBlacklistTransfer $pathBlacklistTransfer): void;
+    public function setBlacklistByPath(string $path, bool $blacklistValue): void;
 
     /**
      * @param string $path

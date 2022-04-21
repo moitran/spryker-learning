@@ -31,7 +31,9 @@ class SiteMapClient extends AbstractClient implements SiteMapClientInterface
     /**
      * Specification:
      * - Get sitemap total page
+     *
      * @api
+     *
      * @return int
      * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      */

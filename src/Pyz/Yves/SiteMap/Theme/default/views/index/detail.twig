@@ -4,7 +4,6 @@
     {% for url in urls %}
         <url>
             <loc>{{ app.request.getSchemeAndHttpHost() }}{{ url.url }}</loc>
-            <lastmod>{{ url.lastModified }}</lastmod>
 {#            <changefreq>monthly</changefreq>#}
 {#            <priority>0.8</priority>#}
         </url>

@@ -22,7 +22,8 @@ class PathBlacklistPathUniqueConstraintValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, PathBlacklistPathUniqueConstraint::class);
         }
 
-        $pathBlacklistCollectionTransfer = $constraint->getPathBlacklistFacade()->findPathBlacklistByPath($value);
+        $pathBlacklistCollectionTransfer = $constraint->getPathBlacklistFacade()
+            ->findPathBlacklistByPath($value);
         if (!count($pathBlacklistCollectionTransfer->getPathBlacklists())) {
             return;
         }

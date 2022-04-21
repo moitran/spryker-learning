@@ -1,6 +1,6 @@
 <?php
 
-namespace Pyz\Zed\Url\Communication\Controller;
+namespace Pyz\Zed\PathBlacklistGui\Communication\Controller;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
@@ -8,10 +8,9 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @method \Pyz\Zed\Url\Communication\UrlCommunicationFactory getFactory()
- * @method \Pyz\Zed\Url\Business\UrlFacadeInterface getFacade()
+ * @method \Pyz\Zed\PathBlacklistGui\Communication\PathBlacklistGuiCommunicationFactory getFactory()
  */
-class BlacklistUrlController extends AbstractController
+class AffectedUrlsController extends AbstractController
 {
     public const PARAM_PATH_BLACKLIST = 'path-blacklist';
 
@@ -46,6 +45,6 @@ class BlacklistUrlController extends AbstractController
      */
     protected function handleAffectedUrlsByPathForm(FormInterface $pathBlacklistForm): array
     {
-        return $this->getFacade()->findUrlByPath($pathBlacklistForm->getData()->getPath());
+        return $this->getFactory()->getUrlFacade()->findUrlByPath($pathBlacklistForm->getData()->getPath());
     }
 }

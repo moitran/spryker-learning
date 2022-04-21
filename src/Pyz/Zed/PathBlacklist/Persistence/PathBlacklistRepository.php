@@ -21,8 +21,8 @@ class PathBlacklistRepository extends AbstractRepository implements PathBlacklis
     public function findPathBlacklistById(int $idPathBlacklist): PathBlacklistTransfer
     {
         $pathBlackListEntity = $this->getFactory()
-            ->createPathBlacklistQuery()
-            ->findOneByIdPathBlacklist($idPathBlacklist);
+            ->findByIdPathBlacklist((new PathBlacklistTransfer())->setIdPathBlacklist($idPathBlacklist))
+            ->findOne();
 
         $pathBlackListTransfer = new PathBlacklistTransfer();
         if ($pathBlackListEntity === null) {
@@ -37,7 +37,6 @@ class PathBlacklistRepository extends AbstractRepository implements PathBlacklis
      * @param string $path
      *
      * @return PathBlacklistCollectionTransfer
-     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
      */
     public function findPathBlacklistByPath(string $path): PathBlacklistCollectionTransfer
     {

@@ -3,10 +3,9 @@
 namespace Pyz\Zed\PathBlacklist\Business\Writer;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
-use Pyz\Zed\PathBlacklist\Business\EventWriter\EventWriterInterface;
-use Pyz\Zed\PathBlacklist\Communication\Plugin\Event\PathBlacklistEvents;
 use Pyz\Zed\PathBlacklist\Persistence\PathBlacklistEntityManagerInterface;
 use Pyz\Zed\PathBlacklist\Persistence\PathBlacklistRepositoryInterface;
+use Pyz\Zed\Url\Business\UrlFacadeInterface;
 
 /**
  * Class PathBlacklistWriter
@@ -25,25 +24,23 @@ class PathBlacklistWriter implements PathBlacklistWriterInterface
     protected $entityManager;
 
     /**
-     * @var EventWriterInterface
+     * @var UrlFacadeInterface
      */
-    protected $eventWriter;
+    protected $urlFacade;
 
     /**
-     * PathBlacklistWriter constructor.
-     *
      * @param PathBlacklistRepositoryInterface $repository
      * @param PathBlacklistEntityManagerInterface $entityManager
-     * @param EventWriterInterface $eventWriter
+     * @param UrlFacadeInterface $urlFacade
      */
     public function __construct(
         PathBlacklistRepositoryInterface $repository,
         PathBlacklistEntityManagerInterface $entityManager,
-        EventWriterInterface $eventWriter
+        UrlFacadeInterface $urlFacade
     ) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
-        $this->eventWriter = $eventWriter;
+        $this->urlFacade = $urlFacade;
     }
 
     /**
@@ -54,7 +51,7 @@ class PathBlacklistWriter implements PathBlacklistWriterInterface
     public function createPathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): bool
     {
         $this->entityManager->createPathBlacklist($pathBlacklistTransfer);
-        $this->eventWriter->write(PathBlacklistEvents::ENTITY_PYZ_PATH_BLACKLIST_CREATE, $pathBlacklistTransfer);
+        $this->urlFacade->setBlacklistByPath($pathBlacklistTransfer->getPath(), true);
 
         return true;
     }
@@ -68,8 +65,8 @@ class PathBlacklistWriter implements PathBlacklistWriterInterface
     {
         $beforeUpdateTransfer = $this->repository->findPathBlacklistById($pathBlacklistTransfer->getIdPathBlacklist());
         $this->entityManager->updatePathBlacklist($pathBlacklistTransfer);
-        $pathBlacklistTransfer->setBeforeUpdateTransfer($beforeUpdateTransfer);
-        $this->eventWriter->write(PathBlacklistEvents::ENTITY_PYZ_PATH_BLACKLIST_UPDATE, $pathBlacklistTransfer);
+        $this->urlFacade->setBlacklistByPath($beforeUpdateTransfer->getPath(), false);
+        $this->urlFacade->setBlacklistByPath($pathBlacklistTransfer->getPath(), true);
 
         return true;
     }
@@ -83,7 +80,7 @@ class PathBlacklistWriter implements PathBlacklistWriterInterface
     public function deletePathBlacklistById(PathBlacklistTransfer $pathBlacklistTransfer): bool
     {
         $this->entityManager->deletePathBlacklistById($pathBlacklistTransfer);
-        $this->eventWriter->write(PathBlacklistEvents::ENTITY_PYZ_PATH_BLACKLIST_DELETE, $pathBlacklistTransfer);
+        $this->urlFacade->setBlacklistByPath($pathBlacklistTransfer->getPath(), false);
 
         return true;
     }

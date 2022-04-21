@@ -9,7 +9,6 @@
 
     <transfer name="SiteMap">
         <property name="url" type="string"/>
-        <property name="lastModified" type="string"/>
     </transfer>
 
 </transfers>

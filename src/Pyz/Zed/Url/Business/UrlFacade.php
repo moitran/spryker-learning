@@ -1,24 +1,23 @@
 <?php
 
 namespace Pyz\Zed\Url\Business;
-use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Spryker\Zed\Url\Business\UrlFacade as SprykerUrlFacade;
 
 /**
- * @method UrlBusinessFactory getFactory()
  * @method \Pyz\Zed\Url\Persistence\UrlRepositoryInterface getRepository()
+ * @method \Pyz\Zed\Url\Persistence\UrlEntityManagerInterface getEntityManager()
  */
 class UrlFacade extends SprykerUrlFacade implements UrlFacadeInterface
 {
     /**
-     * @param string $eventName
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     * @param string $path
+     * @param bool $blacklistValue
      *
      * @return void
      */
-    public function setBlacklistByPath(string $eventName, PathBlacklistTransfer $pathBlacklistTransfer): void
+    public function setBlacklistByPath(string $path, bool $blacklistValue): void
     {
-        $this->getFactory()->createBlacklistHandler()->setBlacklistByPath($eventName, $pathBlacklistTransfer);
+        $this->getEntityManager()->updateUrlBlacklistByPath($path, $blacklistValue);
     }
 
     /**
