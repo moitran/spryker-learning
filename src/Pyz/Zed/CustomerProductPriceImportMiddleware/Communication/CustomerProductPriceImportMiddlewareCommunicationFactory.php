@@ -5,6 +5,7 @@ namespace Pyz\Zed\CustomerProductPriceImportMiddleware\Communication;
 use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Configuration\CustomerProductPriceImportProcessPlugin;
 use Pyz\Zed\CustomerProductPriceImportMiddleware\CustomerProductPriceImportMiddlewareDependencyProvider as CPPIMiddlewareDependencyProvider ;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
+use SprykerMiddleware\Zed\Process\Business\ProcessFacadeInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Configuration\ProcessConfigurationPluginInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Iterator\ProcessIteratorPluginInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Log\MiddlewareLoggerConfigPluginInterface;
@@ -28,6 +29,14 @@ class CustomerProductPriceImportMiddlewareCommunicationFactory extends AbstractC
     }
 
     /**
+     * @return \SprykerMiddleware\Zed\Process\Business\ProcessFacadeInterface
+     */
+    public function getProcessFacade(): ProcessFacadeInterface
+    {
+        return $this->getProvidedDependency(CPPIMiddlewareDependencyProvider::FACADE_PROCESS);
+    }
+
+    /**
      * @return \SprykerMiddleware\Zed\Process\Dependency\Plugin\Stream\OutputStreamPluginInterface
      */
     public function getJsonRowOutputStreamPlugin(): OutputStreamPluginInterface
@@ -44,19 +53,11 @@ class CustomerProductPriceImportMiddlewareCommunicationFactory extends AbstractC
     }
 
     /**
-     * @return \SprykerMiddleware\Zed\Process\Dependency\Plugin\StagePluginInterface
+     * @return array
      */
-    public function getStreamReaderStagePlugin(): StagePluginInterface
+    public function getCustomerProductPriceStagePluginStack(): array
     {
-        return $this->getProvidedDependency(CPPIMiddlewareDependencyProvider::STAGE_PLUGIN_STREAM_READER);
-    }
-
-    /**
-     * @return \SprykerMiddleware\Zed\Process\Dependency\Plugin\StagePluginInterface
-     */
-    public function getStreamWriterStagePlugin(): StagePluginInterface
-    {
-        return $this->getProvidedDependency(CPPIMiddlewareDependencyProvider::STAGE_PLUGIN_STREAM_WRITER);
+        return $this->getProvidedDependency(CPPIMiddlewareDependencyProvider::STAGE_PLUGIN_STACK_CUSTOMER_PRODUCT_PRICE);
     }
 
     /**

@@ -50,10 +50,7 @@ class CustomerProductPriceImportProcessPlugin extends AbstractPlugin implements 
 
     public function getStagePlugins(): array
     {
-        return  [
-            $this->getFactory()->getStreamReaderStagePlugin(),
-            $this->getFactory()->getStreamWriterStagePlugin(),
-        ];
+        return $this->getFactory()->getCustomerProductPriceStagePluginStack();
     }
 
     public function getLoggerPlugin(): MiddlewareLoggerConfigPluginInterface

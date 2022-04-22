@@ -2,6 +2,9 @@
 
 namespace Pyz\Zed\CustomerProductPriceImportMiddleware;
 
+use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Mapper\CustomerProductPriceMapperStagePlugin;
+use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Translator\CustomerProductPriceTranslationStagePlugin;
+use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Validator\CustomerProductPriceValidatorStagePlugin;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 use SprykerMiddleware\Zed\Process\Communication\Plugin\Iterator\NullIteratorPlugin;
@@ -16,18 +19,18 @@ class CustomerProductPriceImportMiddlewareDependencyProvider extends AbstractBun
     const STREAM_PLUGIN_JSON_INPUT = 'json input stream plugin';
     const STREAM_PLUGIN_JSON_OUTPUT = 'json output stream plugin';
     const PLUGIN_NULL_ITERATOR = 'null iterator plugin';
-    const STAGE_PLUGIN_STREAM_READER = 'stream reader stage plugin';
-    const STAGE_PLUGIN_STREAM_WRITER = 'stream write stage plugin';
+    const STAGE_PLUGIN_STACK_CUSTOMER_PRODUCT_PRICE = 'customer product price stage plugin stack';
     const CONFIG_PLUGIN_MIDDLEWARE_LOGGER = 'middleware logger config plugin';
+    const FACADE_PROCESS = 'process facade';
 
     public function provideCommunicationLayerDependencies(Container $container)
     {
         $this->addJsonInputStreamPlugin($container);
         $this->addJsonOutputStreamPlugin($container);
         $this->addNullIteratorPlugin($container);
-        $this->addStreamReaderStagePlugin($container);
-        $this->addStreamWriterStagePlugin($container);
+        $this->addCustomerProductPriceStagePluginStack($container);
         $this->addMiddlewareLoggerConfigPlugin($container);
+        $this->addProcessFacade($container);
 
         return $container;
     }
@@ -53,17 +56,16 @@ class CustomerProductPriceImportMiddlewareDependencyProvider extends AbstractBun
         });
     }
 
-    protected function addStreamReaderStagePlugin(Container $container)
+    protected function addCustomerProductPriceStagePluginStack(Container $container)
     {
-        $container->set(static::STAGE_PLUGIN_STREAM_READER, function () {
-            return new StreamReaderStagePlugin();
-        });
-    }
-
-    protected function addStreamWriterStagePlugin(Container $container)
-    {
-        $container->set(static::STAGE_PLUGIN_STREAM_WRITER, function () {
-            return new StreamWriterStagePlugin();
+        $container->set(static::STAGE_PLUGIN_STACK_CUSTOMER_PRODUCT_PRICE, function () {
+            return [
+                new StreamReaderStagePlugin(),
+                new CustomerProductPriceMapperStagePlugin(),
+                new CustomerProductPriceTranslationStagePlugin(),
+                new CustomerProductPriceValidatorStagePlugin(),
+                new StreamWriterStagePlugin(),
+            ];
         });
     }
 
@@ -72,5 +74,10 @@ class CustomerProductPriceImportMiddlewareDependencyProvider extends AbstractBun
         $container->set(static::CONFIG_PLUGIN_MIDDLEWARE_LOGGER, function () {
             return new MiddlewareLoggerConfigPlugin();
         });
+    }
+
+    protected function addProcessFacade(Container $container)
+    {
+        $container->set(static::FACADE_PROCESS, $container->getLocator()->process()->facade());
     }
 }
