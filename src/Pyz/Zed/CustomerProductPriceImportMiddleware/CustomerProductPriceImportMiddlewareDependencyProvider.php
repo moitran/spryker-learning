@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceImportMiddleware;
 
 use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Mapper\CustomerProductPriceMapperStagePlugin;
@@ -14,11 +19,11 @@ use SprykerMiddleware\Zed\Process\Communication\Plugin\StreamWriterStagePlugin;
 
 class CustomerProductPriceImportMiddlewareDependencyProvider extends AbstractBundleDependencyProvider
 {
-    const PLUGIN_NULL_ITERATOR = 'null iterator plugin';
-    const STAGE_PLUGIN_STACK_CUSTOMER_PRODUCT_PRICE = 'customer product price stage plugin stack';
-    const CONFIG_PLUGIN_MIDDLEWARE_LOGGER = 'middleware logger config plugin';
-    const FACADE_PROCESS = 'process facade';
-    const FACADE_EVENT = 'event facade';
+    public const PLUGIN_NULL_ITERATOR = 'null iterator plugin';
+    public const STAGE_PLUGIN_STACK_CUSTOMER_PRODUCT_PRICE = 'customer product price stage plugin stack';
+    public const CONFIG_PLUGIN_MIDDLEWARE_LOGGER = 'middleware logger config plugin';
+    public const FACADE_PROCESS = 'process facade';
+    public const FACADE_EVENT = 'event facade';
 
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
@@ -69,11 +74,17 @@ class CustomerProductPriceImportMiddlewareDependencyProvider extends AbstractBun
         });
     }
 
+    /**
+     * @return void
+     */
     protected function addProcessFacade(Container $container)
     {
         $container->set(static::FACADE_PROCESS, $container->getLocator()->process()->facade());
     }
 
+    /**
+     * @return void
+     */
     protected function addEventFacade(Container $container)
     {
         $container->set(static::FACADE_EVENT, $container->getLocator()->event()->facade());

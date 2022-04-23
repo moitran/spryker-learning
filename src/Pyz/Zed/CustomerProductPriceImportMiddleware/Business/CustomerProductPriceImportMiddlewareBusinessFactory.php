@@ -1,13 +1,18 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceImportMiddleware\Business;
 
-use GuzzleHttp\Client;
 use Pyz\Zed\CustomerProductPriceImportMiddleware\Business\Mapper\CustomerProductPriceMapper;
 use Pyz\Zed\CustomerProductPriceImportMiddleware\Business\Stream\CustomerProductPriceApiReadStream;
 use Pyz\Zed\CustomerProductPriceImportMiddleware\Business\Stream\CustomerProductPriceEventWriteStream;
 use Pyz\Zed\CustomerProductPriceImportMiddleware\Business\Translator\Dictionary\CustomerProductPriceDictionary;
 use Pyz\Zed\CustomerProductPriceImportMiddleware\Business\Validator\CustomerProductPriceValidator;
+use Pyz\Zed\CustomerProductPriceImportMiddleware\CustomerProductPriceImportMiddlewareDependencyProvider as CPPIMiddlewareDependencyProvider;
 use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerMiddleware\Shared\Process\Stream\ReadStreamInterface;
@@ -15,7 +20,6 @@ use SprykerMiddleware\Shared\Process\Stream\WriteStreamInterface;
 use SprykerMiddleware\Zed\Process\Business\Mapper\Map\MapInterface;
 use SprykerMiddleware\Zed\Process\Business\Translator\Dictionary\DictionaryInterface;
 use SprykerMiddleware\Zed\Process\Business\Validator\ValidationRuleSet\ValidationRuleSetInterface;
-use Pyz\Zed\CustomerProductPriceImportMiddleware\CustomerProductPriceImportMiddlewareDependencyProvider as CPPIMiddlewareDependencyProvider;
 
 class CustomerProductPriceImportMiddlewareBusinessFactory extends AbstractBusinessFactory
 {

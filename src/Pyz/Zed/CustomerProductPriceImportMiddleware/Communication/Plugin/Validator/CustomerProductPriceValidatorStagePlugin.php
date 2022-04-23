@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Validator;
 
 use Generated\Shared\Transfer\ValidatorConfigTransfer;
@@ -9,6 +14,7 @@ use SprykerMiddleware\Zed\Process\Dependency\Plugin\StagePluginInterface;
 
 /**
  * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\CustomerProductPriceImportMiddlewareCommunicationFactory getFactory()
+ * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Business\CustomerProductPriceImportMiddlewareFacadeInterface getFacade()
  */
 class CustomerProductPriceValidatorStagePlugin extends AbstractPlugin implements StagePluginInterface
 {

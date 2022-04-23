@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceImportMiddleware\Communication;
 
 use Pyz\Zed\CustomerProductPriceImportMiddleware\Business\CustomerProductPriceImportMiddlewareBusinessFactory;
@@ -15,12 +20,15 @@ use SprykerMiddleware\Zed\Process\Dependency\Plugin\Log\MiddlewareLoggerConfigPl
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Stream\InputStreamPluginInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Stream\OutputStreamPluginInterface;
 
+/**
+ * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Business\CustomerProductPriceImportMiddlewareFacadeInterface getFacade()
+ */
 class CustomerProductPriceImportMiddlewareCommunicationFactory extends AbstractCommunicationFactory
 {
     /**
      * @return \Pyz\Zed\CustomerProductPriceImportMiddleware\Business\CustomerProductPriceImportMiddlewareBusinessFactory
      */
-    public function createBusinessFactory() : CustomerProductPriceImportMiddlewareBusinessFactory
+    public function createBusinessFactory(): CustomerProductPriceImportMiddlewareBusinessFactory
     {
         return new CustomerProductPriceImportMiddlewareBusinessFactory();
     }
@@ -79,14 +87,14 @@ class CustomerProductPriceImportMiddlewareCommunicationFactory extends AbstractC
     public function getCustomerProductPriceImportProcessPlugins(): array
     {
         return [
-            $this->getCustomerProductPriceImportProcessPlugin()
+            $this->createCustomerProductPriceImportProcessPlugin(),
         ];
     }
 
     /**
      * @return \SprykerMiddleware\Zed\Process\Dependency\Plugin\Configuration\ProcessConfigurationPluginInterface
      */
-    protected function getCustomerProductPriceImportProcessPlugin(): ProcessConfigurationPluginInterface
+    protected function createCustomerProductPriceImportProcessPlugin(): ProcessConfigurationPluginInterface
     {
         return new CustomerProductPriceImportProcessPlugin();
     }

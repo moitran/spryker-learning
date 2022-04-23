@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceImportMiddleware\Business\Stream;
 
 use GuzzleHttp\Client;
@@ -11,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CustomerProductPriceApiReadStream implements ReadStreamInterface
 {
     /**
-     * @var ClientInterface
+     * @var \GuzzleHttp\ClientInterface
      */
     protected $client;
 
@@ -49,6 +54,8 @@ class CustomerProductPriceApiReadStream implements ReadStreamInterface
 
     /**
      * @param \GuzzleHttp\ClientInterface $client
+     *
+     * @return void
      */
     public function setClient(ClientInterface $client): void
     {
@@ -57,7 +64,6 @@ class CustomerProductPriceApiReadStream implements ReadStreamInterface
 
     /**
      * @return bool
-     * @throws \SprykerMiddleware\Zed\Process\Business\Exception\InvalidReadSourceException
      */
     public function open(): bool
     {
@@ -75,7 +81,7 @@ class CustomerProductPriceApiReadStream implements ReadStreamInterface
     }
 
     /**
-     * @return false|mixed
+     * @return mixed|false
      */
     public function read()
     {
@@ -112,9 +118,9 @@ class CustomerProductPriceApiReadStream implements ReadStreamInterface
     }
 
     /**
-     * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \SprykerMiddleware\Zed\Process\Business\Exception\InvalidReadSourceException
+     *
+     * @return mixed
      */
     protected function loadJson()
     {

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Stream;
 
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
@@ -8,10 +13,11 @@ use SprykerMiddleware\Zed\Process\Dependency\Plugin\Stream\InputStreamPluginInte
 
 /**
  * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\CustomerProductPriceImportMiddlewareCommunicationFactory getFactory()
+ * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Business\CustomerProductPriceImportMiddlewareFacadeInterface getFacade()
  */
 class CustomerProductPriceApiInputStreamPlugin extends AbstractPlugin implements InputStreamPluginInterface
 {
-    const PLUGIN_NAME = 'CustomerProductPriceApiInputStreamPlugin';
+    public const PLUGIN_NAME = 'CustomerProductPriceApiInputStreamPlugin';
 
     /**
      * @return string

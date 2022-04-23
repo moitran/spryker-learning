@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceImportMiddleware\Business\Mapper;
 
 use SprykerMiddleware\Zed\Process\Business\Mapper\Map\AbstractMap;
@@ -7,17 +12,17 @@ use SprykerMiddleware\Zed\Process\Business\Mapper\Map\MapInterface;
 
 class CustomerProductPriceMapper extends AbstractMap
 {
-    const JSON_COL_CUSTOMER_NUMBER = 'customer_number';
-    const JSON_COL_PRODUCT_NUMBER = 'item_number';
-    const JSON_COL_PRICES = 'prices';
-    const JSON_COL_PRICES_QUANTITY = 'quantity';
-    const JSON_COL_PRICES_VALUE = 'value';
+    public const JSON_COL_CUSTOMER_NUMBER = 'customer_number';
+    public const JSON_COL_PRODUCT_NUMBER = 'item_number';
+    public const JSON_COL_PRICES = 'prices';
+    public const JSON_COL_PRICES_QUANTITY = 'quantity';
+    public const JSON_COL_PRICES_VALUE = 'value';
 
-    const MAP_COL_CUSTOMER_NUMBER = 'customer_number';
-    const MAP_COL_PRODUCT_NUMBER = 'product_number';
-    const MAP_COL_PRICES = 'prices';
-    const MAP_COL_PRICES_QUANTITY = 'quantity';
-    const MAP_COL_PRICES_VALUE = 'price';
+    public const MAP_COL_CUSTOMER_NUMBER = 'customer_number';
+    public const MAP_COL_PRODUCT_NUMBER = 'product_number';
+    public const MAP_COL_PRICES = 'prices';
+    public const MAP_COL_PRICES_QUANTITY = 'quantity';
+    public const MAP_COL_PRICES_VALUE = 'price';
 
     /**
      * @return string[]
@@ -32,7 +37,7 @@ class CustomerProductPriceMapper extends AbstractMap
                 'itemMap' => [
                     static::MAP_COL_PRICES_QUANTITY => static::JSON_COL_PRICES_QUANTITY,
                     static::MAP_COL_PRICES_VALUE => static::JSON_COL_PRICES_VALUE,
-                ]
+                ],
             ],
         ];
     }
