@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\PathBlacklist\Persistence;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
@@ -7,22 +12,22 @@ use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
 /**
  * Class PathBlacklistEntityManager
+ *
  * @package Pyz\Zed\PathBlacklist\Persistence
  * @method \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistPersistenceFactory getFactory()
  */
 class PathBlacklistEntityManager extends AbstractEntityManager implements PathBlacklistEntityManagerInterface
 {
     /**
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     * @param \Generated\Shared\Transfer\PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return void
-     * @throws \Propel\Runtime\Exception\PropelException
-     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
      */
     public function createPathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): void
     {
         $pathBlacklistEntity = $this->getFactory()
-            ->findByPath($pathBlacklistTransfer)
+            ->createPathBlacklistQuery()
+            ->findByPath($pathBlacklistTransfer->getPath())
             ->findOneOrCreate();
 
         if ($pathBlacklistEntity->isModified() || $pathBlacklistEntity->isNew()) {
@@ -31,16 +36,15 @@ class PathBlacklistEntityManager extends AbstractEntityManager implements PathBl
     }
 
     /**
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     * @param \Generated\Shared\Transfer\PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return void
-     * @throws \Propel\Runtime\Exception\PropelException
-     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
      */
     public function updatePathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): void
     {
         $pathBlacklistEntity = $this->getFactory()
-            ->findByIdPathBlacklist($pathBlacklistTransfer)
+            ->createPathBlacklistQuery()
+            ->findByIdPathBlacklist($pathBlacklistTransfer->getIdPathBlacklist())
             ->findOne();
 
         $pathBlacklistEntity->setPath($pathBlacklistTransfer->getPath());
@@ -50,17 +54,17 @@ class PathBlacklistEntityManager extends AbstractEntityManager implements PathBl
     }
 
     /**
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     * @param \Generated\Shared\Transfer\PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return void
-     * @throws \Propel\Runtime\Exception\PropelException
-     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
      */
     public function deletePathBlacklistById(PathBlacklistTransfer $pathBlacklistTransfer): void
     {
         $pathBlacklistEntity = $this->getFactory()
-            ->findByIdPathBlacklist($pathBlacklistTransfer)
+            ->createPathBlacklistQuery()
+            ->findByIdPathBlacklist($pathBlacklistTransfer->getIdPathBlacklist())
             ->findOne();
+
         if ($pathBlacklistEntity->getIdPathBlacklist()) {
             $pathBlacklistEntity->delete();
         }

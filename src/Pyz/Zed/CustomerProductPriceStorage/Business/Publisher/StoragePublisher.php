@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceStorage\Business\Publisher;
 
 use Generated\Shared\Transfer\EventEntityTransfer;
@@ -9,31 +14,30 @@ use Pyz\Zed\CustomerProductPriceStorage\Persistence\CustomerProductPriceStorageR
 
 /**
  * Class StoragePublisher
+ *
  * @package Pyz\Zed\CustomerProductPriceStorage\Business\Publisher
  */
 class StoragePublisher implements StoragePublisherInterface
 {
     /**
-     * @var CustomerProductPriceStorageRepositoryInterface
+     * @var \Pyz\Zed\CustomerProductPriceStorage\Persistence\CustomerProductPriceStorageRepositoryInterface
      */
     protected $customerProductPriceStorageRepository;
 
     /**
-     * @var CustomerProductPriceStorageEntityManager
+     * @var \Pyz\Zed\CustomerProductPriceStorage\Persistence\CustomerProductPriceStorageEntityManager
      */
     protected $entityManager;
 
     /**
-     * @var ConverterInterface
+     * @var \Pyz\Zed\CustomerProductPriceStorage\Business\Converter\ConverterInterface
      */
     protected $converter;
 
     /**
-     * StoragePublisher constructor.
-     *
-     * @param CustomerProductPriceStorageRepositoryInterface $customerProductPriceStorageRepository
-     * @param CustomerProductPriceStorageEntityManager $entityManager
-     * @param ConverterInterface $converter
+     * @param \Pyz\Zed\CustomerProductPriceStorage\Persistence\CustomerProductPriceStorageRepositoryInterface $customerProductPriceStorageRepository
+     * @param \Pyz\Zed\CustomerProductPriceStorage\Persistence\CustomerProductPriceStorageEntityManager $entityManager
+     * @param \Pyz\Zed\CustomerProductPriceStorage\Business\Converter\ConverterInterface $converter
      */
     public function __construct(
         CustomerProductPriceStorageRepositoryInterface $customerProductPriceStorageRepository,
@@ -46,10 +50,9 @@ class StoragePublisher implements StoragePublisherInterface
     }
 
     /**
-     * @param EventEntityTransfer $eventEntityTransfer
+     * @param \Generated\Shared\Transfer\EventEntityTransfer $eventEntityTransfer
      *
-     * @throws \Propel\Runtime\Exception\PropelException
-     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
+     * @return void
      */
     public function publish(EventEntityTransfer $eventEntityTransfer)
     {

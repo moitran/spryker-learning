@@ -1,8 +1,12 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPrice\Communication\Console;
 
-use Pyz\Zed\CustomerProductPrice\Business\CustomerProductPriceFacadeInterface;
 use Spryker\Zed\Kernel\Communication\Console\Console;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,11 +14,17 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class CustomerProductPriceImporterConsole
+ *
  * @package Pyz\Zed\CustomerProductPrice\Communication\Console
- * @method CustomerProductPriceFacadeInterface getFacade() : AbstractFacade
+ * @method \Pyz\Zed\CustomerProductPrice\Business\CustomerProductPriceFacadeInterface getFacade() : AbstractFacade
+ * @method \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceQueryContainerInterface getQueryContainer()
+ * @method \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceRepositoryInterface getRepository()
  */
 class CustomerProductPriceImporterConsole extends Console
 {
+    /**
+     * @return void
+     */
     public function configure()
     {
         $this->setName('data:import:customer_product_price')
@@ -28,8 +38,8 @@ class CustomerProductPriceImporterConsole extends Console
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
+     * @param \Symfony\Component\Console\Input\InputInterface $input
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return bool|int
      */

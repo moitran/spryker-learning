@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\Url\Persistence;
 
 use Generated\Shared\Transfer\UrlTransfer;
@@ -24,6 +29,7 @@ class UrlRepository extends SprykerUrlRepository
         foreach ($urls as $url) {
             $result[] = (new UrlTransfer())->fromArray($url->toArray(), true);
         }
+
         return $result;
     }
 }

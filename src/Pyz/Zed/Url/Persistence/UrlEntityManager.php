@@ -1,12 +1,16 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\Url\Persistence;
 
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
-use Spryker\Zed\Url\Persistence\UrlPersistenceFactory;
 
 /**
- * @method UrlPersistenceFactory getFactory()
+ * @method \Spryker\Zed\Url\Persistence\UrlPersistenceFactory getFactory()
  */
 class UrlEntityManager extends AbstractEntityManager implements UrlEntityManagerInterface
 {
@@ -17,7 +21,6 @@ class UrlEntityManager extends AbstractEntityManager implements UrlEntityManager
      * @param bool $blacklistValue
      *
      * @return void
-     * @throws \Propel\Runtime\Exception\PropelException
      */
     public function updateUrlBlacklistByPath(string $path, bool $blacklistValue): void
     {

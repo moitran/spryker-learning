@@ -1,20 +1,24 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Yves\SiteMap\Controller;
 
-use Pyz\Client\SiteMap\SiteMapClientInterface;
 use Spryker\Yves\Kernel\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class IndexController
+ *
  * @package Pyz\Yves\SiteMap\Controller
- * @method SiteMapClientInterface getClient()
+ * @method \Pyz\Client\SiteMap\SiteMapClientInterface getClient()
  */
 class IndexController extends AbstractController
 {
     /**
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -33,7 +37,7 @@ class IndexController extends AbstractController
     /**
      * @param int $pageNumber
      *
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function detailAction(int $pageNumber)
     {

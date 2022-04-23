@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPrice\Business\Importer\Parser;
 
 use Generated\Shared\Transfer\CustomerProductPriceCollectionTransfer;
@@ -11,6 +16,7 @@ use Spryker\Zed\Money\Business\MoneyFacadeInterface;
 
 /**
  * Class JsonToDtoParser
+ *
  * @package Pyz\Zed\CustomerProductPrice\Business\Importer\Parser
  */
 class JsonToDtoParser implements JsonToDtoParserInterface
@@ -19,20 +25,18 @@ class JsonToDtoParser implements JsonToDtoParserInterface
     protected const CUSTOMER_PRODUCT_PRICE_FIELDS = ['quantity', 'value'];
 
     /**
-     * @var RecordValidatorInterface
+     * @var \Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\RecordValidatorInterface
      */
     protected $recordValidator;
 
     /**
-     * @var MoneyFacadeInterface
+     * @var \Spryker\Zed\Money\Business\MoneyFacadeInterface
      */
     protected $moneyFacade;
 
     /**
-     * JsonToDtoParser constructor.
-     *
-     * @param RecordValidatorInterface $recordValidator
-     * @param MoneyFacadeInterface $moneyFacade
+     * @param \Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\RecordValidatorInterface $recordValidator
+     * @param \Spryker\Zed\Money\Business\MoneyFacadeInterface $moneyFacade
      */
     public function __construct(RecordValidatorInterface $recordValidator, MoneyFacadeInterface $moneyFacade)
     {
@@ -43,8 +47,9 @@ class JsonToDtoParser implements JsonToDtoParserInterface
     /**
      * @param string $fileContent
      *
-     * @return CustomerProductPriceCollectionTransfer
-     * @throws InvalidJsonException
+     * @throws \Pyz\Zed\CustomerProductPrice\Business\Importer\Exception\InvalidJsonException
+     *
+     * @return \Generated\Shared\Transfer\CustomerProductPriceCollectionTransfer
      */
     public function parse(string $fileContent): CustomerProductPriceCollectionTransfer
     {

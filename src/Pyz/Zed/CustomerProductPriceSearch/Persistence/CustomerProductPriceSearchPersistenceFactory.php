@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceSearch\Persistence;
 
 use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceQueryContainerInterface;
@@ -9,12 +14,14 @@ use Spryker\Zed\Product\Persistence\ProductQueryContainerInterface;
 
 /**
  * Class CustomerProductPriceSearchPersistenceFactory
+ *
  * @package Pyz\Zed\CustomerProductPriceSearch\Persistence
+ * @method \Pyz\Zed\CustomerProductPriceSearch\Persistence\CustomerProductPriceSearchRepositoryInterface getRepository()
  */
 class CustomerProductPriceSearchPersistenceFactory extends AbstractPersistenceFactory
 {
     /**
-     * @return ProductQueryContainerInterface
+     * @return \Spryker\Zed\Product\Persistence\ProductQueryContainerInterface
      */
     public function getProductQueryContainer(): ProductQueryContainerInterface
     {
@@ -22,7 +29,7 @@ class CustomerProductPriceSearchPersistenceFactory extends AbstractPersistenceFa
     }
 
     /**
-     * @return CustomerProductPriceQueryContainerInterface
+     * @return \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceQueryContainerInterface
      */
     public function getCustomerProductPriceQueryContainer(): CustomerProductPriceQueryContainerInterface
     {

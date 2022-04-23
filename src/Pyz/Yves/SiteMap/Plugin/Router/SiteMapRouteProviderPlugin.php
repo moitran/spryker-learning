@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Yves\SiteMap\Plugin\Router;
 
 use Spryker\Yves\Router\Plugin\RouteProvider\AbstractRouteProviderPlugin;
@@ -7,6 +12,7 @@ use Spryker\Yves\Router\Route\RouteCollection;
 
 /**
  * Class SiteMapRouteProviderPlugin
+ *
  * @package Pyz\Yves\SiteMap\Plugin\Router
  */
 class SiteMapRouteProviderPlugin extends AbstractRouteProviderPlugin
@@ -15,9 +21,9 @@ class SiteMapRouteProviderPlugin extends AbstractRouteProviderPlugin
     protected const ROUTE_SITE_MAP_DETAIL = 'site-map-detail';
 
     /**
-     * @param RouteCollection $routeCollection
+     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
-     * @return RouteCollection
+     * @return \Spryker\Yves\Router\Route\RouteCollection
      */
     public function addRoutes(RouteCollection $routeCollection): RouteCollection
     {
@@ -28,9 +34,9 @@ class SiteMapRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
-     * @param RouteCollection $routeCollection
+     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
-     * @return RouteCollection
+     * @return \Spryker\Yves\Router\Route\RouteCollection
      */
     protected function addSiteMapListIndexRoute(RouteCollection $routeCollection): RouteCollection
     {
@@ -41,9 +47,9 @@ class SiteMapRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
-     * @param RouteCollection $routeCollection
+     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
-     * @return RouteCollection
+     * @return \Spryker\Yves\Router\Route\RouteCollection
      */
     protected function addSiteMapDetailIndexRoute(RouteCollection $routeCollection): RouteCollection
     {

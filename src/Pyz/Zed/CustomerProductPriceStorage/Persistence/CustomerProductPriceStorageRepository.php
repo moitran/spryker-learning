@@ -1,25 +1,28 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceStorage\Persistence;
 
-use Generated\Shared\Transfer\CustomerProductPriceStoreTransfer;
 use Generated\Shared\Transfer\CustomerProductPriceTransfer;
 use Generated\Shared\Transfer\CustomerProductTransfer;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
  * Class CustomerProductPriceStorageRepository
+ *
  * @package Pyz\Zed\CustomerProductPriceStorage\Persistence
- * @method CustomerProductPriceStoragePersistenceFactory getFactory()
+ * @method \Pyz\Zed\CustomerProductPriceStorage\Persistence\CustomerProductPriceStoragePersistenceFactory getFactory()
  */
 class CustomerProductPriceStorageRepository extends AbstractRepository implements CustomerProductPriceStorageRepositoryInterface
 {
     /**
      * @param int $id
      *
-     * @return CustomerProductTransfer
-     * @throws \Propel\Runtime\Exception\PropelException
-     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
+     * @return \Generated\Shared\Transfer\CustomerProductTransfer
      */
     public function getCustomerProductPriceById(int $id): CustomerProductTransfer
     {

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Client\SiteMap\Reader;
 
 use Generated\Shared\Transfer\SiteMapCollectionTransfer;
@@ -9,6 +14,7 @@ use Spryker\Client\Storage\StorageClientInterface;
 
 /**
  * Class UrlReader
+ *
  * @package Pyz\Client\SiteMap\Reader
  */
 class UrlReader implements UrlReaderInterface
@@ -18,14 +24,12 @@ class UrlReader implements UrlReaderInterface
     protected const URL_STORAGE_BLACKLIST_COL = 'blacklist';
 
     /**
-     * @var StorageClientInterface
+     * @var \Spryker\Client\Storage\StorageClientInterface
      */
     protected $storageClient;
 
     /**
-     * UrlReader constructor.
-     *
-     * @param StorageClientInterface $storageClient
+     * @param \Spryker\Client\Storage\StorageClientInterface $storageClient
      */
     public function __construct(StorageClientInterface $storageClient)
     {
@@ -35,7 +39,7 @@ class UrlReader implements UrlReaderInterface
     /**
      * @param int $pageNumber
      *
-     * @return SiteMapCollectionTransfer
+     * @return \Generated\Shared\Transfer\SiteMapCollectionTransfer
      */
     public function getPageData(int $pageNumber): SiteMapCollectionTransfer
     {
@@ -57,7 +61,7 @@ class UrlReader implements UrlReaderInterface
     }
 
     /**
-     * @return UrlTransfer[]
+     * @return \Generated\Shared\Transfer\UrlTransfer[]
      */
     protected function getAllCachedUrls()
     {
@@ -117,7 +121,7 @@ class UrlReader implements UrlReaderInterface
     }
 
     /**
-     * @param UrlTransfer[] $urlTransfers
+     * @param \Generated\Shared\Transfer\UrlTransfer[] $urlTransfers
      *
      * @return \Generated\Shared\Transfer\SiteMapCollectionTransfer
      */
@@ -125,7 +129,7 @@ class UrlReader implements UrlReaderInterface
     {
         $collection = new SiteMapCollectionTransfer();
         /**
-         * @var UrlTransfer $urlTransfer
+         * @var \Generated\Shared\Transfer\UrlTransfer $urlTransfer
          */
         foreach ($urlTransfers as $urlTransfer) {
             $sitemapTransfer = new SiteMapTransfer();

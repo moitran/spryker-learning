@@ -1,19 +1,24 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceSearch\Persistence;
 
 use Generated\Shared\Transfer\CustomerProductPriceCollectionTransfer;
 use Generated\Shared\Transfer\CustomerProductPriceTransfer;
 use Generated\Shared\Transfer\CustomerProductTransfer;
-use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProduct;
 use Orm\Zed\Product\Persistence\Map\SpyProductTableMap;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 use Spryker\Zed\PropelOrm\Business\Runtime\ActiveQuery\Criteria;
 
 /**
  * Class CustomerProductPriceSearchRepository
+ *
  * @package Pyz\Zed\CustomerProductPriceSearch\Persistence
- * @method CustomerProductPriceSearchPersistenceFactory getFactory()
+ * @method \Pyz\Zed\CustomerProductPriceSearch\Persistence\CustomerProductPriceSearchPersistenceFactory getFactory()
  */
 class CustomerProductPriceSearchRepository extends AbstractRepository implements CustomerProductPriceSearchRepositoryInterface
 {
@@ -21,7 +26,6 @@ class CustomerProductPriceSearchRepository extends AbstractRepository implements
      * @param array $abstractIds
      *
      * @return array
-     * @throws \Propel\Runtime\Exception\PropelException
      */
     public function findSkusByAbstractIds(array $abstractIds): array
     {
@@ -49,8 +53,7 @@ class CustomerProductPriceSearchRepository extends AbstractRepository implements
     /**
      * @param array $skus
      *
-     * @return CustomerProductPriceCollectionTransfer
-     * @throws \Propel\Runtime\Exception\PropelException
+     * @return \Generated\Shared\Transfer\CustomerProductPriceCollectionTransfer
      */
     public function findCustomerProductPricesBySkus(array $skus): CustomerProductPriceCollectionTransfer
     {
@@ -72,7 +75,7 @@ class CustomerProductPriceSearchRepository extends AbstractRepository implements
 
         $data = $records->getData();
 
-        /** @var PyzCustomerProduct $entry */
+        /** @var \Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProduct $entry */
         foreach ($data as $entry) {
             $customerProductTransfer = new CustomerProductTransfer();
             $customerProductTransfer->fromArray($entry->toArray(), true);

@@ -1,25 +1,31 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceSearch\Business\Model\Loader;
 
+use ArrayObject;
 use Generated\Shared\Transfer\CustomerProductPriceCollectionTransfer;
 use Generated\Shared\Transfer\ProductPageLoadTransfer;
-use Generated\Shared\Transfer\ProductPayloadTransfer;
 use Pyz\Zed\CustomerProductPriceSearch\Persistence\CustomerProductPriceSearchRepositoryInterface;
 
 /**
  * Class DataLoader
+ *
  * @package Pyz\Zed\CustomerProductPriceSearch\Business\Model\Loader
  */
 class DataLoader implements DataLoaderInterface
 {
     /**
-     * @var CustomerProductPriceSearchRepositoryInterface
+     * @var \Pyz\Zed\CustomerProductPriceSearch\Persistence\CustomerProductPriceSearchRepositoryInterface
      */
     protected $repository;
 
     /**
-     * @param CustomerProductPriceSearchRepositoryInterface $repository
+     * @param \Pyz\Zed\CustomerProductPriceSearch\Persistence\CustomerProductPriceSearchRepositoryInterface $repository
      */
     public function __construct(CustomerProductPriceSearchRepositoryInterface $repository)
     {
@@ -46,7 +52,7 @@ class DataLoader implements DataLoaderInterface
     }
 
     /**
-     * @param CustomerProductPriceCollectionTransfer $customerProductPrices
+     * @param \Generated\Shared\Transfer\CustomerProductPriceCollectionTransfer $customerProductPrices
      * @param array $skusAndAbstract
      *
      * @return array
@@ -65,7 +71,7 @@ class DataLoader implements DataLoaderInterface
     }
 
     /**
-     * @param ProductPageLoadTransfer $loadTransfer
+     * @param \Generated\Shared\Transfer\ProductPageLoadTransfer $loadTransfer
      * @param array $groupedPrices
      *
      * @return void
@@ -74,9 +80,9 @@ class DataLoader implements DataLoaderInterface
         ProductPageLoadTransfer $loadTransfer,
         array $groupedPrices
     ) {
-        /** @var ProductPayloadTransfer $payloadTransfer */
+        /** @var \Generated\Shared\Transfer\ProductPayloadTransfer $payloadTransfer */
         foreach ($loadTransfer->getPayloadTransfers() as $payloadTransfer) {
-            $priceCollection = new \ArrayObject($groupedPrices[$payloadTransfer->getIdProductAbstract()] ?? []);
+            $priceCollection = new ArrayObject($groupedPrices[$payloadTransfer->getIdProductAbstract()] ?? []);
             $payloadTransfer->setCustomerPrices($priceCollection);
         }
     }

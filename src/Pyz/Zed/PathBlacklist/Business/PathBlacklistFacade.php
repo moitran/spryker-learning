@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\PathBlacklist\Business;
 
 use Generated\Shared\Transfer\PathBlacklistCollectionTransfer;
@@ -8,16 +13,18 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
  * Class PathBlacklistFacade
+ *
  * @package Pyz\Zed\PathBlacklist\Business
  * @method \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistRepositoryInterface getRepository()
  * @method \Pyz\Zed\PathBlacklist\Business\PathBlacklistBusinessFactory getFactory()
+ * @method \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistEntityManagerInterface getEntityManager()
  */
 class PathBlacklistFacade extends AbstractFacade implements PathBlacklistFacadeInterface
 {
     /**
      * @param int $idPathBlacklist
      *
-     * @return PathBlacklistTransfer
+     * @return \Generated\Shared\Transfer\PathBlacklistTransfer
      */
     public function findPathBlacklistById(int $idPathBlacklist): PathBlacklistTransfer
     {
@@ -27,7 +34,7 @@ class PathBlacklistFacade extends AbstractFacade implements PathBlacklistFacadeI
     /**
      * @param string $path
      *
-     * @return PathBlacklistCollectionTransfer
+     * @return \Generated\Shared\Transfer\PathBlacklistCollectionTransfer
      */
     public function findPathBlacklistByPath(string $path): PathBlacklistCollectionTransfer
     {
@@ -35,7 +42,7 @@ class PathBlacklistFacade extends AbstractFacade implements PathBlacklistFacadeI
     }
 
     /**
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     * @param \Generated\Shared\Transfer\PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return bool
      */
@@ -45,7 +52,7 @@ class PathBlacklistFacade extends AbstractFacade implements PathBlacklistFacadeI
     }
 
     /**
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     * @param \Generated\Shared\Transfer\PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return bool
      */
@@ -55,7 +62,7 @@ class PathBlacklistFacade extends AbstractFacade implements PathBlacklistFacadeI
     }
 
     /**
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     * @param \Generated\Shared\Transfer\PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return bool
      */

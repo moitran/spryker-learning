@@ -1,23 +1,27 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\PathBlacklistGui\Communication\Controller;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
-use Pyz\Zed\PathBlacklistGui\Communication\PathBlacklistGuiCommunicationFactory;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class DeleteController
+ *
  * @package Pyz\Zed\PathBlacklistGui\Communication\Controller
- * @method PathBlacklistGuiCommunicationFactory getFactory()
+ * @method \Pyz\Zed\PathBlacklistGui\Communication\PathBlacklistGuiCommunicationFactory getFactory()
  */
 class DeleteController extends PathBlacklistGuiAbstractController
 {
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return array|RedirectResponse
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function indexAction(Request $request)
     {
@@ -29,7 +33,7 @@ class DeleteController extends PathBlacklistGuiAbstractController
     }
 
     /**
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     * @param \Generated\Shared\Transfer\PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return void
      */

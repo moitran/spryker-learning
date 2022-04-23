@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPrice\Persistence;
 
 use Generated\Shared\Transfer\CustomerProductTransfer;
@@ -8,17 +13,16 @@ use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
 /**
  * Class CustomerProductPriceEntityManager
+ *
  * @package Pyz\Zed\CustomerProductPrice\Persistence
- * @method CustomerProductPricePersistenceFactory getFactory()
+ * @method \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPricePersistenceFactory getFactory()
  */
 class CustomerProductPriceEntityManager extends AbstractEntityManager implements CustomerProductPriceEntityManagerInterface
 {
     /**
-     * @param CustomerProductTransfer $customerProductTransfer
+     * @param \Generated\Shared\Transfer\CustomerProductTransfer $customerProductTransfer
      *
      * @return mixed|void
-     * @throws \Propel\Runtime\Exception\PropelException
-     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
      */
     public function saveCustomerProductPrice(CustomerProductTransfer $customerProductTransfer)
     {
@@ -33,7 +37,7 @@ class CustomerProductPriceEntityManager extends AbstractEntityManager implements
             $customerProductPriceEntity = new PyzCustomerProductPrice();
             $customerProductPriceEntity->fromArray($customerProductPriceTransfer->modifiedToArray());
             $customerProductEntity->addPyzCustomerProductPrice($customerProductPriceEntity);
-        };
+        }
 
         $customerProductEntity->save();
     }

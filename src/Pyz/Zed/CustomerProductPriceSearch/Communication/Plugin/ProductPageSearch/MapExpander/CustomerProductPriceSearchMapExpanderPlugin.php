@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceSearch\Communication\Plugin\ProductPageSearch\MapExpander;
 
 use Generated\Shared\Transfer\LocaleTransfer;
@@ -10,19 +15,21 @@ use Spryker\Zed\ProductPageSearchExtension\Dependency\Plugin\ProductAbstractMapE
 
 /**
  * Class CustomerProductPriceSearchMapExpanderPlugin
+ *
  * @package Pyz\Zed\CustomerProductPriceSearch\Communication\Plugin\ProductPageSearch\MapExpander
+ * @method \Pyz\Zed\CustomerProductPriceSearch\Business\CustomerProductPriceSearchFacadeInterface getFacade()
  */
 class CustomerProductPriceSearchMapExpanderPlugin extends AbstractPlugin implements ProductAbstractMapExpanderPluginInterface
 {
-    const PRICE_KEY = 'customer_prices';
+    public const PRICE_KEY = 'customer_prices';
 
     /**
-     * @param PageMapTransfer $pageMapTransfer
-     * @param PageMapBuilderInterface $pageMapBuilder
+     * @param \Generated\Shared\Transfer\PageMapTransfer $pageMapTransfer
+     * @param \Spryker\Zed\ProductPageSearchExtension\Dependency\PageMapBuilderInterface $pageMapBuilder
      * @param array $productData
-     * @param LocaleTransfer $localeTransfer
+     * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      *
-     * @return PageMapTransfer
+     * @return \Generated\Shared\Transfer\PageMapTransfer
      */
     public function expandProductMap(
         PageMapTransfer $pageMapTransfer,

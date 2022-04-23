@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Client\SiteMap;
 
 use Pyz\Client\SiteMap\Reader\UrlReader;
@@ -9,13 +14,13 @@ use Spryker\Client\Storage\StorageClientInterface;
 
 /**
  * Class SiteMapFactory
+ *
  * @package Pyz\Client\SiteMap
  */
 class SiteMapFactory extends AbstractFactory
 {
     /**
-     * @return UrlReaderInterface
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Pyz\Client\SiteMap\Reader\UrlReaderInterface
      */
     public function createUrlReader(): UrlReaderInterface
     {
@@ -25,8 +30,7 @@ class SiteMapFactory extends AbstractFactory
     }
 
     /**
-     * @return StorageClientInterface
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Spryker\Client\Storage\StorageClientInterface
      */
     protected function getStorageClient(): StorageClientInterface
     {

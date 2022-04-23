@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\PathBlacklistGui;
 
 use Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklistQuery;
@@ -8,6 +13,7 @@ use Spryker\Zed\Kernel\Container;
 
 /**
  * Class PathBlacklistGuiDependencyProvider
+ *
  * @package Pyz\Zed\PathBlacklistGui
  */
 class PathBlacklistGuiDependencyProvider extends AbstractBundleDependencyProvider
@@ -17,11 +23,9 @@ class PathBlacklistGuiDependencyProvider extends AbstractBundleDependencyProvide
     public const FACADE_URL = 'url facade';
 
     /**
-     * @param Container $container
+     * @param \Spryker\Zed\Kernel\Container $container
      *
-     * @return Container
-     * @throws \Spryker\Service\Container\Exception\ContainerException
-     * @throws \Spryker\Service\Container\Exception\FrozenServiceException
+     * @return \Spryker\Zed\Kernel\Container
      */
     public function provideCommunicationLayerDependencies(Container $container)
     {
@@ -36,8 +40,6 @@ class PathBlacklistGuiDependencyProvider extends AbstractBundleDependencyProvide
      * @param \Spryker\Zed\Kernel\Container $container
      *
      * @return void
-     * @throws \Spryker\Service\Container\Exception\ContainerException
-     * @throws \Spryker\Service\Container\Exception\FrozenServiceException
      */
     protected function addPathBlacklistPropelQuery(Container $container)
     {
@@ -50,7 +52,6 @@ class PathBlacklistGuiDependencyProvider extends AbstractBundleDependencyProvide
      * @param \Spryker\Zed\Kernel\Container $container
      *
      * @return \Spryker\Zed\Kernel\Container
-     * @throws \Spryker\Service\Container\Exception\FrozenServiceException
      */
     protected function addPathBlacklistFacade(Container $container)
     {
@@ -61,7 +62,6 @@ class PathBlacklistGuiDependencyProvider extends AbstractBundleDependencyProvide
      * @param \Spryker\Zed\Kernel\Container $container
      *
      * @return \Spryker\Zed\Kernel\Container
-     * @throws \Spryker\Service\Container\Exception\FrozenServiceException
      */
     protected function addUrlFacade(Container $container)
     {

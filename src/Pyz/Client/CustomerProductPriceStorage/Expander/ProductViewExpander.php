@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Client\CustomerProductPriceStorage\Expander;
 
 use Generated\Shared\Transfer\CustomerProductPriceStoreTransfer;
@@ -9,27 +14,26 @@ use Spryker\Client\Customer\CustomerClientInterface;
 
 /**
  * Class ProductViewExpander
+ *
  * @package Pyz\Client\CustomerProductPriceStorage\Expander
  */
 class ProductViewExpander implements ProductViewExpanderInterface
 {
-    const RESOURCE = 'customer_product_price';
+    public const RESOURCE = 'customer_product_price';
 
     /**
-     * @var CustomerProductPriceStorageReaderInterface
+     * @var \Pyz\Client\CustomerProductPriceStorage\Reader\CustomerProductPriceStorageReaderInterface
      */
     protected $reader;
 
     /**
-     * @var CustomerClientInterface
+     * @var \Spryker\Client\Customer\CustomerClientInterface
      */
     protected $customerClient;
 
     /**
-     * ProductViewExpander constructor.
-     *
-     * @param CustomerProductPriceStorageReaderInterface $reader
-     * @param CustomerClientInterface $customerClient
+     * @param \Pyz\Client\CustomerProductPriceStorage\Reader\CustomerProductPriceStorageReaderInterface $reader
+     * @param \Spryker\Client\Customer\CustomerClientInterface $customerClient
      */
     public function __construct(
         CustomerProductPriceStorageReaderInterface $reader,
@@ -40,9 +44,9 @@ class ProductViewExpander implements ProductViewExpanderInterface
     }
 
     /**
-     * @param ProductViewTransfer $productViewTransfer
+     * @param \Generated\Shared\Transfer\ProductViewTransfer $productViewTransfer
      *
-     * @return ProductViewTransfer
+     * @return \Generated\Shared\Transfer\ProductViewTransfer
      */
     public function expandProductViewTransfer(ProductViewTransfer $productViewTransfer): ProductViewTransfer
     {
@@ -59,7 +63,7 @@ class ProductViewExpander implements ProductViewExpanderInterface
     }
 
     /**
-     * @param ProductViewTransfer $productViewTransfer
+     * @param \Generated\Shared\Transfer\ProductViewTransfer $productViewTransfer
      *
      * @return string
      */
@@ -72,8 +76,8 @@ class ProductViewExpander implements ProductViewExpanderInterface
     }
 
     /**
-     * @param CustomerProductPriceStoreTransfer $customerProductPrices
-     * @param ProductViewTransfer $productViewTransfer
+     * @param \Generated\Shared\Transfer\CustomerProductPriceStoreTransfer $customerProductPrices
+     * @param \Generated\Shared\Transfer\ProductViewTransfer $productViewTransfer
      *
      * @return float
      */
@@ -93,9 +97,9 @@ class ProductViewExpander implements ProductViewExpanderInterface
 
     /**
      * @param int $newPrice
-     * @param ProductViewTransfer $productViewTransfer
+     * @param \Generated\Shared\Transfer\ProductViewTransfer $productViewTransfer
      *
-     * @return ProductViewTransfer
+     * @return \Generated\Shared\Transfer\ProductViewTransfer
      */
     protected function updatePrice(int $newPrice, ProductViewTransfer $productViewTransfer): ProductViewTransfer
     {

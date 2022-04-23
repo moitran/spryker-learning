@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPrice\Business\Importer;
 
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Parser\JsonToDtoParserInterface;
@@ -9,37 +14,36 @@ use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\WriterInterface;
 
 /**
  * Class Importer
+ *
  * @package Pyz\Zed\CustomerProductPrice\Business
  */
 class Importer implements ImporterInterface
 {
     /**
-     * @var FileValidatorInterface
+     * @var \Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\FileValidatorInterface
      */
     protected $fileValidator;
 
     /**
-     * @var FileReaderInterface
+     * @var \Pyz\Zed\CustomerProductPrice\Business\Importer\Reader\FileReaderInterface
      */
     protected $fileReader;
 
     /**
-     * @var JsonToDtoParserInterface
+     * @var \Pyz\Zed\CustomerProductPrice\Business\Importer\Parser\JsonToDtoParserInterface
      */
     protected $parser;
 
     /**
-     * @var WriterInterface
+     * @var \Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\WriterInterface
      */
     protected $writer;
 
     /**
-     * Importer constructor.
-     *
-     * @param FileValidatorInterface $fileValidator
-     * @param FileReaderInterface $fileReader
-     * @param JsonToDtoParserInterface $parser
-     * @param WriterInterface $writer
+     * @param \Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\FileValidatorInterface $fileValidator
+     * @param \Pyz\Zed\CustomerProductPrice\Business\Importer\Reader\FileReaderInterface $fileReader
+     * @param \Pyz\Zed\CustomerProductPrice\Business\Importer\Parser\JsonToDtoParserInterface $parser
+     * @param \Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\WriterInterface $writer
      */
     public function __construct(
         FileValidatorInterface $fileValidator,
@@ -53,12 +57,10 @@ class Importer implements ImporterInterface
         $this->writer = $writer;
     }
 
-
     /**
      * @param string $filePath
      *
      * @return bool
-     * @throws \Exception
      */
     public function import(string $filePath): bool
     {

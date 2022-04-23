@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Yves\CustomerPage\Form;
 
 use SprykerShop\Yves\CustomerPage\Form\RegisterForm as SprykerShopRegisterForm;
@@ -8,15 +13,18 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Class RegisterForm
+ *
  * @package Pyz\Yves\CustomerPage\Form
  */
 class RegisterForm extends SprykerShopRegisterForm
 {
-    const FIELD_CUSTOMER_NUMBER = 'customer_number';
+    public const FIELD_CUSTOMER_NUMBER = 'customer_number';
 
     /**
-     * @param FormBuilderInterface $builder
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array $options
+     *
+     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -25,7 +33,7 @@ class RegisterForm extends SprykerShopRegisterForm
     }
 
     /**
-     * @param FormBuilderInterface $builder
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
      *
      * @return $this
      */

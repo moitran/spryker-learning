@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\PathBlacklist\Business\Writer;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
@@ -9,29 +14,30 @@ use Pyz\Zed\Url\Business\UrlFacadeInterface;
 
 /**
  * Class PathBlacklistWriter
+ *
  * @package Pyz\Zed\PathBlacklist\Business\Writer
  */
 class PathBlacklistWriter implements PathBlacklistWriterInterface
 {
     /**
-     * @var PathBlacklistRepositoryInterface
+     * @var \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistRepositoryInterface
      */
     protected $repository;
 
     /**
-     * @var PathBlacklistEntityManagerInterface
+     * @var \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistEntityManagerInterface
      */
     protected $entityManager;
 
     /**
-     * @var UrlFacadeInterface
+     * @var \Pyz\Zed\Url\Business\UrlFacadeInterface
      */
     protected $urlFacade;
 
     /**
-     * @param PathBlacklistRepositoryInterface $repository
-     * @param PathBlacklistEntityManagerInterface $entityManager
-     * @param UrlFacadeInterface $urlFacade
+     * @param \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistRepositoryInterface $repository
+     * @param \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistEntityManagerInterface $entityManager
+     * @param \Pyz\Zed\Url\Business\UrlFacadeInterface $urlFacade
      */
     public function __construct(
         PathBlacklistRepositoryInterface $repository,
@@ -44,7 +50,7 @@ class PathBlacklistWriter implements PathBlacklistWriterInterface
     }
 
     /**
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     * @param \Generated\Shared\Transfer\PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return bool
      */
@@ -57,7 +63,7 @@ class PathBlacklistWriter implements PathBlacklistWriterInterface
     }
 
     /**
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     * @param \Generated\Shared\Transfer\PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return bool
      */
@@ -71,9 +77,8 @@ class PathBlacklistWriter implements PathBlacklistWriterInterface
         return true;
     }
 
-
     /**
-     * @param PathBlacklistTransfer $pathBlacklistTransfer
+     * @param \Generated\Shared\Transfer\PathBlacklistTransfer $pathBlacklistTransfer
      *
      * @return bool
      */

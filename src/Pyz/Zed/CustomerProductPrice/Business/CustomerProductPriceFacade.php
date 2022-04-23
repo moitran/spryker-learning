@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPrice\Business;
 
 use Generated\Shared\Transfer\CalculableObjectTransfer;
@@ -8,8 +13,11 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
  * Class CustomerProductPriceFacade
+ *
  * @package Pyz\Zed\CustomerProductPrice\Business
- * @method CustomerProductPriceBusinessFactory getFactory()
+ * @method \Pyz\Zed\CustomerProductPrice\Business\CustomerProductPriceBusinessFactory getFactory()
+ * @method \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManagerInterface getEntityManager()
+ * @method \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceRepositoryInterface getRepository()
  */
 class CustomerProductPriceFacade extends AbstractFacade implements CustomerProductPriceFacadeInterface
 {
@@ -17,7 +25,6 @@ class CustomerProductPriceFacade extends AbstractFacade implements CustomerProdu
      * @param string $filePath
      *
      * @return bool
-     * @throws \Exception
      */
     public function importFromJsonFile(string $filePath): bool
     {
@@ -25,7 +32,9 @@ class CustomerProductPriceFacade extends AbstractFacade implements CustomerProdu
     }
 
     /**
-     * @param CustomerProductTransfer $customerProductTransfer
+     * @param \Generated\Shared\Transfer\CustomerProductTransfer $customerProductTransfer
+     *
+     * @return void
      */
     public function saveCustomerProductPrice(CustomerProductTransfer $customerProductTransfer)
     {
@@ -33,7 +42,9 @@ class CustomerProductPriceFacade extends AbstractFacade implements CustomerProdu
     }
 
     /**
-     * @param CalculableObjectTransfer $calculableObjectTransfer
+     * @param \Generated\Shared\Transfer\CalculableObjectTransfer $calculableObjectTransfer
+     *
+     * @return void
      */
     public function recalculate(CalculableObjectTransfer $calculableObjectTransfer)
     {

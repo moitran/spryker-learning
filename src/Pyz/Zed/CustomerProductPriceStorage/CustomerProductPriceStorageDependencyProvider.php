@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceStorage;
 
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
@@ -7,6 +12,7 @@ use Spryker\Zed\Kernel\Container;
 
 /**
  * Class CustomerProductPriceStorageDependencyProvider
+ *
  * @package Pyz\Zed\CustomerProductPriceStorage
  */
 class CustomerProductPriceStorageDependencyProvider extends AbstractBundleDependencyProvider
@@ -14,9 +20,9 @@ class CustomerProductPriceStorageDependencyProvider extends AbstractBundleDepend
     public const CUSTOMER_PRODUCT_PRICE_QUERY_CONTAINER = 'customer product price query container';
 
     /**
-     * @param Container $container
+     * @param \Spryker\Zed\Kernel\Container $container
      *
-     * @return Container
+     * @return \Spryker\Zed\Kernel\Container
      */
     public function providePersistenceLayerDependencies(Container $container)
     {
@@ -27,9 +33,9 @@ class CustomerProductPriceStorageDependencyProvider extends AbstractBundleDepend
     }
 
     /**
-     * @param Container $container
+     * @param \Spryker\Zed\Kernel\Container $container
      *
-     * @throws \Spryker\Service\Container\Exception\FrozenServiceException
+     * @return void
      */
     protected function addCustomerProductPriceQueryContainer(Container $container)
     {

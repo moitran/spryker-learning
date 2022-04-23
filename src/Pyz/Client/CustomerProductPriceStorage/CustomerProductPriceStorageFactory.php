@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Client\CustomerProductPriceStorage;
 
 use Pyz\Client\CustomerProductPriceStorage\Expander\ProductViewExpander;
@@ -12,13 +17,13 @@ use Spryker\Client\Storage\StorageClientInterface;
 
 /**
  * Class CustomerProductPriceStorageFactory
+ *
  * @package Pyz\Client\CustomerProductPriceStorage
  */
 class CustomerProductPriceStorageFactory extends AbstractFactory
 {
     /**
-     * @return ProductViewExpanderInterface
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Pyz\Client\CustomerProductPriceStorage\Expander\ProductViewExpanderInterface
      */
     public function createViewExpander(): ProductViewExpanderInterface
     {
@@ -29,8 +34,7 @@ class CustomerProductPriceStorageFactory extends AbstractFactory
     }
 
     /**
-     * @return CustomerProductPriceStorageReaderInterface
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Pyz\Client\CustomerProductPriceStorage\Reader\CustomerProductPriceStorageReaderInterface
      */
     protected function createCustomerProductPriceStorageReader(): CustomerProductPriceStorageReaderInterface
     {
@@ -40,8 +44,7 @@ class CustomerProductPriceStorageFactory extends AbstractFactory
     }
 
     /**
-     * @return StorageClientInterface
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Spryker\Client\Storage\StorageClientInterface
      */
     protected function getStorageClient(): StorageClientInterface
     {
@@ -49,8 +52,7 @@ class CustomerProductPriceStorageFactory extends AbstractFactory
     }
 
     /**
-     * @return CustomerClientInterface
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Spryker\Client\Customer\CustomerClientInterface
      */
     protected function getCustomerClient(): CustomerClientInterface
     {

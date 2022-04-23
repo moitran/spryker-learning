@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\PathBlacklist\Persistence;
 
 use Generated\Shared\Transfer\PathBlacklistCollectionTransfer;
@@ -8,20 +13,22 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
  * Class PathBlacklistRepository
+ *
  * @package Pyz\Zed\PathBlacklist\Persistence
- * @method PathBlacklistPersistenceFactory getFactory()
+ * @method \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistPersistenceFactory getFactory()
  */
 class PathBlacklistRepository extends AbstractRepository implements PathBlacklistRepositoryInterface
 {
     /**
      * @param int $idPathBlacklist
      *
-     * @return PathBlacklistTransfer
+     * @return \Generated\Shared\Transfer\PathBlacklistTransfer
      */
     public function findPathBlacklistById(int $idPathBlacklist): PathBlacklistTransfer
     {
         $pathBlackListEntity = $this->getFactory()
-            ->findByIdPathBlacklist((new PathBlacklistTransfer())->setIdPathBlacklist($idPathBlacklist))
+            ->createPathBlacklistQuery()
+            ->findByIdPathBlacklist($idPathBlacklist)
             ->findOne();
 
         $pathBlackListTransfer = new PathBlacklistTransfer();
@@ -36,7 +43,7 @@ class PathBlacklistRepository extends AbstractRepository implements PathBlacklis
     /**
      * @param string $path
      *
-     * @return PathBlacklistCollectionTransfer
+     * @return \Generated\Shared\Transfer\PathBlacklistCollectionTransfer
      */
     public function findPathBlacklistByPath(string $path): PathBlacklistCollectionTransfer
     {

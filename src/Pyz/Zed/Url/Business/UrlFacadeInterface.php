@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\Url\Business;
 
 use Spryker\Zed\Url\Business\UrlFacadeInterface as SprykerUrlFacadeInterface;
@@ -19,5 +24,5 @@ interface UrlFacadeInterface extends SprykerUrlFacadeInterface
      *
      * @return array
      */
-    public function findUrlByPath(string $path) : array;
+    public function findUrlByPath(string $path): array;
 }

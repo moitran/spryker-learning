@@ -1,11 +1,17 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Client\SiteMap;
 
 use Generated\Shared\Transfer\SiteMapCollectionTransfer;
 
 /**
  * Interface SiteMapClientInterface
+ *
  * @package Pyz\Client\SiteMap
  */
 interface SiteMapClientInterface
@@ -18,8 +24,9 @@ interface SiteMapClientInterface
      *
      * @param int $pageNumber
      *
-     * @return SiteMapCollectionTransfer
      * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     *
+     * @return \Generated\Shared\Transfer\SiteMapCollectionTransfer
      */
     public function getPageData(int $pageNumber): SiteMapCollectionTransfer;
 
@@ -29,8 +36,9 @@ interface SiteMapClientInterface
      *
      * @api
      *
-     * @return int
      * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     *
+     * @return int
      */
     public function getTotalPage(): int;
 }

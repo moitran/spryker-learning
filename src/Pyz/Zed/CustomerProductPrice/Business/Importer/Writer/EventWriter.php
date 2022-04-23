@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPrice\Business\Importer\Writer;
 
 use Generated\Shared\Transfer\CustomerProductPriceCollectionTransfer;
@@ -9,19 +14,18 @@ use Spryker\Zed\Event\Business\EventFacadeInterface;
 
 /**
  * Interface EventWriterInterface
+ *
  * @package Pyz\Zed\CustomerProductPrice\Business\Importer\Writer
  */
 class EventWriter implements WriterInterface
 {
     /**
-     * @var EventFacadeInterface
+     * @var \Spryker\Zed\Event\Business\EventFacadeInterface
      */
     protected $eventFacade;
 
     /**
-     * EventWriter constructor.
-     *
-     * @param EventFacadeInterface $eventFacade
+     * @param \Spryker\Zed\Event\Business\EventFacadeInterface $eventFacade
      */
     public function __construct(EventFacadeInterface $eventFacade)
     {
@@ -29,7 +33,7 @@ class EventWriter implements WriterInterface
     }
 
     /**
-     * @param CustomerProductPriceCollectionTransfer $collectionTransfer
+     * @param \Generated\Shared\Transfer\CustomerProductPriceCollectionTransfer $collectionTransfer
      *
      * @return bool
      */
@@ -43,7 +47,9 @@ class EventWriter implements WriterInterface
     }
 
     /**
-     * @param CustomerProductTransfer $customerProductTransfer
+     * @param \Generated\Shared\Transfer\CustomerProductTransfer $customerProductTransfer
+     *
+     * @return void
      */
     public function writeOne(CustomerProductTransfer $customerProductTransfer)
     {

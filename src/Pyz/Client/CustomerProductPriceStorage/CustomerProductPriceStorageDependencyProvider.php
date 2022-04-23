@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Client\CustomerProductPriceStorage;
 
 use Spryker\Client\Kernel\AbstractDependencyProvider;
@@ -7,6 +12,7 @@ use Spryker\Client\Kernel\Container;
 
 /**
  * Class CustomerProductPriceStorageDependencyProvider
+ *
  * @package Spryker\Client\ProductStorage
  */
 class CustomerProductPriceStorageDependencyProvider extends AbstractDependencyProvider
@@ -28,10 +34,9 @@ class CustomerProductPriceStorageDependencyProvider extends AbstractDependencyPr
     }
 
     /**
-     * @param Container $container
+     * @param \Spryker\Client\Kernel\Container $container
      *
-     * @return Container
-     * @throws \Spryker\Service\Container\Exception\FrozenServiceException
+     * @return \Spryker\Client\Kernel\Container
      */
     protected function addStorageClient(Container $container)
     {
@@ -41,10 +46,9 @@ class CustomerProductPriceStorageDependencyProvider extends AbstractDependencyPr
     }
 
     /**
-     * @param Container $container
+     * @param \Spryker\Client\Kernel\Container $container
      *
-     * @return Container
-     * @throws \Spryker\Service\Container\Exception\FrozenServiceException
+     * @return \Spryker\Client\Kernel\Container
      */
     protected function addCustomerClient(Container $container)
     {

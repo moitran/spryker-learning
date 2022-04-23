@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Client\CustomerProductPriceStorage;
 
 use Generated\Shared\Transfer\ProductViewTransfer;
@@ -7,8 +12,9 @@ use Spryker\Client\Kernel\AbstractClient;
 
 /**
  * Class CustomerProductPriceStorageClient
+ *
  * @package Pyz\Client\CustomerProductPriceStorage
- * @method CustomerProductPriceStorageFactory getFactory()
+ * @method \Pyz\Client\CustomerProductPriceStorage\CustomerProductPriceStorageFactory getFactory()
  */
 class CustomerProductPriceStorageClient extends AbstractClient implements CustomerProductPriceStorageClientInterface
 {
@@ -18,10 +24,11 @@ class CustomerProductPriceStorageClient extends AbstractClient implements Custom
      *
      * @api
      *
-     * @param ProductViewTransfer $productViewTransfer
+     * @param \Generated\Shared\Transfer\ProductViewTransfer $productViewTransfer
      *
-     * @return ProductViewTransfer
      * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     *
+     * @return \Generated\Shared\Transfer\ProductViewTransfer
      */
     public function expandProductView(ProductViewTransfer $productViewTransfer): ProductViewTransfer
     {

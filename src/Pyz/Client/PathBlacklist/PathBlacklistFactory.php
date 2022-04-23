@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Client\PathBlacklist;
 
 use Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklistQuery;
@@ -10,13 +15,13 @@ use Spryker\Client\UrlStorage\UrlStorageClientInterface;
 
 /**
  * Class PathBlacklistFactory
+ *
  * @package Pyz\Client\PathBlacklist
  */
 class PathBlacklistFactory extends AbstractFactory
 {
     /**
-     * @return BlacklistResolverInterface
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Pyz\Client\PathBlacklist\Resolver\BlacklistResolverInterface
      */
     public function createBlacklistResolver(): BlacklistResolverInterface
     {
@@ -26,7 +31,7 @@ class PathBlacklistFactory extends AbstractFactory
     }
 
     /**
-     * @return PyzPathBlacklistQuery
+     * @return \Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklistQuery
      */
     public function createPathBlacklistQuery(): PyzPathBlacklistQuery
     {
@@ -34,8 +39,7 @@ class PathBlacklistFactory extends AbstractFactory
     }
 
     /**
-     * @return UrlStorageClientInterface
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Spryker\Client\UrlStorage\UrlStorageClientInterface
      */
     protected function getUrlStorageClient(): UrlStorageClientInterface
     {

@@ -1,22 +1,29 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceSearch\Communication\Plugin\ProductPageSearch\Expander;
 
 use Generated\Shared\Transfer\ProductPageSearchTransfer;
-use Pyz\Zed\CustomerProductPriceSearch\Business\CustomerProductPriceSearchFacadeInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\ProductPageSearchExtension\Dependency\Plugin\ProductPageDataExpanderPluginInterface;
 
 /**
  * Class CustomerProductPriceSearchDataExpanderPlugin
+ *
  * @package Pyz\Zed\CustomerProductPriceSearch\Communication\Plugin\ProductPageSearch\Expander
- * @method CustomerProductPriceSearchFacadeInterface getFacade()
+ * @method \Pyz\Zed\CustomerProductPriceSearch\Business\CustomerProductPriceSearchFacadeInterface getFacade()
  */
 class CustomerProductPriceSearchDataExpanderPlugin extends AbstractPlugin implements ProductPageDataExpanderPluginInterface
 {
     /**
      * @param array $productData
-     * @param ProductPageSearchTransfer $productAbstractPageSearchTransfer
+     * @param \Generated\Shared\Transfer\ProductPageSearchTransfer $productAbstractPageSearchTransfer
+     *
+     * @return void
      */
     public function expandProductPageData(
         array $productData,

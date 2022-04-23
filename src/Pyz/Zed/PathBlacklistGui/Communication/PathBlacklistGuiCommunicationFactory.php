@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\PathBlacklistGui\Communication;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
@@ -16,6 +21,7 @@ use Symfony\Component\Form\FormInterface;
 
 /**
  * Class PathBlacklistGuiCommunicationFactory
+ *
  * @package Pyz\Zed\PathBlacklistGui\Communication
  */
 class PathBlacklistGuiCommunicationFactory extends AbstractCommunicationFactory
@@ -29,8 +35,7 @@ class PathBlacklistGuiCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @return PyzPathBlacklistQuery
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklistQuery
      */
     public function getPathBlacklistPropelQuery(): PyzPathBlacklistQuery
     {
@@ -39,7 +44,6 @@ class PathBlacklistGuiCommunicationFactory extends AbstractCommunicationFactory
 
     /**
      * @return \Pyz\Zed\PathBlacklist\Business\PathBlacklistFacadeInterface
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     public function getPathBlacklistFacade(): PathBlacklistFacadeInterface
     {
@@ -48,7 +52,6 @@ class PathBlacklistGuiCommunicationFactory extends AbstractCommunicationFactory
 
     /**
      * @return \Pyz\Zed\Url\Business\UrlFacadeInterface
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     public function getUrlFacade(): UrlFacadeInterface
     {
@@ -56,9 +59,9 @@ class PathBlacklistGuiCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @param PathBlacklistTransfer|null $pathBlacklistTransfer
+     * @param \Generated\Shared\Transfer\PathBlacklistTransfer|null $pathBlacklistTransfer
      *
-     * @return FormInterface
+     * @return \Symfony\Component\Form\FormInterface
      */
     public function getPathBlacklistForm(?PathBlacklistTransfer $pathBlacklistTransfer = null): FormInterface
     {
@@ -66,9 +69,9 @@ class PathBlacklistGuiCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @param PathBlacklistTransfer|null $pathBlacklistTransfer
+     * @param \Generated\Shared\Transfer\PathBlacklistTransfer|null $pathBlacklistTransfer
      *
-     * @return FormInterface
+     * @return \Symfony\Component\Form\FormInterface
      */
     public function getAffectedUrlsByPathForm(?PathBlacklistTransfer $pathBlacklistTransfer = null): FormInterface
     {
@@ -76,8 +79,7 @@ class PathBlacklistGuiCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @return PathBlacklistPathUniqueConstraint
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Pyz\Zed\PathBlacklistGui\Communication\Form\Constraint\PathBlacklistPathUniqueConstraint
      */
     public function createPathUniqueConstraint(): PathBlacklistPathUniqueConstraint
     {

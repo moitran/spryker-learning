@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\PathBlacklistGui\Communication\Form\Constraint;
 
 use Pyz\Zed\PathBlacklist\Business\PathBlacklistFacadeInterface;
@@ -15,12 +20,12 @@ class PathBlacklistPathUniqueConstraint extends Constraint
     public $message = 'This path is already in use OR included in existed paths';
 
     /**
-     * @var PathBlacklistFacadeInterface
+     * @var \Pyz\Zed\PathBlacklist\Business\PathBlacklistFacadeInterface
      */
     protected $pathBlacklistFacade;
 
     /**
-     * @return PathBlacklistFacadeInterface
+     * @return \Pyz\Zed\PathBlacklist\Business\PathBlacklistFacadeInterface
      */
     public function getPathBlacklistFacade(): PathBlacklistFacadeInterface
     {

@@ -1,9 +1,15 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPrice\Business;
 
 use Pyz\Zed\CustomerProductPrice\Business\Calculator\CustomerProductPriceCalculator;
 use Pyz\Zed\CustomerProductPrice\Business\Calculator\CustomerProductPriceCalculatorInterface;
+use Pyz\Zed\CustomerProductPrice\Business\Importer\Importer;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Parser\JsonToDtoParser;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Parser\JsonToDtoParserInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Reader\FileReader;
@@ -13,27 +19,25 @@ use Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\FileValidatorInterf
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\RecordValidator;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\RecordValidatorInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\DatabaseWriter;
-use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\WriterInterface;
 use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\EventWriter;
+use Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\WriterInterface;
 use Pyz\Zed\CustomerProductPrice\CustomerProductPriceDependencyProvider;
-use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager;
-use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceRepositoryInterface;
 use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
-use Pyz\Zed\CustomerProductPrice\Business\Importer\Importer;
 use Spryker\Zed\Money\Business\MoneyFacadeInterface;
 
 /**
  * Class CustomerProductPriceBusinessFactory
+ *
  * @package Pyz\Zed\CustomerProductPrice\Business
- * @method CustomerProductPriceEntityManager getEntityManager()
- * @method CustomerProductPriceRepositoryInterface getRepository()
+ * @method \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager getEntityManager()
+ * @method \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceRepositoryInterface getRepository()
+ * @method \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceQueryContainerInterface getQueryContainer()
  */
 class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
 {
     /**
-     * @return Importer
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Pyz\Zed\CustomerProductPrice\Business\Importer\Importer
      */
     public function createImporter()
     {
@@ -46,7 +50,7 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return CustomerProductPriceCalculator
+     * @return \Pyz\Zed\CustomerProductPrice\Business\Calculator\CustomerProductPriceCalculator
      */
     public function createCustomerPriceCalculator(): CustomerProductPriceCalculatorInterface
     {
@@ -56,7 +60,7 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return FileValidatorInterface
+     * @return \Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\FileValidatorInterface
      */
     protected function createFileValidator(): FileValidatorInterface
     {
@@ -64,7 +68,7 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return FileReaderInterface
+     * @return \Pyz\Zed\CustomerProductPrice\Business\Importer\Reader\FileReaderInterface
      */
     protected function createFileReader(): FileReaderInterface
     {
@@ -72,7 +76,7 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return JsonToDtoParserInterface
+     * @return \Pyz\Zed\CustomerProductPrice\Business\Importer\Parser\JsonToDtoParserInterface
      */
     protected function createDtoParser(): JsonToDtoParserInterface
     {
@@ -83,7 +87,7 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return RecordValidatorInterface
+     * @return \Pyz\Zed\CustomerProductPrice\Business\Importer\Validator\RecordValidatorInterface
      */
     protected function createRecordValidator(): RecordValidatorInterface
     {
@@ -91,7 +95,7 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return WriterInterface
+     * @return \Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\WriterInterface
      */
     public function createDtoWriter(): WriterInterface
     {
@@ -101,8 +105,7 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return EventWriter
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Pyz\Zed\CustomerProductPrice\Business\Importer\Writer\EventWriter
      */
     protected function createImportEventWriter(): WriterInterface
     {
@@ -112,8 +115,7 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return EventFacadeInterface
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Spryker\Zed\Event\Business\EventFacadeInterface
      */
     protected function getEventFacade(): EventFacadeInterface
     {
@@ -121,8 +123,7 @@ class CustomerProductPriceBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return MoneyFacadeInterface
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Spryker\Zed\Money\Business\MoneyFacadeInterface
      */
     protected function getMoneyFacade(): MoneyFacadeInterface
     {

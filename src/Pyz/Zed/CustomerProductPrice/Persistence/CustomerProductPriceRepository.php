@@ -1,18 +1,22 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPrice\Persistence;
 
 use Generated\Shared\Transfer\CustomerProductPriceTransfer;
-use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProduct;
-use Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPrice;
 use Propel\Runtime\Collection\ObjectCollection;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 use Spryker\Zed\PropelOrm\Business\Runtime\ActiveQuery\Criteria;
 
 /**
  * Class CustomerProductPriceRepository
+ *
  * @package Pyz\Zed\CustomerProductPrice\Persistence
- * @method CustomerProductPricePersistenceFactory getFactory()
+ * @method \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPricePersistenceFactory getFactory()
  */
 class CustomerProductPriceRepository extends AbstractRepository implements CustomerProductPriceRepositoryInterface
 {
@@ -21,8 +25,6 @@ class CustomerProductPriceRepository extends AbstractRepository implements Custo
      * @param string $customerNumber
      *
      * @return array
-     * @throws \Propel\Runtime\Exception\PropelException
-     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
      */
     public function fetchPricesForSkus(array $skus, string $customerNumber): array
     {
@@ -37,17 +39,16 @@ class CustomerProductPriceRepository extends AbstractRepository implements Custo
     }
 
     /**
-     * @param ObjectCollection $records
+     * @param \Propel\Runtime\Collection\ObjectCollection $records
      *
      * @return array
-     * @throws \Propel\Runtime\Exception\PropelException
      */
     protected function formatTransfer(ObjectCollection $records): array
     {
         $skuToPrices = [];
 
         /**
-         * @var PyzCustomerProduct $customerProduct
+         * @var \Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProduct $customerProduct
          */
         foreach ($records->getData() as $customerProduct) {
             $skuToPrices[$customerProduct->getProductNumber()] = $this->convertPricestoDto($customerProduct->getPyzCustomerProductPrices());
@@ -57,7 +58,7 @@ class CustomerProductPriceRepository extends AbstractRepository implements Custo
     }
 
     /**
-     * @param ObjectCollection $customerProductPrices
+     * @param \Propel\Runtime\Collection\ObjectCollection $customerProductPrices
      *
      * @return array
      */
@@ -66,7 +67,7 @@ class CustomerProductPriceRepository extends AbstractRepository implements Custo
         $prices = [];
 
         /**
-         * @var PyzCustomerProductPrice $customerProductPrice
+         * @var \Orm\Zed\CustomerProductPrice\Persistence\PyzCustomerProductPrice $customerProductPrice
          */
         foreach ($customerProductPrices as $customerProductPrice) {
             $price = new CustomerProductPriceTransfer();

@@ -1,11 +1,17 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Client\CustomerProductPriceStorage;
 
 use Generated\Shared\Transfer\ProductViewTransfer;
 
 /**
  * Interface CustomerProductPriceStorageClientInterface
+ *
  * @package Pyz\Client\CustomerProductPriceStorage
  */
 interface CustomerProductPriceStorageClientInterface
@@ -16,9 +22,9 @@ interface CustomerProductPriceStorageClientInterface
      *
      * @api
      *
-     * @param ProductViewTransfer $productViewTransfer
+     * @param \Generated\Shared\Transfer\ProductViewTransfer $productViewTransfer
      *
-     * @return ProductViewTransfer
+     * @return \Generated\Shared\Transfer\ProductViewTransfer
      */
     public function expandProductView(ProductViewTransfer $productViewTransfer): ProductViewTransfer;
 }

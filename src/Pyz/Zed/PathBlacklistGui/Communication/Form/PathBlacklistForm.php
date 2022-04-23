@@ -1,9 +1,13 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\PathBlacklistGui\Communication\Form;
 
 use Generated\Shared\Transfer\PathBlacklistTransfer;
-use Pyz\Zed\PathBlacklistGui\Communication\PathBlacklistGuiCommunicationFactory;
 use Spryker\Zed\Kernel\Communication\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -15,8 +19,9 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Class PathBlacklistForm
+ *
  * @package Pyz\Zed\PathBlacklistGui\Communication\Form
- * @method PathBlacklistGuiCommunicationFactory getFactory()
+ * @method \Pyz\Zed\PathBlacklistGui\Communication\PathBlacklistGuiCommunicationFactory getFactory()
  */
 class PathBlacklistForm extends AbstractType
 {

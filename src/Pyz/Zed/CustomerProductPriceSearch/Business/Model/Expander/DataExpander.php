@@ -1,22 +1,29 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPriceSearch\Business\Model\Expander;
 
-use Generated\Shared\Transfer\CustomerProductPriceTransfer;
-use Generated\Shared\Transfer\CustomerProductTransfer;
+use ArrayObject;
 use Generated\Shared\Transfer\ProductPageSearchTransfer;
 use Generated\Shared\Transfer\ProductPayloadTransfer;
 use Spryker\Shared\ProductPageSearch\ProductPageSearchConfig;
 
 /**
  * Class DataExpander
+ *
  * @package Pyz\Zed\CustomerProductPriceSearch\Business\Model\Expander
  */
 class DataExpander implements DataExpanderInterface
 {
     /**
      * @param array $productData
-     * @param ProductPageSearchTransfer $productAbstractPageSearchTransfer
+     * @param \Generated\Shared\Transfer\ProductPageSearchTransfer $productAbstractPageSearchTransfer
+     *
+     * @return void
      */
     public function expandProductPageData(
         array $productData,
@@ -36,7 +43,7 @@ class DataExpander implements DataExpanderInterface
          *    }
          * }
          */
-        /** @var CustomerProductTransfer $price */
+        /** @var \Generated\Shared\Transfer\CustomerProductTransfer $price */
         foreach ($prices as $price) {
             $singlePrice = $this->filterPrice($price->getCustomerProductPrices());
             if ($singlePrice) {
@@ -51,7 +58,7 @@ class DataExpander implements DataExpanderInterface
     /**
      * @param array $productData
      *
-     * @return ProductPayloadTransfer
+     * @return \Generated\Shared\Transfer\ProductPayloadTransfer
      */
     protected function getPayload(array $productData): ProductPayloadTransfer
     {
@@ -61,11 +68,11 @@ class DataExpander implements DataExpanderInterface
     /**
      * @param \ArrayObject $prices
      *
-     * @return int
+     * @return int|null
      */
-    protected function filterPrice(\ArrayObject $prices): ?int
+    protected function filterPrice(ArrayObject $prices): ?int
     {
-        /** @var CustomerProductPriceTransfer $price */
+        /** @var \Generated\Shared\Transfer\CustomerProductPriceTransfer $price */
         foreach ($prices as $price) {
             if ($price->getQuantity() === 1) {
                 return (int)$price->getPrice();

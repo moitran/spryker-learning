@@ -1,27 +1,31 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
 
 namespace Pyz\Zed\CustomerProductPrice\Business\Importer\Writer;
 
 use Generated\Shared\Transfer\CustomerProductPriceCollectionTransfer;
 use Generated\Shared\Transfer\CustomerProductTransfer;
 use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager;
+use Throwable;
 
 /**
  * Class DatabaseWriter
+ *
  * @package Pyz\Zed\CustomerProductPrice\Business\Importer\Writer
  */
 class DatabaseWriter implements WriterInterface
 {
     /**
-     * @var CustomerProductPriceEntityManager
+     * @var \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager
      */
     protected $entityManager;
 
     /**
-     * DatabaseWriter constructor.
-     *
-     * @param CustomerProductPriceEntityManager $entityManager
+     * @param \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceEntityManager $entityManager
      */
     public function __construct(CustomerProductPriceEntityManager $entityManager)
     {
@@ -29,7 +33,7 @@ class DatabaseWriter implements WriterInterface
     }
 
     /**
-     * @param CustomerProductPriceCollectionTransfer $collectionTransfer
+     * @param \Generated\Shared\Transfer\CustomerProductPriceCollectionTransfer $collectionTransfer
      *
      * @return bool|mixed
      */
@@ -39,7 +43,7 @@ class DatabaseWriter implements WriterInterface
             foreach ($collectionTransfer->getCustomerProducts() as $customerProduct) {
                 $this->writeOne($customerProduct);
             }
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             return false;
         }
 
@@ -47,10 +51,9 @@ class DatabaseWriter implements WriterInterface
     }
 
     /**
-     * @param CustomerProductTransfer $customerProductTransfer
+     * @param \Generated\Shared\Transfer\CustomerProductTransfer $customerProductTransfer
      *
-     * @throws \Propel\Runtime\Exception\PropelException
-     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
+     * @return void
      */
     public function writeOne(CustomerProductTransfer $customerProductTransfer)
     {

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\PathBlacklistGui\Communication\Table;
 
 use Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklist;
@@ -9,6 +14,7 @@ use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 
 /**
  * Class PathBlacklistTable
+ *
  * @package Pyz\Zed\PathBlacklistGui\Communication\Table
  */
 class PathBlacklistTable extends AbstractTable
@@ -23,14 +29,12 @@ class PathBlacklistTable extends AbstractTable
     public const IDENTIFIER = 'path_blacklist_data_table';
 
     /**
-     * @var PyzPathBlacklistQuery
+     * @var \Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklistQuery
      */
     protected $pathBlacklistQuery;
 
     /**
-     * PathBlacklistTable constructor.
-     *
-     * @param PyzPathBlacklistQuery $pathBlacklistQuery
+     * @param \Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklistQuery $pathBlacklistQuery
      */
     public function __construct(PyzPathBlacklistQuery $pathBlacklistQuery)
     {
@@ -38,9 +42,9 @@ class PathBlacklistTable extends AbstractTable
     }
 
     /**
-     * @param TableConfiguration $config
+     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
      *
-     * @return TableConfiguration
+     * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
      */
     protected function configure(TableConfiguration $config): TableConfiguration
     {
@@ -85,7 +89,7 @@ class PathBlacklistTable extends AbstractTable
     }
 
     /**
-     * @param PyzPathBlacklist $pathBlacklistEntity
+     * @param \Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklist $pathBlacklistEntity
      *
      * @return array
      */
@@ -99,7 +103,7 @@ class PathBlacklistTable extends AbstractTable
     }
 
     /**
-     * @param PyzPathBlacklist $pathBlacklistEntity
+     * @param \Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklist $pathBlacklistEntity
      *
      * @return string
      */

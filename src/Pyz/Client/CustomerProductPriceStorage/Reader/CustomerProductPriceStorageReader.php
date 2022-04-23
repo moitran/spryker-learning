@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Client\CustomerProductPriceStorage\Reader;
 
 use Generated\Shared\Transfer\CustomerProductPriceStoreTransfer;
@@ -7,19 +12,18 @@ use Spryker\Client\Storage\StorageClientInterface;
 
 /**
  * Class CustomerProductPriceStorageReader
+ *
  * @package Pyz\Client\CustomerProductPriceStorage\Reader
  */
 class CustomerProductPriceStorageReader implements CustomerProductPriceStorageReaderInterface
 {
     /**
-     * @var StorageClientInterface
+     * @var \Spryker\Client\Storage\StorageClientInterface
      */
     protected $storageClient;
 
     /**
-     * CustomerProductPriceStorageReader constructor.
-     *
-     * @param StorageClientInterface $storageClient
+     * @param \Spryker\Client\Storage\StorageClientInterface $storageClient
      */
     public function __construct(StorageClientInterface $storageClient)
     {
@@ -29,7 +33,7 @@ class CustomerProductPriceStorageReader implements CustomerProductPriceStorageRe
     /**
      * @param string $referenceKey
      *
-     * @return CustomerProductPriceStoreTransfer
+     * @return \Generated\Shared\Transfer\CustomerProductPriceStoreTransfer
      */
     public function getPricesByReferenceKey(string $referenceKey): CustomerProductPriceStoreTransfer
     {

@@ -1,25 +1,31 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPrice\Business\Calculator;
 
+use ArrayObject;
 use Generated\Shared\Transfer\CalculableObjectTransfer;
 use Generated\Shared\Transfer\CustomerProductPriceTransfer;
-use Generated\Shared\Transfer\ItemTransfer;
 use Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceRepositoryInterface;
 
 /**
  * Class CustomerProductPriceCalculator
+ *
  * @package Pyz\Zed\CustomerProductPrice\Business\Calculation
  */
 class CustomerProductPriceCalculator implements CustomerProductPriceCalculatorInterface
 {
     /**
-     * @var CustomerProductPriceRepositoryInterface
+     * @var \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceRepositoryInterface
      */
     protected $repository;
 
     /**
-     * @param CustomerProductPriceRepositoryInterface $repository
+     * @param \Pyz\Zed\CustomerProductPrice\Persistence\CustomerProductPriceRepositoryInterface $repository
      */
     public function __construct(CustomerProductPriceRepositoryInterface $repository)
     {
@@ -27,7 +33,7 @@ class CustomerProductPriceCalculator implements CustomerProductPriceCalculatorIn
     }
 
     /**
-     * @param CalculableObjectTransfer $calculableObjectTransfer
+     * @param \Generated\Shared\Transfer\CalculableObjectTransfer $calculableObjectTransfer
      *
      * @return mixed|void
      */
@@ -52,12 +58,12 @@ class CustomerProductPriceCalculator implements CustomerProductPriceCalculatorIn
      *
      * @return array
      */
-    protected function getSkus(\ArrayObject $items): array
+    protected function getSkus(ArrayObject $items): array
     {
         $skus = [];
 
         /**
-         * @var ItemTransfer $item
+         * @var \Generated\Shared\Transfer\ItemTransfer $item
          */
         foreach ($items as $item) {
             $skus[] = $item->getSku();
@@ -67,8 +73,10 @@ class CustomerProductPriceCalculator implements CustomerProductPriceCalculatorIn
     }
 
     /**
-     * @param CalculableObjectTransfer $calculableObjectTransfer
+     * @param \Generated\Shared\Transfer\CalculableObjectTransfer $calculableObjectTransfer
      * @param array $prices
+     *
+     * @return void
      */
     protected function applyPrices(CalculableObjectTransfer $calculableObjectTransfer, array $prices)
     {
@@ -86,7 +94,7 @@ class CustomerProductPriceCalculator implements CustomerProductPriceCalculatorIn
      * @param array $prices
      * @param int $quantity
      *
-     * @return CustomerProductPriceTransfer
+     * @return \Generated\Shared\Transfer\CustomerProductPriceTransfer
      */
     protected function getBestPrice(array $prices, int $quantity): CustomerProductPriceTransfer
     {
@@ -94,10 +102,12 @@ class CustomerProductPriceCalculator implements CustomerProductPriceCalculatorIn
             return $price->getQuantity() <= $quantity;
         });
 
-        usort($filterPrices,
+        usort(
+            $filterPrices,
             function (CustomerProductPriceTransfer $priceA, CustomerProductPriceTransfer $priceB) {
                 return $priceB->getQuantity() <=> $priceA->getQuantity();
-            });
+            }
+        );
 
         return current($filterPrices);
     }

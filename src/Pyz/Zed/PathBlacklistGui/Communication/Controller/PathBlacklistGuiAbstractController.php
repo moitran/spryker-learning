@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\PathBlacklistGui\Communication\Controller;
 
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
@@ -26,7 +31,6 @@ abstract class PathBlacklistGuiAbstractController extends AbstractController
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return \Generated\Shared\Transfer\PathBlacklistTransfer|\Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     protected function findPathBlacklistById(Request $request)
     {
@@ -53,7 +57,7 @@ abstract class PathBlacklistGuiAbstractController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return false|string
+     * @return string|false
      */
     protected function getAffectedUrlBlock(Request $request)
     {

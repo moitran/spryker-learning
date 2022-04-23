@@ -1,28 +1,31 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Client\CustomerProductPriceSearch\Plugin;
 
 use Elastica\ResultSet;
-use Pyz\Client\CustomerProductPriceSearch\CustomerProductPriceSearchFactory;
 use Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface;
 use Spryker\Client\SearchElasticsearch\Plugin\ResultFormatter\AbstractElasticsearchResultFormatterPlugin;
 
 /**
  * Class CustomerPricesSearchResultFormatterPlugin
+ *
  * @package Pyz\Client\CustomerProductPriceSearch\Plugin
- * @method CustomerProductPriceSearchFactory getFactory()
+ * @method \Pyz\Client\CustomerProductPriceSearch\CustomerProductPriceSearchFactory getFactory()
  */
 class CustomerPricesSearchResultFormatterPlugin extends AbstractElasticsearchResultFormatterPlugin
 {
     /**
-     * @var ResultFormatterPluginInterface
+     * @var \Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface
      */
     protected $currencyAwareCatalogSearchResultFormatterPlugin;
 
     /**
-     * CustomerPricesSearchResultFormatterPlugin constructor.
-     *
-     * @param ResultFormatterPluginInterface $currencyAwareCatalogSearchResultFormatterPlugin
+     * @param \Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface $currencyAwareCatalogSearchResultFormatterPlugin
      */
     public function __construct(ResultFormatterPluginInterface $currencyAwareCatalogSearchResultFormatterPlugin)
     {
@@ -38,11 +41,10 @@ class CustomerPricesSearchResultFormatterPlugin extends AbstractElasticsearchRes
     }
 
     /**
-     * @param ResultSet $searchResult
+     * @param \Elastica\ResultSet $searchResult
      * @param array $requestParameters
      *
      * @return mixed
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     protected function formatSearchResult(ResultSet $searchResult, array $requestParameters)
     {

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\CustomerProductPrice;
 
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
@@ -7,6 +12,7 @@ use Spryker\Zed\Kernel\Container;
 
 /**
  * Class CustomerProductPriceDependencyProvider
+ *
  * @package Pyz\Zed\CustomerProductPrice
  */
 class CustomerProductPriceDependencyProvider extends AbstractBundleDependencyProvider
@@ -15,10 +21,9 @@ class CustomerProductPriceDependencyProvider extends AbstractBundleDependencyPro
     public const FACADE_MONEY = 'money facade';
 
     /**
-     * @param Container $container
+     * @param \Spryker\Zed\Kernel\Container $container
      *
-     * @return Container
-     * @throws \Spryker\Service\Container\Exception\FrozenServiceException
+     * @return \Spryker\Zed\Kernel\Container
      */
     public function provideBusinessLayerDependencies(Container $container)
     {
@@ -30,9 +35,9 @@ class CustomerProductPriceDependencyProvider extends AbstractBundleDependencyPro
     }
 
     /**
-     * @param Container $container
+     * @param \Spryker\Zed\Kernel\Container $container
      *
-     * @throws \Spryker\Service\Container\Exception\FrozenServiceException
+     * @return void
      */
     protected function addEventFacade(Container $container)
     {
@@ -40,9 +45,9 @@ class CustomerProductPriceDependencyProvider extends AbstractBundleDependencyPro
     }
 
     /**
-     * @param Container $container
+     * @param \Spryker\Zed\Kernel\Container $container
      *
-     * @throws \Spryker\Service\Container\Exception\FrozenServiceException
+     * @return void
      */
     protected function addMoneyFacade(Container $container)
     {

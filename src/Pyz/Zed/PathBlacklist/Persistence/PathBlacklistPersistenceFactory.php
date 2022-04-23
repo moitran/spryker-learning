@@ -1,44 +1,30 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Zed\PathBlacklist\Persistence;
 
-use Generated\Shared\Transfer\PathBlacklistTransfer;
 use Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklistQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 
 /**
  * Class PathBlacklistPersistenceFactory
+ *
  * @package Pyz\Zed\PathBlacklist\Persistence
  * @method \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistQueryContainerInterface getQueryContainer()
+ * @method \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistEntityManagerInterface getEntityManager()
+ * @method \Pyz\Zed\PathBlacklist\Persistence\PathBlacklistRepositoryInterface getRepository()
  */
 class PathBlacklistPersistenceFactory extends AbstractPersistenceFactory
 {
     /**
-     * @return PyzPathBlacklistQuery
+     * @return \Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklistQuery
      */
     public function createPathBlacklistQuery(): PyzPathBlacklistQuery
     {
         return PyzPathBlacklistQuery::create();
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\PathBlacklistTransfer $pathBlacklistTransfer
-     *
-     * @return \Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklistQuery
-     */
-    public function findByIdPathBlacklist(PathBlacklistTransfer $pathBlacklistTransfer): PyzPathBlacklistQuery
-    {
-        return $this->getQueryContainer()->findByIdPathBlacklist($pathBlacklistTransfer);
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\PathBlacklistTransfer $pathBlacklistTransfer
-     *
-     * @return \Orm\Zed\PathBlacklist\Persistence\PyzPathBlacklistQuery
-     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
-     */
-    public function findByPath(PathBlacklistTransfer $pathBlacklistTransfer): PyzPathBlacklistQuery
-    {
-        return $this->getQueryContainer()->findByPath($pathBlacklistTransfer);
     }
 }
