@@ -9,24 +9,19 @@ use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 use SprykerMiddleware\Zed\Process\Communication\Plugin\Iterator\NullIteratorPlugin;
 use SprykerMiddleware\Zed\Process\Communication\Plugin\Log\MiddlewareLoggerConfigPlugin;
-use SprykerMiddleware\Zed\Process\Communication\Plugin\Stream\JsonInputStreamPlugin;
-use SprykerMiddleware\Zed\Process\Communication\Plugin\Stream\JsonOutputStreamPlugin;
 use SprykerMiddleware\Zed\Process\Communication\Plugin\StreamReaderStagePlugin;
 use SprykerMiddleware\Zed\Process\Communication\Plugin\StreamWriterStagePlugin;
 
 class CustomerProductPriceImportMiddlewareDependencyProvider extends AbstractBundleDependencyProvider
 {
-    const STREAM_PLUGIN_JSON_INPUT = 'json input stream plugin';
-    const STREAM_PLUGIN_JSON_OUTPUT = 'json output stream plugin';
     const PLUGIN_NULL_ITERATOR = 'null iterator plugin';
     const STAGE_PLUGIN_STACK_CUSTOMER_PRODUCT_PRICE = 'customer product price stage plugin stack';
     const CONFIG_PLUGIN_MIDDLEWARE_LOGGER = 'middleware logger config plugin';
     const FACADE_PROCESS = 'process facade';
+    const FACADE_EVENT = 'event facade';
 
-    public function provideCommunicationLayerDependencies(Container $container)
+    public function provideCommunicationLayerDependencies(Container $container): Container
     {
-        $this->addJsonInputStreamPlugin($container);
-        $this->addJsonOutputStreamPlugin($container);
         $this->addNullIteratorPlugin($container);
         $this->addCustomerProductPriceStagePluginStack($container);
         $this->addMiddlewareLoggerConfigPlugin($container);
@@ -35,18 +30,16 @@ class CustomerProductPriceImportMiddlewareDependencyProvider extends AbstractBun
         return $container;
     }
 
-    protected function addJsonInputStreamPlugin(Container $container)
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    public function provideBusinessLayerDependencies(Container $container): Container
     {
-        $container->set(static::STREAM_PLUGIN_JSON_INPUT, function () {
-            return new JsonInputStreamPlugin();
-        });
-    }
+        $this->addEventFacade($container);
 
-    protected function addJsonOutputStreamPlugin(Container $container)
-    {
-        $container->set(static::STREAM_PLUGIN_JSON_OUTPUT, function () {
-            return new JsonOutputStreamPlugin();
-        });
+        return $container;
     }
 
     protected function addNullIteratorPlugin(Container $container)
@@ -79,5 +72,10 @@ class CustomerProductPriceImportMiddlewareDependencyProvider extends AbstractBun
     protected function addProcessFacade(Container $container)
     {
         $container->set(static::FACADE_PROCESS, $container->getLocator()->process()->facade());
+    }
+
+    protected function addEventFacade(Container $container)
+    {
+        $container->set(static::FACADE_EVENT, $container->getLocator()->event()->facade());
     }
 }

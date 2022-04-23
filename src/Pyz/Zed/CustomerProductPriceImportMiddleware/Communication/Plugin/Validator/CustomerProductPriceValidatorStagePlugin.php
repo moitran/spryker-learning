@@ -8,7 +8,6 @@ use SprykerMiddleware\Shared\Process\Stream\WriteStreamInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\StagePluginInterface;
 
 /**
- * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Business\CustomerProductPriceImportMiddlewareFacadeInterface getFacade()
  * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\CustomerProductPriceImportMiddlewareCommunicationFactory getFactory()
  */
 class CustomerProductPriceValidatorStagePlugin extends AbstractPlugin implements StagePluginInterface
@@ -42,6 +41,9 @@ class CustomerProductPriceValidatorStagePlugin extends AbstractPlugin implements
      */
     protected function getValidatorConfigTransfer(): ValidatorConfigTransfer
     {
-        return $this->getFacade()->getValidatorConfigTransfer();
+        return $this->getFactory()
+            ->createBusinessFactory()
+            ->createCustomerProductPriceValidator()
+            ->getValidatorConfig();
     }
 }

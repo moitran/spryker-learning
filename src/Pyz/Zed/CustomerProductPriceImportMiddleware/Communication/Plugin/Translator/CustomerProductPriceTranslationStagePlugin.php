@@ -8,7 +8,6 @@ use SprykerMiddleware\Shared\Process\Stream\WriteStreamInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\StagePluginInterface;
 
 /**
- * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Business\CustomerProductPriceImportMiddlewareFacadeInterface getFacade()
  * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\CustomerProductPriceImportMiddlewareCommunicationFactory getFactory()
  */
 class CustomerProductPriceTranslationStagePlugin extends AbstractPlugin implements StagePluginInterface
@@ -42,7 +41,9 @@ class CustomerProductPriceTranslationStagePlugin extends AbstractPlugin implemen
      */
     protected function getTranslatorConfig(): TranslatorConfigTransfer
     {
-        return $this->getFacade()
-            ->getCustomerProductPriceTranslatorConfig();
+        return $this->getFactory()
+            ->createBusinessFactory()
+            ->createCustomerProductPriceDictionary()
+            ->getTranslatorConfig();
     }
 }

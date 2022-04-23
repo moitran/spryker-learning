@@ -29,7 +29,7 @@ class CustomerProductPriceImportProcessPlugin extends AbstractPlugin implements 
      */
     public function getInputStreamPlugin(): InputStreamPluginInterface
     {
-        return $this->getFactory()->getJsonRowInputStreamPlugin();
+        return $this->getFactory()->createCustomerProductPriceApiInputStreamPlugin();
     }
 
     /**
@@ -37,7 +37,7 @@ class CustomerProductPriceImportProcessPlugin extends AbstractPlugin implements 
      */
     public function getOutputStreamPlugin(): OutputStreamPluginInterface
     {
-        return $this->getFactory()->getJsonRowOutputStreamPlugin();
+        return $this->getFactory()->createCustomerProductPriceEventOutputStreamPlugin();
     }
 
     /**

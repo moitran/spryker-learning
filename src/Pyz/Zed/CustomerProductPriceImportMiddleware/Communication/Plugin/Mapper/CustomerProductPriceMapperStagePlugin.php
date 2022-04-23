@@ -8,7 +8,6 @@ use SprykerMiddleware\Shared\Process\Stream\WriteStreamInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\StagePluginInterface;
 
 /**
- * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Business\CustomerProductPriceImportMiddlewareFacadeInterface getFacade()
  * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\CustomerProductPriceImportMiddlewareCommunicationFactory getFactory()
  */
 class CustomerProductPriceMapperStagePlugin extends AbstractPlugin implements StagePluginInterface
@@ -42,7 +41,9 @@ class CustomerProductPriceMapperStagePlugin extends AbstractPlugin implements St
      */
     protected function getMapperConfigTransfer(): MapperConfigTransfer
     {
-        return $this->getFacade()
-            ->getCustomerProductPriceMapperConfigTransfer();
+        return $this->getFactory()
+            ->createBusinessFactory()
+            ->createCustomerProductPriceMapper()
+            ->getMapperConfig();
     }
 }

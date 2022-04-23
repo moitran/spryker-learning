@@ -11,13 +11,13 @@ class CustomerProductPriceMapper extends AbstractMap
     const JSON_COL_PRODUCT_NUMBER = 'item_number';
     const JSON_COL_PRICES = 'prices';
     const JSON_COL_PRICES_QUANTITY = 'quantity';
-    const JSON_COL_PRICES_PRICE = 'price';
+    const JSON_COL_PRICES_VALUE = 'value';
 
     const MAP_COL_CUSTOMER_NUMBER = 'customer_number';
     const MAP_COL_PRODUCT_NUMBER = 'product_number';
     const MAP_COL_PRICES = 'prices';
     const MAP_COL_PRICES_QUANTITY = 'quantity';
-    const MAP_COL_PRICES_PRICE = 'price';
+    const MAP_COL_PRICES_VALUE = 'price';
 
     /**
      * @return string[]
@@ -31,7 +31,7 @@ class CustomerProductPriceMapper extends AbstractMap
                 static::JSON_COL_PRICES,
                 'itemMap' => [
                     static::MAP_COL_PRICES_QUANTITY => static::JSON_COL_PRICES_QUANTITY,
-                    static::MAP_COL_PRICES_PRICE => static::JSON_COL_PRICES_PRICE,
+                    static::MAP_COL_PRICES_VALUE => static::JSON_COL_PRICES_VALUE,
                 ]
             ],
         ];

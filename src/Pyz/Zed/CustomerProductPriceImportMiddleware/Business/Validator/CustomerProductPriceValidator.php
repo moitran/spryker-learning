@@ -24,12 +24,6 @@ class CustomerProductPriceValidator extends AbstractValidationRuleSet
             ],
             CustomerProductPriceMapper::MAP_COL_PRODUCT_NUMBER => [
                 'Required',
-                [
-                    'Type',
-                    'options' => [
-                        'type' => 'string'
-                    ],
-                ],
             ],
             CustomerProductPriceMapper::MAP_COL_PRICES => [
                 'Required',

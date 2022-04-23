@@ -12,7 +12,7 @@ class CustomerProductPriceDictionary extends AbstractDictionary
     public function getDictionary(): array
     {
         return  [
-            'prices.*.value' => 'MoneyDecimalToInteger',
+            'prices.*.price' => 'MoneyDecimalToInteger',
         ];
     }
 }

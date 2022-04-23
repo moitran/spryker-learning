@@ -2,30 +2,43 @@
 
 namespace Pyz\Zed\CustomerProductPriceImportMiddleware\Communication;
 
+use Pyz\Zed\CustomerProductPriceImportMiddleware\Business\CustomerProductPriceImportMiddlewareBusinessFactory;
 use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Configuration\CustomerProductPriceImportProcessPlugin;
-use Pyz\Zed\CustomerProductPriceImportMiddleware\CustomerProductPriceImportMiddlewareDependencyProvider as CPPIMiddlewareDependencyProvider ;
+use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Stream\CustomerProductPriceApiInputStreamPlugin;
+use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Stream\CustomerProductPriceEventOutputStreamPlugin;
+use Pyz\Zed\CustomerProductPriceImportMiddleware\CustomerProductPriceImportMiddlewareDependencyProvider as CPPIMiddlewareDependencyProvider;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use SprykerMiddleware\Zed\Process\Business\ProcessFacadeInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Configuration\ProcessConfigurationPluginInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Iterator\ProcessIteratorPluginInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Log\MiddlewareLoggerConfigPluginInterface;
-use SprykerMiddleware\Zed\Process\Dependency\Plugin\StagePluginInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Stream\InputStreamPluginInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Stream\OutputStreamPluginInterface;
 
-/**
- * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Persistence\CustomerProductPriceImportMiddlewareQueryContainer getQueryContainer()
- * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\Business\CustomerProductPriceImportMiddlewareFacade getFacade()
- * @method \Pyz\Zed\CustomerProductPriceImportMiddleware\CustomerProductPriceImportMiddlewareConfig getConfig()
- */
 class CustomerProductPriceImportMiddlewareCommunicationFactory extends AbstractCommunicationFactory
 {
     /**
+     * @return \Pyz\Zed\CustomerProductPriceImportMiddleware\Business\CustomerProductPriceImportMiddlewareBusinessFactory
+     */
+    public function createBusinessFactory() : CustomerProductPriceImportMiddlewareBusinessFactory
+    {
+        return new CustomerProductPriceImportMiddlewareBusinessFactory();
+    }
+
+    /**
+     * @return \SprykerMiddleware\Zed\Process\Dependency\Plugin\Stream\OutputStreamPluginInterface
+     */
+    public function createCustomerProductPriceEventOutputStreamPlugin(): OutputStreamPluginInterface
+    {
+        return new CustomerProductPriceEventOutputStreamPlugin();
+    }
+
+    /**
      * @return \SprykerMiddleware\Zed\Process\Dependency\Plugin\Stream\InputStreamPluginInterface
      */
-    public function getJsonRowInputStreamPlugin(): InputStreamPluginInterface
+    public function createCustomerProductPriceApiInputStreamPlugin(): InputStreamPluginInterface
     {
-        return $this->getProvidedDependency(CPPIMiddlewareDependencyProvider::STREAM_PLUGIN_JSON_INPUT);
+        return new CustomerProductPriceApiInputStreamPlugin();
     }
 
     /**
@@ -34,14 +47,6 @@ class CustomerProductPriceImportMiddlewareCommunicationFactory extends AbstractC
     public function getProcessFacade(): ProcessFacadeInterface
     {
         return $this->getProvidedDependency(CPPIMiddlewareDependencyProvider::FACADE_PROCESS);
-    }
-
-    /**
-     * @return \SprykerMiddleware\Zed\Process\Dependency\Plugin\Stream\OutputStreamPluginInterface
-     */
-    public function getJsonRowOutputStreamPlugin(): OutputStreamPluginInterface
-    {
-        return $this->getProvidedDependency(CPPIMiddlewareDependencyProvider::STREAM_PLUGIN_JSON_OUTPUT);
     }
 
     /**
