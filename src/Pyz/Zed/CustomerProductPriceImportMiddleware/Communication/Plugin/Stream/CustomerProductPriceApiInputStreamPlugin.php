@@ -34,8 +34,6 @@ class CustomerProductPriceApiInputStreamPlugin extends AbstractPlugin implements
      */
     public function getInputStream(string $path): ReadStreamInterface
     {
-        return $this->getFactory()
-            ->createBusinessFactory()
-            ->createCustomerProductPriceApiReadStream($path);
+        return $this->getFacade()->getCustomerProductPriceApiReadStream($path);
     }
 }

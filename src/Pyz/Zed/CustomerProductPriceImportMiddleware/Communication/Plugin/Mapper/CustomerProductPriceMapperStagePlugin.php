@@ -47,9 +47,6 @@ class CustomerProductPriceMapperStagePlugin extends AbstractPlugin implements St
      */
     protected function getMapperConfigTransfer(): MapperConfigTransfer
     {
-        return $this->getFactory()
-            ->createBusinessFactory()
-            ->createCustomerProductPriceMapper()
-            ->getMapperConfig();
+        return $this->getFacade()->getMapperConfig();
     }
 }

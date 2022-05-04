@@ -47,9 +47,6 @@ class CustomerProductPriceValidatorStagePlugin extends AbstractPlugin implements
      */
     protected function getValidatorConfigTransfer(): ValidatorConfigTransfer
     {
-        return $this->getFactory()
-            ->createBusinessFactory()
-            ->createCustomerProductPriceValidator()
-            ->getValidatorConfig();
+        return $this->getFacade()->getValidatorConfig();
     }
 }

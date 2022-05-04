@@ -47,9 +47,6 @@ class CustomerProductPriceTranslationStagePlugin extends AbstractPlugin implemen
      */
     protected function getTranslatorConfig(): TranslatorConfigTransfer
     {
-        return $this->getFactory()
-            ->createBusinessFactory()
-            ->createCustomerProductPriceDictionary()
-            ->getTranslatorConfig();
+        return $this->getFacade()->getTranslatorConfig();
     }
 }
