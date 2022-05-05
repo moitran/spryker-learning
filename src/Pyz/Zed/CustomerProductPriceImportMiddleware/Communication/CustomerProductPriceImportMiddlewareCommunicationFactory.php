@@ -7,13 +7,16 @@
 
 namespace Pyz\Zed\CustomerProductPriceImportMiddleware\Communication;
 
-use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Configuration\CustomerProductPriceImportProcessPlugin;
+use Pyz\Zed\CustomerProductPriceImportMiddleware\Business\Stream\CustomerProductPriceApiReadStream;
+use Pyz\Zed\CustomerProductPriceImportMiddleware\Business\Stream\CustomerProductPriceEventWriteStream;
 use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Stream\CustomerProductPriceApiInputStreamPlugin;
 use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Stream\CustomerProductPriceEventOutputStreamPlugin;
 use Pyz\Zed\CustomerProductPriceImportMiddleware\CustomerProductPriceImportMiddlewareDependencyProvider;
+use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
+use SprykerMiddleware\Shared\Process\Stream\ReadStreamInterface;
+use SprykerMiddleware\Shared\Process\Stream\WriteStreamInterface;
 use SprykerMiddleware\Zed\Process\Business\ProcessFacadeInterface;
-use SprykerMiddleware\Zed\Process\Dependency\Plugin\Configuration\ProcessConfigurationPluginInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Iterator\ProcessIteratorPluginInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Log\MiddlewareLoggerConfigPluginInterface;
 use SprykerMiddleware\Zed\Process\Dependency\Plugin\Stream\InputStreamPluginInterface;
@@ -73,20 +76,30 @@ class CustomerProductPriceImportMiddlewareCommunicationFactory extends AbstractC
     }
 
     /**
-     * @return array
+     * @return \SprykerMiddleware\Shared\Process\Stream\WriteStreamInterface
      */
-    public function getCustomerProductPriceImportProcessPlugins(): array
+    public function createCustomerProductPriceEventWriteStream(): WriteStreamInterface
     {
-        return [
-            $this->createCustomerProductPriceImportProcessPlugin(),
-        ];
+        return new CustomerProductPriceEventWriteStream(
+            $this->getEventFacade()
+        );
     }
 
     /**
-     * @return \SprykerMiddleware\Zed\Process\Dependency\Plugin\Configuration\ProcessConfigurationPluginInterface
+     * @param string $url
+     *
+     * @return \SprykerMiddleware\Shared\Process\Stream\ReadStreamInterface
      */
-    protected function createCustomerProductPriceImportProcessPlugin(): ProcessConfigurationPluginInterface
+    public function createCustomerProductPriceApiReadStream(string $url): ReadStreamInterface
     {
-        return new CustomerProductPriceImportProcessPlugin();
+        return new CustomerProductPriceApiReadStream($url);
+    }
+
+    /**
+     * @return \Spryker\Zed\Event\Business\EventFacadeInterface
+     */
+    protected function getEventFacade(): EventFacadeInterface
+    {
+        return $this->getProvidedDependency(CustomerProductPriceImportMiddlewareDependencyProvider::FACADE_EVENT);
     }
 }

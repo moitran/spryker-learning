@@ -7,7 +7,7 @@
 
 namespace Pyz\Zed\Process;
 
-use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Configuration\CustomerProductPriceImportConfigurationProfilePlugin;
+use Pyz\Zed\CustomerProductPriceImportMiddleware\Communication\Plugin\Configuration\CustomerProductPriceImportProcessPlugin;
 use SprykerMiddleware\Zed\Process\Communication\Plugin\Configuration\DefaultConfigurationProfilePlugin;
 use SprykerMiddleware\Zed\Process\ProcessDependencyProvider as SprykerMiddlewareProcessDependencyProvider;
 
@@ -20,8 +20,17 @@ class ProcessDependencyProvider extends SprykerMiddlewareProcessDependencyProvid
     {
         $profileStack = parent::getConfigurationProfilePluginsStack();
         $profileStack[] = new DefaultConfigurationProfilePlugin();
-        $profileStack[] = new CustomerProductPriceImportConfigurationProfilePlugin();
 
         return $profileStack;
+    }
+
+    /**
+     * @return \SprykerMiddleware\Zed\Process\Dependency\Plugin\Configuration\ProcessConfigurationPluginInterface[]
+     */
+    protected function getProcessesPluginsStack(): array
+    {
+        return [
+            new CustomerProductPriceImportProcessPlugin(),
+        ];
     }
 }

@@ -31,17 +31,6 @@ class CustomerProductPriceImportMiddlewareDependencyProvider extends AbstractBun
         $this->addCustomerProductPriceStagePluginStack($container);
         $this->addMiddlewareLoggerConfigPlugin($container);
         $this->addProcessFacade($container);
-
-        return $container;
-    }
-
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
-    public function provideBusinessLayerDependencies(Container $container): Container
-    {
         $this->addEventFacade($container);
 
         return $container;

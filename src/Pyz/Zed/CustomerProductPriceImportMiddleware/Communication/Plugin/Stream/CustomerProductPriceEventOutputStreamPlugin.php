@@ -34,6 +34,6 @@ class CustomerProductPriceEventOutputStreamPlugin extends AbstractPlugin impleme
      */
     public function getOutputStream(string $path): WriteStreamInterface
     {
-        return $this->getFacade()->getCustomerProductPriceEventWriteStream();
+        return $this->getFactory()->createCustomerProductPriceEventWriteStream();
     }
 }

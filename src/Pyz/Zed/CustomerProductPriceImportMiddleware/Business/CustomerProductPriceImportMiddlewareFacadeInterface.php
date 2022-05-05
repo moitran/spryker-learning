@@ -10,8 +10,6 @@ namespace Pyz\Zed\CustomerProductPriceImportMiddleware\Business;
 use Generated\Shared\Transfer\MapperConfigTransfer;
 use Generated\Shared\Transfer\TranslatorConfigTransfer;
 use Generated\Shared\Transfer\ValidatorConfigTransfer;
-use SprykerMiddleware\Shared\Process\Stream\ReadStreamInterface;
-use SprykerMiddleware\Shared\Process\Stream\WriteStreamInterface;
 
 interface CustomerProductPriceImportMiddlewareFacadeInterface
 {
@@ -29,16 +27,4 @@ interface CustomerProductPriceImportMiddlewareFacadeInterface
      * @return \Generated\Shared\Transfer\ValidatorConfigTransfer
      */
     public function getValidatorConfig(): ValidatorConfigTransfer;
-
-    /**
-     * @param string $path
-     *
-     * @return \SprykerMiddleware\Shared\Process\Stream\ReadStreamInterface
-     */
-    public function getCustomerProductPriceApiReadStream(string $path): ReadStreamInterface;
-
-    /**
-     * @return \SprykerMiddleware\Shared\Process\Stream\WriteStreamInterface
-     */
-    public function getCustomerProductPriceEventWriteStream(): WriteStreamInterface;
 }
